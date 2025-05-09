@@ -1,0 +1,291 @@
+"use client";
+import Link from "next/link";
+import React, { useState } from "react";
+import { FaCheck } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
+
+const PricingPlan = () => {
+  const [plan, setPlan] = useState("monthly");
+
+  const changePlan = () => {
+    if (plan === "monthly") {
+      setPlan("annual");
+    } else if (plan === "annual") {
+      setPlan("monthly");
+    }
+  };
+
+  const plans = [
+    {
+      id: 1,
+      planName: "Basic",
+      description:
+        "Perfect for starters—get essential features to kickstart your AI journey.",
+      trialPrice: 5,
+      monthlyPrice: 5,
+      planFeatures: [
+        {
+          feature: "10000 Content Words",
+        },
+        {
+          feature: "No Free Images",
+        },
+        {
+          feature: "LLM Models Integration",
+        },
+        {
+          feature: "10 Chats Prompts",
+        },
+        {
+          feature: "Voice Over Limited Words",
+        },
+        {
+          feature: "No Keyword Research",
+        },
+        {
+          feature: "10 One Click Blog Creation",
+        },
+        // {
+        //   feature: "All Tools Access",
+        // },
+        {
+          feature: "No Simultaneous Users",
+        },
+      ],
+    },
+
+    {
+      id: 2,
+      planName: "Standard",
+      description:
+        "Unlock advanced tools for growing needs and higher productivity.",
+      trialPrice: 25,
+      monthlyPrice: 25,
+      planFeatures: [
+        {
+          feature: "150000 Content Words",
+        },
+        {
+          feature: "500 Free Images",
+        },
+        {
+          feature: "LLM Models Integration",
+        },
+        {
+          feature: "5000 Chats Prompts",
+        },
+        {
+          feature: "Voice Over Unlimited Words",
+        },
+        {
+          feature: "Keyword Research Unlimited",
+        },
+        // {
+        //   feature: "All Tools Access",
+        // },
+        {
+          feature: "50 One Click Blog Creation",
+        },
+        {
+          feature: "WordPress Integration",
+        },
+        {
+          feature: "1 WordPress Site Allowed",
+        }, 
+        {
+          feature: "2 Simultaneous Users",
+        },
+      ],
+    },
+
+    {
+      id: 3,
+      planName: "Premium",
+      description:
+        "The ultimate package with full access and priority support for professionals.",
+      trialPrice: 500,
+      monthlyPrice: 500,
+      planFeatures: [
+        {
+          feature: "Unlimited Content Words",
+        },
+        {
+          feature: "Unlimited Free Images",
+        },
+        {
+          feature: "LLM Models Integration",
+        },
+        {
+          feature: "Unlimited Chats Prompts",
+        },
+        {
+          feature: "Voice Over Unlimited Words",
+        },
+        {
+          feature: "Keyword Research Unlimited",
+        },
+        // {
+        //   feature: "All Tools Access",
+        // },
+        {
+          feature: "Unlimited One Click Blog Creation",
+        },
+        {
+          feature: "WordPress Integration",
+        },
+        {
+          feature: "1k WordPress Blog Automation",
+        },
+        {
+          feature: "1 WordPress Site Allowed",
+        }, 
+        {
+          feature: "4 Simultaneous Users",
+        },
+      ],
+    },
+  ];
+  return (
+    <div className="relative w-full px-4 py-10 md:py-16 lg:py-20">
+      <div className="absolute top-1/2 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div>
+      <div className="absolute top-10 right-1/4 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px] z-0"></div>
+      <div className="absolute top-10 left-1/4 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#CE17F8] blur-[120px] z-0"></div>
+
+      <div className="w-full max-w-6xl mx-auto flex flex-col gap-10 items-center justify-center">
+        <div className="flex flex-col items-center justify-center max-w-4xl text-white gap-3 px-3 z-50">
+          {/* TITLE */}
+          <h2 className="text-2xl md:text-3xl lg:text-4xl !text-white font-bold text-transparent bg-clip-text">
+            Choose Your{" "}
+            <span className="gradient-text not-italic text-transparent bg-clip-text">
+              {" "}
+              Plan{" "}
+            </span>
+          </h2>
+
+          <p className="font-extralight text-center max-w-lg text-sm xl:text-base">
+            Simple pricing plans for everyone and every budget.
+          </p>
+        </div>
+
+        <div className="flex gap-7 text-white">
+          <button
+            onClick={changePlan}
+            className={`py-1 text-base md:text-lg font-medium ${
+              plan === "monthly"
+                ? " gradient-border-wrapper px-6 "
+                : " border-none "
+            } `}
+          >
+            Monthly
+          </button>
+
+          <button
+            onClick={changePlan}
+            className={`flex items-center gap-2 ${
+              plan === "annual"
+                ? " gradient-border-wrapper px-10 "
+                : " border-none "
+            } pb-2`}
+          >
+            <span className="font-medium text-base md:text-lg">Annual</span>
+
+            <span className="bg-[#8B5CF6] p-1 px-4 text-white rounded-full text-sm md:text-base">
+              save 20%
+            </span>
+          </button>
+        </div>
+
+        {/* PRICING PLANS CARDS */}
+
+        <div className="mt-6 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-center lg:justify-between gap-6">
+          {plans.map((item) => (
+            <div
+              key={item.id}
+              className={` relative flex flex-col justify-between h-full ${
+                item.id === 2
+                  ? " mt-6 md:mt-0 gradient-border-wrapper "
+                  : " bg-transparent border border-[#241a47]  "
+              }  rounded-2xl `}
+            >
+              <div className="absolute bg-[#26184f] w-10 h-10 blur-xl top-0 left-0"></div>
+
+              <div
+                className={` ${
+                  item.id === 2 ? " block " : " hidden "
+                } z-10 absolute -top-5 right-7 `}
+              >
+                <button className="bg-[#E14EE9] text-white rounded-lg capitalize p-2 px-3">
+                  Popular
+                </button>
+              </div>
+
+              <div>
+                <div className="flex flex-col gap-3 p-4 md:p-7">
+                  <div className="space-y-1 text-white">
+                    <h4 className="font-bold text-xl md:text-2xl lg:text-3xl">
+                      {item.planName}
+                    </h4>
+                    <p className="text-sm xl:text-base text-gray-200">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  <div className="space-y-3 text-white">
+                    <div className="flex gap-2 items-center">
+                      <h4 className="font-bold text-3xl md:text-4xl lg:text-5xl">
+                        ${" "}
+                        {plan === "annual"
+                          ? (item.monthlyPrice * 12 * 0.8).toFixed(2)
+                          : (item.monthlyPrice - 0.01).toFixed(2)}
+                        / {plan === "monthly" ? "mo" : "yr"}
+                      </h4>
+                    </div>
+
+                    <div className="flex gap-1">
+                      <p className={`text-sm xl:text-base text-gray-200 `}>
+                        billed {plan === "monthly" ? "monthly" : "annually"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center p-2 md:p-4">
+                  <Link href={`${process.env.NEXT_PUBLIC_APP}user/plans`}>
+                    <button
+                      className={`w-full text-sm md:text-base flex gradient-bg items-center justify-center p-3 px-24 text-center font-bold rounded-full text-white capitalize hover:scale-105 duration-500`}
+                    >
+                      Get Start today
+                    </button>
+                  </Link>
+                </div>
+
+                <h2 className="px-4 md:px-7 pt-4 text-white text-lg md:text-xl lg:text-2xl">
+                  Inclusions:
+                </h2>
+
+                <div className="flex flex-col gap-3 p-4 md:p-7">
+                  {item.planFeatures.map((feature, index) => (
+                    <div
+                      key={index}
+                      className="h-full flex items-center gap-3 text-white text-sm md:text-base"
+                    >
+                      <span>
+                        <FaCheck
+                          size={25}
+                          className="border border-[#298CFD] text-[#298CFD] rounded-full w-5 h-5 p-1"
+                        />
+                      </span>
+                      {feature.feature}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PricingPlan;

@@ -1,0 +1,36 @@
+import React from "react";
+import dynamic from "next/dynamic";
+import { TopicalAuthorityFaqs } from "@/constants/FaqsData";
+import Hero from "@/components/topical-authority/Hero";
+import SeoFAQs from "@/components/newSeoFAQs";
+import WriteArticles from "@/components/topical-authority/WriteArticles";
+import ArticlesInMinutes from "@/components/topical-authority/ArticlesInMinutes";
+import ContentFails from "@/components/topical-authority/ContentFails";
+import BetterRank from "@/components/Home3/BetterRank";
+import DriveTraffic from "@/components/Home3/DriveTraffic";
+import Testimonial from "@/components/Home3/Testimonial";
+import FAQs from "@/components/Home3/FAQs";
+import PricingPlan from "@/components/Home3/PricingPlan";
+import PowerfulAiTools from "@/components/SeoWriter/PowerfulAiTools";
+import HeroAnimation from "@/components/SeoWriter/HeroAnimation";
+
+const page = () => {
+  return (
+    
+    <div className="relative w-full h-full flex flex-col justify-center items-center  bg-[#010002] overflow-x-hidden z-10">
+      <HeroAnimation />
+      <Hero />
+      <ArticlesInMinutes />
+      <ContentFails />
+      <WriteArticles />
+      <PowerfulAiTools />
+      <DriveTraffic />
+      <PricingPlan />
+      <Testimonial />
+      <FAQs faqs={TopicalAuthorityFaqs} />
+      <BetterRank />
+    </div>
+  );
+};
+
+export default page;

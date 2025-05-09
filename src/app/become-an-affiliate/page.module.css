@@ -1,0 +1,14 @@
+/* page.module.css */
+@keyframes upDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .upDown {
+    animation: upDown 3s ease-in-out infinite;
+  }
+  
