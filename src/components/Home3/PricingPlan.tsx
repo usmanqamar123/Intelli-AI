@@ -91,7 +91,7 @@ const PricingPlan = () => {
         },
         {
           feature: "1 WordPress Site Allowed",
-        }, 
+        },
         {
           feature: "2 Simultaneous Users",
         },
@@ -138,7 +138,7 @@ const PricingPlan = () => {
         },
         {
           feature: "1 WordPress Site Allowed",
-        }, 
+        },
         {
           feature: "4 Simultaneous Users",
         },
@@ -146,15 +146,15 @@ const PricingPlan = () => {
     },
   ];
   return (
-    <div className="relative w-full px-4 py-10 md:py-16 lg:py-20">
-      <div className="absolute top-1/2 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div>
-      <div className="absolute top-10 right-1/4 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px] z-0"></div>
-      <div className="absolute top-10 left-1/4 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#CE17F8] blur-[120px] z-0"></div>
+    <div className="relative  max-w-[1240px] mx-auto px-4 md:px-6 xl:px-0 w-full py-10 md:py-16 lg:py-20 z-10">
+      <div className="absolute top-40 -left-40 h-[550px] w-[550px] opacity-40 bg-[#CE17F8] blur-[120px] -z-10" />
+      <div className="absolute top-80 left-[30%] h-[550px] w-[550px] bg-[#7500FF] opacity-75 blur-[120px] -z-10" />
+      <div className="absolute top-40 -right-40 h-[550px] w-[550px] opacity-40 bg-[#0009FF] blur-[120px] -z-10" />
 
-      <div className="w-full max-w-6xl mx-auto flex flex-col gap-10 items-center justify-center">
+      <div className="w-full max-w-[1240px]  mx-auto flex flex-col gap-12 items-center justify-center">
         <div className="flex flex-col items-center justify-center max-w-4xl text-white gap-3 px-3 z-50">
           {/* TITLE */}
-          <h2 className="text-2xl md:text-3xl lg:text-4xl !text-white font-bold text-transparent bg-clip-text">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl !text-white font-bold text-transparent bg-clip-text">
             Choose Your{" "}
             <span className="gradient-text not-italic text-transparent bg-clip-text">
               {" "}
@@ -162,17 +162,17 @@ const PricingPlan = () => {
             </span>
           </h2>
 
-          <p className="font-extralight text-center max-w-lg text-sm xl:text-base">
+          <span className="font-extralight text-center max-w-lg text-base xl:text-lg">
             Simple pricing plans for everyone and every budget.
-          </p>
+          </span>
         </div>
 
         <div className="flex gap-7 text-white">
           <button
             onClick={changePlan}
-            className={`py-1 text-base md:text-lg font-medium ${
+            className={`py-1 px-6 text-base font-medium ${
               plan === "monthly"
-                ? " gradient-border-wrapper px-6 "
+                ? " gradient-border-wrapper  "
                 : " border-none "
             } `}
           >
@@ -197,19 +197,19 @@ const PricingPlan = () => {
 
         {/* PRICING PLANS CARDS */}
 
-        <div className="mt-6 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-center lg:justify-between gap-6">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-14 items-center justify-center lg:justify-between gap-6">
           {plans.map((item) => (
             <div
               key={item.id}
               className={` relative flex flex-col justify-between h-full ${
                 item.id === 2
                   ? " mt-6 md:mt-0 gradient-border-wrapper "
-                  : " bg-transparent border border-[#241a47]  "
+                  : " bg-black/30 "
               }  rounded-2xl `}
             >
               <div className="absolute bg-[#26184f] w-10 h-10 blur-xl top-0 left-0"></div>
 
-              <div
+              {/* <div
                 className={` ${
                   item.id === 2 ? " block " : " hidden "
                 } z-10 absolute -top-5 right-7 `}
@@ -217,22 +217,22 @@ const PricingPlan = () => {
                 <button className="bg-[#E14EE9] text-white rounded-lg capitalize p-2 px-3">
                   Popular
                 </button>
-              </div>
+              </div> */}
 
               <div>
-                <div className="flex flex-col gap-3 p-4 md:p-7">
-                  <div className="space-y-1 text-white">
-                    <h4 className="font-bold text-xl md:text-2xl lg:text-3xl">
+                <div className="flex flex-col gap-6 p-4 md:p-7">
+                  <div className="space-y-1 !text-white">
+                    <h4 className="font-bold !text-white text-lg md:text-xl lg:text-2xl">
                       {item.planName}
                     </h4>
-                    <p className="text-sm xl:text-base text-gray-200">
+                    <p className="text-sm xl:text-base !text-white">
                       {item.description}
                     </p>
                   </div>
 
-                  <div className="space-y-3 text-white">
+                  <div className="space-y-5 text-white">
                     <div className="flex gap-2 items-center">
-                      <h4 className="font-bold text-3xl md:text-4xl lg:text-5xl">
+                      <h4 className="font-bold text-3xl md:text-4xl lg:text-[50px]">
                         ${" "}
                         {plan === "annual"
                           ? (item.monthlyPrice * 12 * 0.8).toFixed(2)
@@ -241,33 +241,32 @@ const PricingPlan = () => {
                       </h4>
                     </div>
 
-                    <div className="flex gap-1">
+                    {/* <div className="flex gap-1">
                       <p className={`text-sm xl:text-base text-gray-200 `}>
                         billed {plan === "monthly" ? "monthly" : "annually"}
                       </p>
-                    </div>
+                    </div> */}
+                  </div>
+                  <div className="w-full">
+                    <Link href={`${process.env.NEXT_PUBLIC_APP}user/plans`}>
+                      <button
+                        className={`w-full text-sm md:text-base flex gradient-bg items-center justify-center px-6 py-4 text-center font-bold rounded-full text-white capitalize hover:scale-105 duration-500`}
+                      >
+                        Get Started today
+                      </button>
+                    </Link>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-center p-2 md:p-4">
-                  <Link href={`${process.env.NEXT_PUBLIC_APP}user/plans`}>
-                    <button
-                      className={`w-full text-sm md:text-base flex gradient-bg items-center justify-center p-3 px-24 text-center font-bold rounded-full text-white capitalize hover:scale-105 duration-500`}
-                    >
-                      Get Start today
-                    </button>
-                  </Link>
-                </div>
-
-                <h2 className="px-4 md:px-7 pt-4 text-white text-lg md:text-xl lg:text-2xl">
+                <span className="mt-10 font-medium px-4 md:px-7 text-white text-lg md:text-xl lg:text-2xl">
                   Inclusions:
-                </h2>
+                </span>
 
-                <div className="flex flex-col gap-3 p-4 md:p-7">
+                <div className="flex flex-col gap-3 p-4 md:p-7 !text-white">
                   {item.planFeatures.map((feature, index) => (
                     <div
                       key={index}
-                      className="h-full flex items-center gap-3 text-white text-sm md:text-base"
+                      className="h-full flex items-center gap-3 !text-white text-sm md:text-base"
                     >
                       <span>
                         <FaCheck

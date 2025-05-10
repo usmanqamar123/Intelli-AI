@@ -1,6 +1,7 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
 import { FaCheck } from "react-icons/fa6";
+import Image from "next/image";
 
 const IntelliComparison = () => {
   const features = [
@@ -34,25 +35,25 @@ const IntelliComparison = () => {
   ];
 
   return (
-    <div className="relative w-full px-4 py-10 md:py-16 lg:py-20">
-      <div className="absolute bottom-10 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
-      <div className="absolute top-1/2 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div>
-      <div className="absolute top-1/2 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
+    <div className="relative w-full  max-w-[1240px] mx-auto px-4 md:px-6 xl:px-0 py-10 md:py-16 lg:py-20 z-10">
+      <div className="absolute bottom-10 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px] -z-10"></div>
+      <div className="absolute top-1/2 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px] -z-10"></div>
+      <div className="absolute top-1/2 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px] -z-10"></div>
 
-      <div className="w-full max-w-6xl mx-auto flex flex-col gap-10 items-center justify-center">
-        <div className="flex flex-col lg:flex-row justify-between !text-white px-3 gap-3 md:gap-24">
+      <div className="w-full flex flex-col gap-6 items-center justify-center">
+        <div className="w-full flex flex-col lg:flex-row justify-between !text-white gap-24">
           {/* TITLE */}
-          <h2 className="text-2xl md:text-3xl text-white lg:text-4xl font-bold">
-            Why
-            <span className="gradient-text not-italic text-transparent bg-clip-text">
+          <span className="text-3xl md:text-4xl lg:text-5xl text-white font-bold">
+            Why{" "}
+            <span className="gradient-text not-italic text-transparent bg-clip-text leading-snug">
               Intelliwriter
             </span>
             <br />
             Outperforms the Rest
-          </h2>
+          </span>
 
           {/* TEXT */}
-          <p className="font-extralight max-w-lg text-sm xl:text-base self-start lg:self-end">
+          <p className="!text-white font-extralight max-w-xl text-base xl:text-lg self-start lg:self-end">
             Compare the features that matter most and discover how Intelli goes
             beyond to provide superior AI content creation.
           </p>
@@ -61,41 +62,52 @@ const IntelliComparison = () => {
         {/* Comparison Table */}
         <div className="w-full flex flex-col gap-10">
           <div className="w-full p-[1px] rounded-3xl  transition-shadow duration-300">
-            <div className="w-full h-full text-white pt-7 px-4 md:px-7 flex flex-col items-center justify-start gap-16">
+            <div className="w-full h-full text-white pt-7 flex flex-col items-center justify-start gap-16">
               {/* Scrollable Wrapper */}
               <div className="w-full overflow-x-auto custom-comparison">
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center gap-10">
                   {/* Key Features Column */}
-                  <div className="flex flex-col min-w-[180px] sticky left-0 z-10 pr-10">
-                    <div className="font-semibold text-lg md:text-xl px-2 mb-3 mt-4">
+                  <div className="flex flex-col min-w-[230px] !font-extralight z-10">
+                    <div className="!font-semibold text-lg md:text-xl xl:text-2xl mb-3 mt-4">
                       Key Features
                     </div>
                     {features.map((feature, index) => (
-                      <div
+                      <span
                         key={index}
-                        className="text-sm md:text-base xl:text-lg py-3 whitespace-nowrap"
+                        className="text-sm md:text-base xl:text-lg !font-extralight  py-3 whitespace-nowrap"
                       >
                         {feature}
-                      </div>
+                      </span>
                     ))}
                   </div>
 
                   {/* Tools Comparison Grid */}
-                  <div className="flex-1 overflow-x-auto custom-scrollbar ">
-                    <div className="md:bg-white/10 gradient-border-wrapper p-5">
-                      <div className="flex">
+                  <div className="w-fit overflow-x-auto custom-scrollbar ">
+                    <div className="bg-white/10 gradient-border-wrapper p-5 xl:p-7">
+                      <div className="flex gap-7">
                         {tools.map((tool, toolIndex) => (
                           <div
                             key={toolIndex}
                             className="min-w-[150px] text-center px-2"
                           >
-                            <div className="font-semibold text-lg md:text-xl mb-2 whitespace-nowrap">
-                              {tool}
-                            </div>
+                            {toolIndex === 0 ? (
+                              <Image
+                                src="/seo-artilce-writer/IntelliwriterLogo.png"
+                                width={130}
+                                height={42}
+                                alt="Intelliwriter"
+                                className="-mt-1 mb-3"
+                              />
+                            ) : (
+                              <div className="font-semibold text-lg md:text-xl xl:text-2xl mb-2 whitespace-nowrap">
+                                {tool}
+                              </div>
+                            )}
+
                             {data.map((row, rowIndex) => (
                               <div
                                 key={rowIndex}
-                                className="py-5 flex justify-center"
+                                className="py-4 flex justify-center"
                               >
                                 {row[toolIndex] ? (
                                   <FaCheck className="text-white" />

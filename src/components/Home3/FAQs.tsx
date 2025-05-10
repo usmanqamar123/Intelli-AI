@@ -1,6 +1,7 @@
-"use client"
+"use client";
 import React, { useState } from "react";
-import { IoMdAdd, IoMdRemove } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 import { motion } from "framer-motion";
 
 interface AccordProps {
@@ -52,44 +53,44 @@ const Faqs: React.FC<SeoFAQsProps> = ({}) => {
     },
   ];
   return (
-    <div className="relative w-full px-4  font-inter py-10 md:py-16 lg:py-20">
+    <div className="relative w-full max-w-[1240px] max-auto px-4 md:px-6 xl:px-0 font-inter py-10 md:py-16 lg:py-20 z-10">
       {/* GRADIENT */}
-      <div className="absolute top-1/2 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#CE17F8] blur-[120px] z-0"></div>
-      <div className="absolute bottom-0 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px] z-0"></div>
-      <div className="absolute top-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px] z-0"></div>
-      <div className="absolute top-1/2 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px] z-0"></div>
-      <div className="absolute top-0 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px] z-0"></div>
+      <div className="absolute top-1/2 -left-96 h-[400px] w-[400px] bg-[#CE17F8] blur-[120px] opacity-40 -z-10" />
+      {/* <div className="absolute bottom-0 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px] -z-10" /> */}
+      <div className="absolute top-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px] -z-10" />
+      <div className="absolute top-1/2 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px] -z-10" />
+      <div className="absolute top-0 -left-64 h-24 lg:h-32 w-10/12 lg:w-1/4 opacity-40 bg-[#7500FF] blur-[120px] -z-10" />
 
-      <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row gap-8 items-start justify-center">
-        <div className="flex flex-col max-w-4xl text-white gap-6 px-3 mx-auto">
+      <div className="w-full flex flex-col md:flex-row gap-8 items-start justify-center">
+        <div className="flex flex-col w-1/2 text-white gap-6 px-3 mx-auto">
           {/* TITLE */}
           <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text">
             Got Questions?
             <br />
-            <i className="gradient-text not-italic text-transparent bg-clip-text">
+            <span className="gradient-text  text-transparent bg-clip-text leading-snug">
               We’ve Got Answers!
-            </i>
+            </span>
           </h2>
 
-          <p className="font-extralight text-sm">
+          <p className="!font-extralight text-base lg:text-lg !text-white max-w-lg">
             We&apos;re dedicated to assisting individuals interested in
             generating AI-driven content and images.
           </p>
 
-          <button className="w-fit gradient-bg rounded-full text-white md:text-xl px-8 py-2">
+          <button className="mt-6 w-fit gradient-bg rounded-full font-semibold text-white !px-14 py-4">
             Get in Touch
           </button>
         </div>
 
-        <div className="w-full flex flex-col gap-5">
+        <div className="w-1/2 flex flex-col gap-5">
           {faqs.map((item, index) => (
             <div key={index}>
               {/* Question Section */}
               <div
-                className="flex flex-col items-center justify-between px-5 py-4 bg-transparent !rounded-none h-auto text-white cursor-pointer gradient-border-wrapper z-50"
+                className="flex flex-col items-center justify-between px-5 py-4 bg-transparent h-auto text-white cursor-pointer gradient-border-wrapper !rounded-md z-50"
                 onClick={() => toggleAnswer(index)}
               >
-                <div className="w-full flex justify-between items-center text-base xl:text-lg">
+                <div className="w-full flex justify-between items-center text-base md:text-lg xl:text-2xl">
                   {item.question}
 
                   {/* Animated Icon */}
@@ -98,9 +99,9 @@ const Faqs: React.FC<SeoFAQsProps> = ({}) => {
                     transition={{ duration: 0.3 }}
                   >
                     {openIndex === index ? (
-                      <IoMdRemove size={20} />
+                      <IoIosArrowUp size={20} />
                     ) : (
-                      <IoMdAdd size={20} />
+                      <IoIosArrowDown size={20} />
                     )}
                   </motion.div>
                 </div>

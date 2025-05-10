@@ -12,22 +12,21 @@ const logos = [
 
 const DriveTraffic = () => {
   return (
-    <section className="w-full relative py-10 md:py-16 lg:py-20 font-inter">
-      <div className="absolute top-0 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#CE17F8] blur-[120px] z-0"></div>
-      <div className="absolute top-0 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
+    <section className="w-full relative   px-4 md:px-6 xl:px-0 py-10 md:py-16 lg:py-20 font-inter z-10">
+      <div className="absolute top-0 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#CE17F8] blur-[120px] -z-10" />
+      <div className="absolute top-0 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px] -z-10" />
 
       {/* Top Section */}
-      <div className="flex  flex-col items-center text-center gap-6 mb-12 px-4 z-50">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold !text-white uppercase">
-          Generate High QualityContent
-          <br />& Drive Traffic
-        </h2>
-        <p className="text-lg md:text-xl text-gray-200 max-w-2xl">
+      <div className="flex  flex-col items-center text-center gap-6 mb-12 !text-white">
+        <span className="text-3xl md:text-4xl lg:text-5xl max-w-3xl !leading-snug font-bold">
+          Generate High QualityContent & Drive Traffic
+        </span>
+        <span className="text-base lg:text-lg text-white max-w-2xl">
           Ready to create amazing content without the hassle? Welcome to
           IntelliWriter—your all-in-one AI tool for crafting images,articles,
           wordpress integration, seo keyword research, AI models, voiceovers,
           and so much more!
-        </p>
+        </span>
       </div>
 
       {/* Cards Section */}
@@ -36,7 +35,7 @@ const DriveTraffic = () => {
           {[...logos, ...logos].map((logo, index) => (
             <div
               key={index}
-              className="w-[280px] h-[150px] bg-white rounded-xl flex items-center justify-center shadow-sm shrink-0"
+              className="w-[291px] h-[163px] bg-white rounded-xl flex items-center justify-center shadow-sm shrink-0"
             >
               <Image
                 src={logo}
@@ -45,8 +44,6 @@ const DriveTraffic = () => {
                 height={200}
                 className="object-contain"
               />
-              {/* Or use an SVG icon instead */}
-              {/* <svg ... /> */}
             </div>
           ))}
         </div>
