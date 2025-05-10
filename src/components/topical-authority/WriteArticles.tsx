@@ -40,7 +40,7 @@ const WriteArticles = () => {
   const containerRef = useRef(null);
 
   return (
- <div className="relative w-full min-h-screen text-white">
+<div className="relative w-full min-h-screen text-white">
   {/* Glows */}
  <div className="absolute top-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div>
         <div className="absolute top-10 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#CE17F8] blur-[120px]"></div>

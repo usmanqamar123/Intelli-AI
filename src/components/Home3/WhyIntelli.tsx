@@ -32,7 +32,7 @@ const WhyIntelli = () => {
         },
     ]
   return (
-    <div className="relative w-full font-inter py-16 px-4">
+    <div className="relative w-full font-inter md:my-4 py-10 md:py-16 lg:py-20 px-4">
 
 {/* GRADIENT */}
         {/* <div className="absolute top-16 tight-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
@@ -42,30 +42,29 @@ const WhyIntelli = () => {
         <div className="absolute top-24 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div> */}
 
 
-<div className="absolute bottom-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
+<div className="absolute bottom-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[130px]"></div>
 
-      <div className="flex flex-col justify-center items-center text-center">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl text-white font-bold max-w-3xl">
-        Why Top Marketers Choose
-        <br />
-          <i
-            className="gradient-text not-italic text-transparent bg-clip-text"
-          >
-            IntelliWriter
-          </i>
-        </h2>
-      </div>
+      <div className="flex flex-col justify-center items-center text-center leading-relaxed">
+  <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-white font-bold max-w-3xl mb-2 leading-relaxed">
+    Why Top Marketers Choose
+    <br />
+    <span className="gradient-text not-italic text-transparent bg-clip-text">
+      IntelliWriter
+    </span>
+  </h2>
+</div>
 
-        <div className="w-full max-w-6xl mt-16 mx-auto flex flex-col gap-12 items-center justify-center">
+
+        <div className="w-full max-w-5xl mt-8 md:mt-16 mx-auto flex flex-col gap-12 items-center justify-center">
        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-white mx-auto px-10 md:px-0">
 {Why.map((item) => (
     <div
     key={item.id}
     className="flex flex-col gap-3 !text-white"
     >
-<h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold">{item.Percentage}</h1>
-<p className="text-lg md:text-xl !text-white">{item.title}</p>
-<p>{item.desc}</p>
+<h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold">{item.Percentage}</h1>
+<p className="text-xs md:text-sm !text-white font-bold">{item.title}</p>
+<p className="text-xs md:text-sm">{item.desc}</p>
     </div>
 ))
 

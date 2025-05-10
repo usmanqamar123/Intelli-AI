@@ -9,12 +9,6 @@ import { TbMessageChatbot } from "react-icons/tb";
 import Link from "next/link";
 
 const ToolsDesc = () => {
-  const hexToRgb = (hex: string) => {
-    const r = parseInt(hex.substring(1, 3), 16);
-    const g = parseInt(hex.substring(3, 5), 16);
-    const b = parseInt(hex.substring(5, 7), 16);
-    return `${r}, ${g}, ${b}`;
-  };
 
   const allTools = [
     {
@@ -187,7 +181,7 @@ const ToolsDesc = () => {
     <div className="relative w-full py-4 px-4 ">
        
        <div className="absolute bottom-16 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
-       <div className="absolute bottom-56 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
+       <div className="absolute bottom-64 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
        <div className="absolute bottom-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
        <div className="absolute bottom-1/4 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7E3BFF] blur-[120px]"></div>
        <div className="absolute bottom-1/4 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div>
@@ -197,7 +191,7 @@ const ToolsDesc = () => {
        <div className="absolute top-[70%] left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
        <div className="absolute top-1/2 left-1/4 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
        <div className="absolute top-[40%] left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
-       <div className="absolute top-[20%] right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
+       <div className="absolute top-[18%] right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
        <div className="absolute top-32 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
        <div className="absolute top-10 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div>
 
@@ -222,14 +216,14 @@ const ToolsDesc = () => {
                     } gap-8 lg:gap-12 xl:gap-16 items-center mx-auto`}
                   >
                     {/* Text Content */}
-                    <div className="flex-1 space-y-7 ">
-                      <button className="px-8 py-2 gradient-border-wrapper rounded-full font-semibold text-white/90 hover:text-white flex items-center gap-3 shadow-lg hover:shadow-purple-500/20">
-                        <span className="text-sm lg:text-base text-center xl:text-lg">
+                    <div className="flex-1 space-y-4 md:space-y-7 ">
+                      <button className="px-8 py-1 gradient-border-wrapper rounded-full font-semibold text-white hover:text-white/90 flex items-center gap-3 shadow-lg hover:shadow-purple-500/20">
+                        <span className="text-[10px] md:text-xs text-center xl:text-sm">
                           {item.btn1Text}
                         </span>
                       </button>
 
-                      <h3 className="text-lg md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-tight">
+                      <h3 className="text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight">
                         {firstPart}{" "}
                         <span className="gradient-text bg-clip-text text-transparent">
                           {lastWord}
@@ -237,18 +231,18 @@ const ToolsDesc = () => {
                       </h3>
                       <p>{item.desc}</p>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-16">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                         {/* First column with first 3 items */}
-                        <ul className="space-y-4">
+                        <ul className="space-y-3">
                           {item.list.slice(0, 3).map((listItem, index) => (
-                            <li key={`col1-${index}`} className="flex items-start gap-3">
+                            <li key={`col1-${index}`} className="flex items-start gap-3 text-white">
                               <span
                                 className="shrink-0 mt-1 text-lg lg:text-xl"
                                 style={{ color: item.color }}
                               >
                                 <FaRegCheckCircle />
                               </span>
-                              <p className="text-white/90 text-sm md:text-base lg:text-lg leading-relaxed">
+                              <p className="!text-white font-semibold text-xs md:text-sm lg:text-base leading-relaxed">
                                 {listItem.listItem}
                               </p>
                             </li>
@@ -256,16 +250,16 @@ const ToolsDesc = () => {
                         </ul>
 
                         {/* Second column with remaining items */}
-                        <ul className="space-y-4">
+                        <ul className="space-y-3">
                           {item.list.slice(3).map((listItem, index) => (
-                            <li key={`col2-${index}`} className="flex items-start gap-3">
+                            <li key={`col2-${index}`} className="flex items-start gap-3 text-white">
                               <span
-                                className="shrink-0 mt-1 text-lg lg:text-xl"
-                                style={{ color: item.color }}
+                                className="shrink-0 mt-1 text-sm md:text-base lg:text-lg"
+                                style={{ color: item.color, }}
                               >
                                 <FaRegCheckCircle />
                               </span>
-                              <p className="text-white/90 text-sm md:text-base lg:text-lg leading-relaxed">
+                              <p className="!text-white font-semibold text-xs md:text-sm lg:text-base leading-relaxed">
                                 {listItem.listItem}
                               </p>
                             </li>
@@ -276,9 +270,9 @@ const ToolsDesc = () => {
                       <Link href={item.link}>
                         <button
                           style={{ backgroundColor: item.color }}
-                          className="inline-flex items-center mt-4 gap-2 px-4 py-2 lg:px-10 lg:py-2 rounded-3xl text-white/90 hover:text-white transform transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl font-semibold"
+                          className="inline-flex items-center mt-5 gap-2 px-4 py-2 lg:px-6 lg:py-2 rounded-3xl text-white/90 hover:text-white transform transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl font-semibold"
                         >
-                          <span className="text-sm lg:text-base xl:text-lg">
+                          <span className="text-xs lg:text-sm xl:text-base">
                             {item.btn2Text}
                           </span>
                         </button>
