@@ -9,10 +9,10 @@ const BetterRank = () => {
       <div className="absolute bottom-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#CE17F8] blur-[120px] -z-10" />
       <div className="absolute top-1/2 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#CE17F8] blur-[120px] -z-10" />
 
-      <div className="w-full max-w-[1240px] mx-auto flex justify-center items-center text-center p-8 md:p-14 gradient-border-wrapper !rounded-lg overflow-visible">
-        <h1 className="text-xl md:text-3xl lg:text-4xl xl:text-5xl text-white font-bold px-1 py-2 flex gap-x-4 justify-center leading-relaxed overflow-visible">
+      <div className="w-full max-w-[1240px] mx-auto flex justify-center items-center text-center p-4 md:p-14 gradient-border-wrapper !rounded-lg overflow-visible">
+        <h1 className="text-xl md:text-3xl lg:text-4xl xl:text-5xl text-white font-bold px-1 py-2 flex gap-x-1 md:gap-x-4 justify-center leading-relaxed overflow-visible">
           <span className="py-2">Write</span>
-          <span className="gradient-text not-italic text-transparent bg-clip-text py-2">
+          <span className="gradient-text not-italic text-transparent bg-clip-text py-2">     
             Better.
           </span>
           <span className="py-2">Rank</span>

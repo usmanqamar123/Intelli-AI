@@ -63,7 +63,7 @@ const Faqs: React.FC<SeoFAQsProps> = ({}) => {
       <div className="absolute top-0 -left-64 h-24 lg:h-32 w-10/12 lg:w-1/4 opacity-40 bg-[#7500FF] blur-[120px] -z-10" />
 
       <div className="w-full flex flex-col md:flex-row gap-8 items-start justify-center">
-        <div className="flex flex-col w-1/2 text-white gap-6 px-3 mx-auto">
+        <div className="flex flex-col w-[90%] md:w-1/2 text-white gap-6 px-3 mx-auto">
           {/* TITLE */}
           <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text">
             Got Questions?
@@ -84,7 +84,7 @@ const Faqs: React.FC<SeoFAQsProps> = ({}) => {
           </Link>
         </div>
 
-        <div className="w-1/2 flex flex-col gap-5">
+        <div className="w-[90%] md:w-1/2 mx-auto flex flex-col gap-5">
           {faqs.map((item, index) => (
             <div key={index}>
               {/* Question Section */}
@@ -92,7 +92,7 @@ const Faqs: React.FC<SeoFAQsProps> = ({}) => {
                 className="flex flex-col items-center justify-between px-5 py-4 bg-transparent h-auto text-white cursor-pointer gradient-border-wrapper !rounded-md z-50"
                 onClick={() => toggleAnswer(index)}
               >
-                <div className="w-full flex justify-between items-center text-base md:text-lg xl:text-2xl">
+                <div className="w-full flex justify-between items-center font-bold text-base md:text-lg xl:text-2xl">
                   {item.question}
 
                   {/* Animated Icon */}
