@@ -34,7 +34,7 @@ const Testimonial = () => {
   const [playingVideo, setPlayingVideo] = useState<number | null>(null);
 
   return (
-    <section className="w-full relative py-10 md:py-16 lg:py-20 font-inter z-10">
+    <section className="w-full relative font-geist py-10 md:py-12 z-10">
       <div className="absolute top-12 -left-10 h-28 w-28 opacity-40 bg-[#7500FF] blur-[120px] -z-10" />
       <div className="absolute top-10 left-[35%] h-[500px] w-[500px] opacity-50 bg-[#7500FF] blur-[120px] -z-10" />
       <div className="absolute top-20 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 opacity-40 bg-[#208EFB] blur-[120px] -z-10" />

@@ -1,7 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import { RiArrowRightFill } from "react-icons/ri";
 
 const WhyIntelli = () => {
 
@@ -32,16 +29,9 @@ const WhyIntelli = () => {
         },
     ]
   return (
-    <div className="relative w-full font-inter md:my-4 py-10 md:py-16 lg:py-20 px-4">
+    <div className="relative w-full max-w-[1024px] font-inter md:my-4 py-10 md:py-12 px-4 xl:px-0">
 
 {/* GRADIENT */}
-        {/* <div className="absolute top-16 tight-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
-        <div className="absolute top-24 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div>
-        <div className="absolute top-0 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
-        <div className="absolute top-16 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div>
-        <div className="absolute top-24 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div> */}
-
-
 <div className="absolute bottom-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[130px]"></div>
 
       <div className="flex flex-col justify-center items-center text-center leading-relaxed">
@@ -55,7 +45,7 @@ const WhyIntelli = () => {
 </div>
 
 
-        <div className="w-full max-w-5xl mt-8 md:mt-16 mx-auto flex flex-col gap-12 items-center justify-center">
+        <div className="w-full max-w-[1024px] mt-8 md:mt-16 mx-auto flex flex-col gap-12 items-center justify-center">
        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-white mx-auto px-10 md:px-0">
 {Why.map((item) => (
     <div

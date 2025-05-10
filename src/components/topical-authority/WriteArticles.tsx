@@ -1,9 +1,6 @@
 "use client"
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import { useRef } from "react";
-import { Logo } from "../../../public";
 
 const steps = [
   {
@@ -37,10 +34,9 @@ const steps = [
 ];
 
 const WriteArticles = () => {
-  const containerRef = useRef(null);
 
   return (
-<div className="relative w-full min-h-screen text-white">
+ <div className="relative w-full min-h-screen font-geist text-white">
   {/* Glows */}
  <div className="absolute top-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div>
         <div className="absolute top-10 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#CE17F8] blur-[120px]"></div>
@@ -78,7 +74,7 @@ const WriteArticles = () => {
     </div>
 
     {/* Right (Scrollable content) */}
-    <div className="w-[90%] md:w-1/2 flex flex-col md:mx-auto gap-24 lg:gap-40 py-6 md:py-16 px-4">
+    <div className="w-[90%] md:w-1/2 flex flex-col md:mx-auto gap-14 py-6 md:py-16 px-4">
       {steps.map((step, index) => (
         <div key={index} className="flex flex-col gap-3 text-white min-h-[80vh]">
           <h1 className="font-semibold gradient-text text-3xl md:text-4xl lg:text-5xl">{step.number}</h1>
@@ -99,10 +95,6 @@ const WriteArticles = () => {
     </div>
   </div>
 </div>
-
-
-
-
   );
 };
 

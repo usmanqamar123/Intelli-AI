@@ -35,7 +35,7 @@ const IntelliComparison = () => {
   ];
 
   return (
-    <div className="relative w-full  max-w-[1240px] mx-auto px-4 md:px-6 xl:px-0 py-10 md:py-16 lg:py-20 z-10">
+    <div className="relative w-full  max-w-[1240px] mx-auto px-4 md:px-6 xl:px-0 py-10 md:py-12 z-10">
       <div className="absolute bottom-10 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px] -z-10"></div>
       <div className="absolute top-1/2 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px] -z-10"></div>
       <div className="absolute top-1/2 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px] -z-10"></div>
@@ -92,7 +92,7 @@ const IntelliComparison = () => {
                           >
                             {toolIndex === 0 ? (
                               <Image
-                                src="/Logo.svg"
+                                src="/seo-artilce-writer/IntelliwriterLogo.png"
                                 width={130}
                                 height={42}
                                 alt="Intelliwriter"

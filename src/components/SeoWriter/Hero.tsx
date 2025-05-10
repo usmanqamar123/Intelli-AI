@@ -6,16 +6,16 @@ import { marqueeText } from "../../constants/SeoArticleData";
 
 const Hero = () => {
   return (
-    <main className="w-full max-w-[1240px] mx-auto px-4 md:px-6 xl:px-0 mt-6 sm:mt-16 lg:mt-28  flex flex-col gap-6 sm:gap-8 lg:gap-10 justify-start items-center z-10">
-      <section className="flex flex-col items-center gap-2 text-center">
+    <main className="w-full py-10 md:py-12 max-w-[1240px] mx-auto px-4 md:px-6 xl:px-0 flex flex-col gap-6 sm:gap-8 lg:gap-10 justify-start items-center z-10">
+      <section className="flex flex-col items-center mt-20 md:mt-24 xl:mt-36 gap-2 text-center">
         <GradientText
           whiteText="Create"
           gradientText="#1 Ranking Pages"
-          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-normal leading-tight"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-normal !leading-snug"
         />
-        <p className="text-white text-base sm:text-lg max-w-2xl">
+        <span className="!text-white text-base sm:text-lg max-w-2xl">
           Your SEO-Optimized Content will rank in minutes.
-        </p>
+        </span>
       </section>
 
       <section className="w-full max-w-3xl rounded-2xl p-[1.25px] bg-gradient-to-r from-[#298CFD] via-[#7E3BFF] to-[#CE17F8]">
@@ -24,12 +24,12 @@ const Hero = () => {
           <Button
             text="Generate Article"
             icon={<BsStars />}
-            className="flex self-end"
+            className="text-base font-semibold py-4 px-8 flex self-end"
           />
         </div>
       </section>
 
-      <section className="relative w-full h-80 md:h-96 -mt-6 sm:-mt-8 lg:-mt-10 flex flex-col items-center overflow-hidden">
+      <section className="relative w-full h-72 -mt-6 sm:-mt-8 lg:-mt-10 flex flex-col items-center overflow-hidden">
         <div className="w-full max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-3xl">
           <div
             className="animate-marquee-up flex flex-col items-center gap-3"

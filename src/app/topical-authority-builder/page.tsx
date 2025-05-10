@@ -17,19 +17,29 @@ import HeroAnimation from "@/components/SeoWriter/HeroAnimation";
 const page = () => {
   return (
     
-    <div className="relative w-full h-full flex flex-col justify-center items-center  bg-[#010002] overflow-x-hidden z-10">
-      <HeroAnimation />
-      <Hero />
-      <ArticlesInMinutes />
-      <ContentFails />
-      <WriteArticles />
-      <PowerfulAiTools />
-      <DriveTraffic />
-      <PricingPlan />
-      <Testimonial />
-      <FAQs faqs={TopicalAuthorityFaqs} />
-      <BetterRank />
-    </div>
+  <div className="relative w-full h-full flex flex-col justify-center items-center bg-[#010002] z-10">
+  {/* Wrap all components that should have overflow-x-hidden */}
+  <div className="w-full overflow-x-hidden">
+    <HeroAnimation />
+    <Hero />
+    <ArticlesInMinutes />
+    <ContentFails />
+  </div>
+
+  {/* This component should allow overflow-x */}
+  <WriteArticles />
+
+  {/* Resume overflow-x-hidden for the rest */}
+  <div className="w-full overflow-x-hidden">
+    <PowerfulAiTools />
+    <DriveTraffic />
+    <PricingPlan />
+    <Testimonial />
+      </div>
+    <FAQs faqs={TopicalAuthorityFaqs} />
+    <BetterRank />
+</div>
+
   );
 };
 

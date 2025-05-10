@@ -43,7 +43,7 @@ const TopReasons = () => {
   };
 
   return (
-    <main className="relative w-full max-w-[1240px] px-4 md:px-6 xl:px-0 mx-auto py-10 md:py-16 lg:py-20 flex flex-col gap-10 lg:gap-20 justify-start items-center z-10">
+    <main className="relative w-full max-w-[1240px] px-4 md:px-6 xl:px-0 mx-auto py-10 md:py-12 flex flex-col gap-10 lg:gap-20 justify-start items-center z-10">
       <div className="absolute top-28 -right-[400px] w-[300px] h-[300px] bg-[#7500FF] rotate-[30deg] opacity-60 blur-3xl rounded-full -z-10" />
       <div className="absolute top-[70%] right-[40%] w-[300px] h-[300px] bg-[#298CFD] rotate-[41deg] opacity-25 blur-3xl rounded-full -z-10" />
 
@@ -59,7 +59,7 @@ const TopReasons = () => {
         <GradientText
           whiteText="Top Reasons Why Intelliwriter's Article Writer"
           gradientText="Beats the Rest"
-          className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight w-fit text-center md:text-left"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold !leading-tight w-fit text-center md:text-left"
         />
         <div className="text-white text-base md:text-lg w-full text-center lg:text-left">
           From lightning-fast AI-generated content and smart SEO scoring to
@@ -73,7 +73,7 @@ const TopReasons = () => {
         <Slider {...settings}>
           {TopReasonsData.map((item, index) => (
             <div key={index} className="px-2">
-              <div className="relative overflow-hidden w-[300px] md:w-[280px] h-[290px] rounded-2xl p-8 flex flex-col gap-3 text-white">
+              <div className="relative overflow-hidden w-[300px] md:w-[280px] rounded-2xl flex flex-col gap-3 !text-white">
                 <h4
                   className="text-[64px] font-bold text-transparent bg-clip-text"
                   style={{
@@ -83,7 +83,7 @@ const TopReasons = () => {
                 >
                   {index + 1 < 10 ? `0${index + 1}` : index + 1}
                 </h4>
-                <p className="text-2xl text-white font-bold ">{item.title}</p>
+                <p className="text-2xl !text-white font-bold ">{item.title}</p>
                 <p className="text-base text-white/90">{item.description}</p>
               </div>
             </div>

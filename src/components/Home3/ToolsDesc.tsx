@@ -9,7 +9,6 @@ import { TbMessageChatbot } from "react-icons/tb";
 import Link from "next/link";
 
 const ToolsDesc = () => {
-
   const allTools = [
     {
       id: 0,
@@ -67,7 +66,7 @@ const ToolsDesc = () => {
     },
     {
       id: 2,
-      title: "Blog Generator",
+      title: "Blog Image Generator",
       desc: "Turn words into beautiful, scroll-worthy blogs — complete with custom AI graphics that make every post look professionally designed.",
       btn1Text: "CREATE VISUAL-FIRST BLOG POSTS",
       btn2Text: "Generate Impactful Blogs",
@@ -153,7 +152,7 @@ const ToolsDesc = () => {
       btn1Text: "CREATE VIDEO CONTENT AT SCALE",
       btn2Text: "Create Your Next Viral Video",
       img: "/YoutubeContent.png",
-      link: `${process.env.NEXT_PUBLIC_APP}user/dashboard`,
+      link: `${process.env.NEXT_PUBLIC_APP}user/modules/youtube-content/content-generator`,
       list: [
         {
           listItem: "Create video scripts fast",
@@ -175,27 +174,24 @@ const ToolsDesc = () => {
     },
   ];
 
-  
-
   return (
-    <div className="relative w-full py-4 px-4 ">
-       
-       <div className="absolute bottom-16 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
-       <div className="absolute bottom-64 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
-       <div className="absolute bottom-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
-       <div className="absolute bottom-1/4 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7E3BFF] blur-[120px]"></div>
-       <div className="absolute bottom-1/4 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div>
-       <div className="absolute bottom-[30%] right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
-       <div className="absolute top-1/4 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
-       <div className="absolute top-[30%] left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
-       <div className="absolute top-[70%] left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
-       <div className="absolute top-1/2 left-1/4 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
-       <div className="absolute top-[40%] left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
-       <div className="absolute top-[18%] right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
-       <div className="absolute top-32 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
-       <div className="absolute top-10 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div>
+    <div className="relative w-full py-4 px-4 font-geist xl:px-0">
+      <div className="absolute bottom-16 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
+      <div className="absolute bottom-64 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
+      <div className="absolute bottom-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
+      <div className="absolute bottom-1/4 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7E3BFF] blur-[120px]"></div>
+      <div className="absolute bottom-1/4 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div>
+      <div className="absolute bottom-[30%] right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
+      <div className="absolute top-1/4 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
+      <div className="absolute top-[30%] left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
+      <div className="absolute top-[70%] left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
+      <div className="absolute top-1/2 left-1/4 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
+      <div className="absolute top-[40%] left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
+      <div className="absolute top-[18%] right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
+      <div className="absolute top-32 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
+      <div className="absolute top-10 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div>
 
-       <div className="w-full max-w-6xl mx-auto flex flex-col gap-10 items-center justify-center">
+      <div className="w-full max-w-[1240px] mx-auto flex flex-col gap-10 items-center justify-center">
         <div className="w-full flex flex-col gap-6 md:gap-8 lg:gap-10 mx-auto">
           {allTools.map((item) => {
             const words = item.title.split(" ");
@@ -231,11 +227,13 @@ const ToolsDesc = () => {
                       </h3>
                       <p>{item.desc}</p>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                        {/* First column with first 3 items */}
+                      <div className="grid grid-cols-1 md:grid-cols-2">
                         <ul className="space-y-3">
                           {item.list.slice(0, 3).map((listItem, index) => (
-                            <li key={`col1-${index}`} className="flex items-start gap-3 text-white">
+                            <li
+                              key={`col1-${index}`}
+                              className="flex items-start gap-3 text-white"
+                            >
                               <span
                                 className="shrink-0 mt-1 text-lg lg:text-xl"
                                 style={{ color: item.color }}
@@ -249,13 +247,15 @@ const ToolsDesc = () => {
                           ))}
                         </ul>
 
-                        {/* Second column with remaining items */}
                         <ul className="space-y-3">
                           {item.list.slice(3).map((listItem, index) => (
-                            <li key={`col2-${index}`} className="flex items-start gap-3 text-white">
+                            <li
+                              key={`col2-${index}`}
+                              className="flex items-start gap-3 text-white"
+                            >
                               <span
                                 className="shrink-0 mt-1 text-sm md:text-base lg:text-lg"
-                                style={{ color: item.color, }}
+                                style={{ color: item.color }}
                               >
                                 <FaRegCheckCircle />
                               </span>
@@ -280,15 +280,13 @@ const ToolsDesc = () => {
                     </div>
 
                     {/* Image Container */}
-                    <div
-                      className="md:flex flex-1 w-full md:max-w-[50%] lg:max-w-[60%] relative z-10"
-                    >
+                    <div className="md:flex flex-1 w-full md:max-w-[50%] lg:max-w-[60%] relative z-10">
                       <div className="relative rounded-2xl lg:rounded-3xl overflow-visible w-full">
                         <div className="w-full relative rounded-2xl lg:rounded-3xl">
                           <Image
                             src={item.img}
                             alt={item.title}
-                            width={1600} // increase width here if needed
+                            width={1600}
                             height={1200}
                             className="w-full h-auto object-cover rounded-2xl lg:rounded-3xl"
                             priority
@@ -305,6 +303,6 @@ const ToolsDesc = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ToolsDesc;

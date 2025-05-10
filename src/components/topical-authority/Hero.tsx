@@ -1,9 +1,6 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import { RxRocket } from "react-icons/rx";
-import { Typewriter } from "react-simple-typewriter";
 
 const Hero = () => {
   const tokens =
@@ -12,39 +9,18 @@ const Hero = () => {
       : null;
 
   return (
-    <div className="relative w-full font-inter overflow-hidden pb-10">
-      {/* Background Checkbox - Top Center */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 z-0 opacity-10 md:opacity-5 pointer-events-none ">
-        <Image
-          src="/Checkbox.svg"
-          alt="Checkbox Background"
-          width={1500}
-          height={800}
-          priority
-        />
-      </div>
-
-      {/* <div className="absolute top-0 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px] animate-to-center"></div>
-
-      <div className="absolute bottom-0 left-10 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px] animate-to-center animation-reverse"></div>
-
-      <div className="absolute bottom-0 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px] animate-to-center"></div>
-
-      <div className="absolute bottom-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px] animate-to-center animation-reverse"></div>
-
-      <div className="absolute top-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px] animate-to-center"></div> */}
-
-      <div className="relative w-full flex flex-col items-center gap-20 justify-center max-w-7xl 2xl:container mx-auto">
+    <div className="relative w-full font-geist overflow-hidden pb-10">
+      <div className="relative w-full flex flex-col items-center gap-20 justify-center max-w-[1024px] 2xl:container mx-auto">
         <div className="flex flex-col items-center justify-center max-w-7xl text-white z-10 gap-4 mt-20 md:mt-24 xl:mt-36 px-6 md:px-3">
           {/* TITLE */}
-          <h1 className="text-3xl md:text-4xl xl:text-[2.5rem] font-bold text-center font-inter max-w-2xl md:max-w-5xl leading-tight">
+          <h1 className="text-3xl md:text-4xl xl:text-5xl font-bold text-center font-geist max-w-2xl md:max-w-5xl leading-tight">
           Be seen as the expert.
                       <br />
             <i className="gradient-text not-italic text-transparent bg-clip-text">
               Publish like an expert.
             </i>
           </h1>
-          <p className="font-bold text-center font-inter text-base text-white md:text-lg max-w-xl md:max-w-3xl">
+          <p className="font-bold text-center font-geist text-base text-white md:text-lg max-w-xl md:max-w-3xl">
             Quickly publish 100 high-ranking articles to your website.{" "}
           </p>
         </div>

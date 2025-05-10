@@ -146,7 +146,7 @@ const PricingPlan = () => {
     },
   ];
   return (
-    <div className="relative  max-w-[1240px] mx-auto px-4 md:px-6 xl:px-0 w-full py-10 md:py-16 lg:py-20 z-10">
+    <div className="relative  max-w-[1240px] mx-auto px-4 md:px-6 xl:px-0 w-full py-10 md:py-16 lg:py-12 z-10">
       <div className="absolute top-40 -left-40 h-[550px] w-[550px] opacity-40 bg-[#CE17F8] blur-[120px] -z-10" />
       <div className="absolute top-80 left-[30%] h-[550px] w-[550px] bg-[#7500FF] opacity-75 blur-[120px] -z-10" />
       <div className="absolute top-40 -right-40 h-[550px] w-[550px] opacity-40 bg-[#0009FF] blur-[120px] -z-10" />
@@ -197,7 +197,7 @@ const PricingPlan = () => {
 
         {/* PRICING PLANS CARDS */}
 
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-14 items-center justify-center lg:justify-between gap-6">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6 items-center justify-center lg:justify-between gap-6">
           {plans.map((item) => (
             <div
               key={item.id}

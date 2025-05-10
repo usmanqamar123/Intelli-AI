@@ -17,6 +17,7 @@ import {
   FaImage,
   FaRobot,
   FaFreeCodeCamp,
+  FaRegUserCircle,
 } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import { useAuth } from "@/context/AuthContext";
@@ -211,7 +212,7 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
                 className="xl:w-[140px]"
               />
             </Link>
-            <div className="flex lg:gap-4 xl:gap-7 font-medium">
+            <div className="flex lg:gap-4 xl:gap-7 font-medium ml-3">
               {navlinks.map((item) => (
                 <div
                   key={item.id}
@@ -367,19 +368,20 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
                   </ul>
                 </div>
               ) : (
-                <div className="flex items-center gap-3 mx-2">
+                <div className="flex items-center gap-1 mx-2">
+                  <Link
+  href={`${process.env.NEXT_PUBLIC_APP}auth/login`}
+  className="lg:flex hidden items-center gap-2 text-white rounded-3xl px-6 py-2 md:text-base text-sm tracking-wider font-semibold"
+>
+  <FaRegUserCircle className="text-white text-lg" />
+  Sign in
+</Link>
+
                   <Link
                     href={`${process.env.NEXT_PUBLIC_APP}auth/register`}
-                    className="lg:block hidden"
+                    className="lg:block hidden text-white gradient-bg rounded-3xl px-6 py-3 md:text-base text-sm tracking-wider font-semibold "
                   >
-                    <Button title="Register" btnType="button" />
-                  </Link>
-                  <Link
-                    // href={`${process.env.NEXT_PUBLIC_APP}auth/login`}
-                    href={`${process.env.NEXT_PUBLIC_APP}auth/login`}
-                    className="lg:block hidden text-white border-[2.5px] rounded-3xl px-6 py-2 md:text-base text-sm tracking-wider font-semibold "
-                  >
-                    Login
+Sign Up Now 
                   </Link>
                 </div>
               )}

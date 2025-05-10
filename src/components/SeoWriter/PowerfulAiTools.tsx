@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { PowerfulAiToolsData } from "../../constants/SeoArticleData";
 import React from "react";
 import GradientText from "../GradientText";
@@ -44,7 +44,7 @@ const PowerfulAiTools = () => {
   };
 
   return (
-    <main className="w-full  px-4 md:px-6 xl:px-0 mx-auto py-10 md:py-16 lg:py-20 flex flex-col gap-10 lg:gap-20 justify-center items-center z-10">
+    <main className="w-full  px-4 md:px-6 xl:px-0 mx-auto py-10 md:py-12 flex flex-col gap-10 lg:gap-20 justify-center items-center z-10">
       <section className="max-w-[1240px] w-full flex flex-col md:flex-row items-center justify-center gap-4 md:gap-5">
         <GradientText
           whiteText="Other"
