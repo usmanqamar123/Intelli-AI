@@ -52,7 +52,7 @@ export default function PageChild() {
       <Header aboutRef={aboutRef} pricingRef={pricingRef} />
       <main className="overflow-hidden w-full">
         <div className="relative w-full flex flex-col justify-center items-center bg-black z-10">
-<HeroAnimation/>
+          <HeroAnimation />
           <Hero />
           <Tools />
           <WhyIntelli />
@@ -66,8 +66,8 @@ export default function PageChild() {
           <BetterRank />
         </div>
         <CookiePopup />
+        <Footer />
       </main>
-      <Footer />
     </>
   );
 }

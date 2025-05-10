@@ -92,7 +92,7 @@ const IntelliComparison = () => {
                           >
                             {toolIndex === 0 ? (
                               <Image
-                                src="/seo-artilce-writer/IntelliwriterLogo.png"
+                                src="/Logo.svg"
                                 width={130}
                                 height={42}
                                 alt="Intelliwriter"

@@ -91,12 +91,12 @@ const Footer = () => {
       </div>
 
       {/* Decorative Gradient Overlay */}
-      <div className="absolute container inset-0 pointer-events-none overflow-hidden -z-10" />
-      <div className="absolute bottom-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#CE17F8] blur-[120px] -z-10" />
-      <div className="absolute -top-10 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#CE17F8] blur-[100px] -z-10" />
-      <div className="absolute bottom-0 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px] -z-10" />
-      <div className="absolute -top-10 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[100px] -z-10" />
-      <div className="absolute -top-10 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[100px] -z-10" />
+      <div className="absolute container inset-0 pointer-events-none overflow-hidden z-10" />
+      <div className="absolute bottom-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#CE17F8] blur-[120px] z-10" />
+      <div className="absolute -top-10 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#CE17F8] blur-[100px] z-10" />
+      <div className="absolute bottom-0 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px] z-10" />
+      <div className="absolute -top-10 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[100px] z-10" />
+      <div className="absolute -top-10 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[100px] z-10" />
 
       <div className="flex flex-col md:flex-row gap-3 justify-between items-center max-w-6xl mx-auto">
         <div className="border-t-2 border-white"></div>
@@ -146,4 +146,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer;
