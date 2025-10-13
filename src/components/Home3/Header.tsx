@@ -24,6 +24,7 @@ import { useAuth } from "@/context/AuthContext";
 import Button from "../Button";
 import { BiLogOut } from "react-icons/bi";
 import { useSearchParams } from "next/navigation";
+import { RiSeoLine } from "react-icons/ri";
 
 
 interface HeaderProps {
@@ -111,6 +112,14 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
         "Find top-performing keywords to improve SEO rankings and increase website visibility.",
       link: `${process.env.NEXT_PUBLIC_APP}user/seo-keyword-research`,
       route: "/seo-keyword-research",
+    },
+      {
+      icon: <RiSeoLine  className="text-cyan-500" />,
+      title: "AI SEO Checker",
+      description:
+        "Checks article readability, structure, metadata, links, accessibility, keyword placement, snippet-readiness, and more prioritized with clear fixes.",
+      link: `/seo-checker`,
+      route: "/seo-checker",
     },
     {
       icon: <FaImage className="text-red-500" />,
