@@ -90,7 +90,7 @@ export default function OnPageScore({ analysisData }: { analysisData: AnalysisDa
 
       <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-12 py-6 md:py-12">
         <h2 className="text-white font-semibold text-2xl sm:text-3xl md:text-[32px]">
-          On-Page SEO Score
+          On-Page SEO Insights
         </h2>
         {/* <p className="mt-2 text-center text-white/80 max-w-3xl mx-auto text-sm sm:text-[17px] leading-relaxed">
           This section evaluates your page’s key SEO signals and metadata

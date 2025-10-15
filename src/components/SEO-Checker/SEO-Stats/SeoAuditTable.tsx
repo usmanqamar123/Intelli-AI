@@ -207,11 +207,11 @@ export default function SeoAuditTable({ analysisData }: SeoAuditTableProps) {
   };
 
   return (
-    <section className="w-full py-12 px-4 sm:px-8 lg:px-12 bg-[#0E032D] text-white">
+    <section className="w-full pb-12 px-4 sm:px-8 lg:px-12 bg-[#0E032D] text-white">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-5">
-          <h2 className="font-bold text-3xl md:text-4xl leading-tight">On-Page SEO Insights</h2>
+          {/* <h2 className="font-bold text-3xl md:text-4xl leading-tight">On-Page SEO Insights</h2> */}
             {/* <p className="mt-3 text-gray-300 text-[17px] max-w-3xl mx-auto leading-relaxed">
             A detailed breakdown of your article’s metadata, headings, and content structure.
           </p> */}
