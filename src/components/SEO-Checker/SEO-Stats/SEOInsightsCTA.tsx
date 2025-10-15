@@ -4,7 +4,7 @@ export default function SeoInsightsCTA() {
   return (
     <div className="w-full py-10 px-4 sm:px-8 lg:px-16 bg-[#0E032D]">
       {/* Outer gradient border that matches Capability Matrix Page */}
-      <div className="max-w-5xl mx-auto relative rounded-3xl p-[1px] bg-gradient-to-r from-[#6B41FF] via-[#F64CFF] to-[#FFC553] shadow-[0_0_22px_rgba(246,76,255,0.12),0_0_40px_rgba(107,65,255,0.1)]">
+      <div className="max-w-6xl mx-auto relative rounded-3xl p-[1px] bg-gradient-to-r from-[#6B41FF] via-[#F64CFF] to-[#FFC553] shadow-[0_0_22px_rgba(246,76,255,0.12),0_0_40px_rgba(107,65,255,0.1)]">
         {/* Inner container */}
         <div className="bg-[#1C0F3B] rounded-3xl border border-white/10 p-8 sm:p-12 lg:p-12">
           <h2 className="text-white text-2xl sm:text-2xl lg:text-2xl font-bold leading-tight text-center mb-8">

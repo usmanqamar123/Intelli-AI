@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { AlertTriangle, Clock, EyeOff, ShieldCheck } from "lucide-react";
+import Link from "next/link";
 
 export default function ProblemsSolutions() {
   const problems = [
@@ -23,7 +24,7 @@ export default function ProblemsSolutions() {
   ];
 
   return (
-    <section className="w-full relative bg-[#0E032D] text-white py-24 font-inter overflow-hidden">
+    <section className="w-full relative bg-[#0E032D] text-white py-14 font-inter overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#2B094E]/60 via-[#0E032D]/85 to-[#100429]/95" />
@@ -57,7 +58,7 @@ export default function ProblemsSolutions() {
         </motion.h2>
 
         <p className="text-center text-white/85 max-w-3xl mx-auto mt-4 text-base sm:text-lg leading-relaxed">
-          Most SEO audits only scratch the surface. We go beyond, detecting hidden ranking blockers, content gaps, and optimization opportunities so you can dominate search results effortlessly.
+          Most article seo checker free tools only scratch the surface. We go beyond, detecting hidden ranking blockers, content gaps, and optimization opportunities so you can dominate search results effortlessly.
         </p>
 
         {/* Content Grid */}
@@ -105,8 +106,12 @@ export default function ProblemsSolutions() {
                 updates and actionable insights to stay ahead.
               </p>
               <button className="relative h-[48px] w-[180px] rounded-md font-semibold text-white text-[15px] overflow-hidden transition-transform hover:scale-[1.03]">
-                <span className="absolute inset-0 rounded-md bg-gradient-to-r from-[#6B41FF] via-[#F64CFF] to-[#FFC553]" />
+                <span className="absolute inset-0 rounded-md bg-gradient-to-r from-[#6B41FF] via-[#F64CFF] to-[#FFC553]" />\
+                  <Link
+              href={`${process.env.NEXT_PUBLIC_APP}auth/register`}
+              >
                 <span className="relative z-10">Monitor My Blog</span>
+                </Link>
               </button>
             </div>
           </motion.div>

@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 export default function SeoAudit() {
@@ -23,7 +24,7 @@ export default function SeoAudit() {
   }, []);
 
   return (
-    <div className=" w-full bg-[#0E032D] flex justify-center items-center py-16">
+    <div className=" w-full bg-[#0E032D] flex justify-center items-center py-14">
       {/* Outer wrapper with gradient + glow + thinner border */}
       <div className="relative rounded-xl p-[1px] bg-gradient-to-r from-pink-400 via-purple-500 to-yellow-400 shadow-[0_0_25px_rgba(255,100,200,0.6)]">
         <div className="bg-[#29185C] rounded-xl px-10 py-12 max-w-6xl w-full">
@@ -33,10 +34,10 @@ export default function SeoAudit() {
             
             {/* Left Column - Heading + Features */}
             <div className="space-y-6 text-white/85">
-              <h2 className="text-3xl font-bold mb-6 
+              <h3 className="text-3xl font-bold mb-6 
                 bg-gradient-to-r from-pink-400 via-purple-500 to-yellow-400 bg-clip-text text-transparent">
                 Understand Your Competitor’s<br/> SEO and Backlinking Profile
-              </h2>
+              </h3>
 
               <div className="flex items-center gap-2">
                 <span className="text-green-400 text-xl">✔</span>
@@ -57,10 +58,14 @@ export default function SeoAudit() {
 
               {/* CTA Button */}
               <div className="mt-8">
+                  <Link
+              href={`${process.env.NEXT_PUBLIC_APP}auth/register`}
+              >
                 <button className="px-8 py-3 rounded-lg font-semibold 
                   bg-gradient-to-r from-pink-400 via-purple-500 to-yellow-400 text-white shadow-md">
                   Create Free Account
                 </button>
+                </Link>
               </div>
             </div>
 

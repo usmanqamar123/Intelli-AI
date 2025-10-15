@@ -14,6 +14,46 @@ const ICONS = {
   container: "/seo-checker/seostats/container.png",
 };
 
+interface ResultsOverviewProps {
+  scores: {
+    overall_seo_score: number;
+    on_page_seo_score: number;
+    readability_score: number;
+    content_quality_score: number;
+  };
+  performance: {
+    speed_index: number;
+    total_blocking_time: number;
+    page_load_time: number;
+  };
+  technical: {
+    has_schema_markup: boolean;
+    is_mobile_friendly: boolean;
+    ssl_enabled: boolean;
+    page_size_estimate: string;
+  };
+  readability: {
+    score: number;
+    flesch_reading_ease: number;
+    flesch_kincaid_grade: number;
+    avg_sentence_length: number;
+    avg_word_length: number;
+    complex_word_percentage: number;
+    total_sentences: number;
+    total_words: number;
+    readability_level: string;
+  };
+  contentAnalysis: {
+    content_length: number;
+    paragraphs_count: number;
+    avg_paragraph_length: number;
+    word_count: number;
+  };
+  url: string;
+  analyzedAt: string;
+    onAnalyze: (url: string) => void;
+}
+
 type Row = {
   label: string;
   value: number | "NA";
@@ -21,23 +61,119 @@ type Row = {
   addKeyword?: boolean;
 };
 
-const ROWS: Row[] = [
-  { label: "Keyword Factor", value: "NA", color: "none", addKeyword: true },
-  { label: "Link Factor", value: 0, color: "none" },
-  { label: "Video SEO", value: 0, color: "none" },
-  { label: "Performance", value: 0, color: "none" },
-  { label: "Accessibility", value: 0, color: "none" },
-  { label: "Security", value: 40, color: "amber" },
-  { label: "PWA", value: 30, color: "red" },
-  { label: "Content Factor", value: 11, color: "red" },
-  { label: "Domain Factor", value: 40, color: "amber" },
-  { label: "Common SEO", value: 55, color: "amber" },
-  { label: "Image SEO", value: 63, color: "green" },
-  { label: "Networking", value: 71, color: "green" },
-  { label: "Usability", value: 100, color: "green" },
-];
+// const ROWS: Row[] = [
+//   { label: "Keyword Factor", value: "NA", color: "none", addKeyword: true },
+//   { label: "Link Factor", value: 0, color: "none" },
+//   { label: "Video SEO", value: 0, color: "none" },
+//   { label: "Performance", value: 0, color: "none" },
+//   { label: "Accessibility", value: 0, color: "none" },
+//   { label: "Security", value: 40, color: "amber" },
+//   { label: "PWA", value: 30, color: "red" },
+//   { label: "Content Factor", value: 11, color: "red" },
+//   { label: "Domain Factor", value: 40, color: "amber" },
+//   { label: "Common SEO", value: 55, color: "amber" },
+//   { label: "Image SEO", value: 63, color: "green" },
+//   { label: "Networking", value: 71, color: "green" },
+//   { label: "Usability", value: 100, color: "green" },
+// ];
 
-export default function ResultsOverview() {
+export default function ResultsOverview({
+  scores,
+  performance,
+  technical,
+  readability,
+  contentAnalysis,
+  url,
+  analyzedAt,
+  onAnalyze,
+}: ResultsOverviewProps) {  
+
+const seoFactors: Row[] = useMemo(() => {
+  const getColor = (score: number): "red" | "amber" | "green" | "none" => {
+    if (score < 40) return "red";
+    if (score < 70) return "amber";
+    return "green";
+  };
+
+  const safeNumber = (val: any): number =>
+    typeof val === "number" && !isNaN(val) ? val : 0;
+
+   return [
+    { 
+      label: "Page Load", 
+      value: performance?.page_load_time 
+        ? Math.round(Math.max(0, 100 - (performance.page_load_time / 20) * 100))
+        : 0, 
+      color: getColor(performance?.page_load_time 
+        ? Math.round(Math.max(0, 100 - (performance.page_load_time / 20) * 100))
+        : 0) 
+    },
+    { 
+      label: "SSL Enabled", 
+      value: technical?.ssl_enabled ? 100 : 0, 
+      color: technical?.ssl_enabled ? "green" : "red" 
+    },
+    { 
+      label: "Content Quality Score", 
+      value: safeNumber(scores?.content_quality_score), 
+      color: getColor(safeNumber(scores?.content_quality_score)) 
+    },
+    // { 
+    //   label: "Common SEO", 
+    //   value: safeNumber(scores?.on_page_seo_score), 
+    //   color: getColor(safeNumber(scores?.on_page_seo_score)) 
+    // },
+    { 
+      label: "Mobile Friendly", 
+      value: technical?.is_mobile_friendly ? 100 : 0, 
+      color: technical?.is_mobile_friendly ? "green" : "red" 
+    },
+
+    // --- Scores Section ---
+    { label: "On-Page SEO Score", value: safeNumber(scores?.on_page_seo_score), color: getColor(safeNumber(scores?.on_page_seo_score)) },
+    { label: "Readability Score", value: safeNumber(scores?.readability_score), color: getColor(safeNumber(scores?.readability_score)) },
+    { label: "Content Quality Score", value: safeNumber(scores?.content_quality_score), color: getColor(safeNumber(scores?.content_quality_score)) },
+
+    // --- Content Analysis Section ---
+    // { label: "Content Length", value: safeNumber(contentAnalysis?.content_length), color: "none" },
+    // { label: "Paragraph Count", value: safeNumber(contentAnalysis?.paragraphs_count), color: "none" },
+    // { label: "Avg Paragraph Length", value: safeNumber(contentAnalysis?.avg_paragraph_length), color: "none" },
+    // { label: "Word Count", value: safeNumber(contentAnalysis?.word_count), color: "none" },
+
+    // --- Readability Section ---
+    { label: "Flesch Reading Ease", value: safeNumber(readability?.flesch_reading_ease), color: getColor(safeNumber(readability?.flesch_reading_ease)) },
+    { label: "Flesch-Kincaid Grade", value: safeNumber(readability?.flesch_kincaid_grade), color: getColor(100 - safeNumber(readability?.flesch_kincaid_grade) * 5) },
+    // { label: "Avg Sentence Length", value: safeNumber(readability?.avg_sentence_length), color: "none" },
+    // { label: "Avg Word Length", value: safeNumber(readability?.avg_word_length), color: "none" },
+    { label: "Complex Word %", value: safeNumber(readability?.complex_word_percentage), color: getColor(100 - safeNumber(readability?.complex_word_percentage)) },
+    // { label: "Total Sentences", value: safeNumber(readability?.total_sentences), color: "none" },
+    // { label: "Total Words", value: safeNumber(readability?.total_words), color: "none" },
+    // { label: "Readability Level", value: "NA", color: "none" },
+  ];
+}, [scores, contentAnalysis, readability, performance, technical]);
+
+
+    const criticalErrors = seoFactors.filter(f => f.color === "red" && f.value !== "NA").length;
+  const recommended = seoFactors.filter(f => f.color === "amber").length;
+  const improved = seoFactors.filter(f => f.color === "green").length;
+
+  // Format page load time
+  const formatLoadTime = (seconds: number) => {
+    if (seconds < 1) return `${Math.round(seconds * 1000)}ms`;
+    return `${seconds?.toFixed(2)}s`;
+  };
+
+  // Format file size
+  const formatFileSize = (estimate: string) => {
+    if (estimate === "N/A") return "N/A";
+    return estimate;
+  };
+
+   const handleDownloadPDF = () => {
+    // 🔽 Your download logic here (PDF generation or API)
+    alert("Download PDF feature coming soon!");
+  };
+  
   return (
     <section className="w-full relative overflow-hidden bg-[#0E032D] text-white pt-20">
       {/* page background */}
@@ -46,53 +182,62 @@ export default function ResultsOverview() {
         <div className="absolute inset-0 bg-[radial-gradient(700px_300px_at_10%_20%,rgba(246,76,255,0.25),transparent_60%),radial-gradient(650px_280px_at_95%_85%,rgba(255,197,83,0.24),transparent_60%)]" />
       </div>
 
-      <div className="mx-auto max-w-[1200px] px-5 pt-14 pb-8 md:pt-18 md:pb-10">
-        {/* header */}
-        <div className="mb-8 text-center">
-          <p className="text-sm text-white/70">https://intelliwriter.io/</p>
-
-          <h3 className="mt-2 text-2xl sm:text-3xl md:text-[32px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6B41FF] via-[#F64CFF] to-[#FFC553]">
-            IntelliWriter – AI Content Writer Checker for SEO and Blog Automation
-          </h3>
-
-          <p className="mt-3 mx-auto max-w-2xl text-white/80 text-sm md:text-[17px] leading-relaxed">
-            Create SEO-friendly articles, automate blog publishing, and boost authority on WordPress, Shopify, and Wix.
-          </p>
-        </div>
-
+      <div className="mx-auto max-w-[1280px] px-5 pt-14 pb-8 md:pt-18 md:pb-10 md:px-12">
         {/* MAIN CARD */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
           <GradientCard radius="rounded-[22px]">
-            <div className="grid gap-8 md:gap-10 xl:gap-12 px-6 md:px-8 py-7 lg:py-9 xl:py-10 lg:grid-cols-[280px_minmax(0,1fr)_360px]">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-5 border-b border-white/20 p-4 md:p-6 pb-4">
+            <div className="flex flex-col gap-3 ">
+          <span className="font-semibold text-white text-sm sm:text-lg break-all">
+            {url || "No URL available"}
+          </span>
+           {analyzedAt && (
+      <span className="text-sm text-white/80">
+        Report generated at: {analyzedAt}
+      </span>
+    )}
+    </div>
+
+          <button
+            onClick={handleDownloadPDF}
+            className="mt-3 sm:mt-0 relative overflow-hidden rounded-xl px-4 py-2 text-xs sm:text-sm font-semibold text-white shadow-lg transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-[#8B5CFF]"
+          >
+            <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#6B41FF] via-[#F64CFF] to-[#FFC553]" />
+            <span className="relative z-10">Download PDF</span>
+          </button>
+        </div>
+
+            <div className="grid gap-8 md:gap-10 xl:gap-12 px-6 md:px-8 py-4 lg:py-5 xl:py-6 lg:grid-cols-[280px_minmax(0,1fr)_360px]">
               {/* LEFT: Gauge + copy + CTA */}
               <div className="flex flex-col">
                 {/* centered on mobile, slightly nudged inward on desktop */}
                 <div className="mx-auto lg:ml-6 xl:ml-10">
-                  <Gauge score={29} max={100} />
+                  <Gauge score={scores?.overall_seo_score} max={100} />
                 </div>
 
                 <div className="mt-5 rounded-xl bg-white/6 px-3 py-3">
                   <div className="text-sm text-white/85">Your current SEO Health</div>
                   <div className="text-sm text-white/80 mt-0.5">
-                    <span className="font-semibold">29 / 100</span> — Needs Improvement
-                  </div>
+ <span className="font-semibold">{scores?.overall_seo_score} / 100</span> — {
+                      scores?.overall_seo_score < 40 ? "Needs Improvement" :
+                      scores?.overall_seo_score < 70 ? "Fair" : "Good"
+                    }                  </div>
                 </div>
-
-                <div className="mt-3 text-emerald-300/90 text-sm">↑ +4 since last scan</div>
 
                 {/* UPDATED: gradient button */}
                 <button
+                onClick={() => onAnalyze(url)}
                   className="mt-5 relative overflow-hidden rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-[#8B5CFF]"
                 >
                   <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#6B41FF] via-[#F64CFF] to-[#FFC553]" />
-                  <span className="relative z-10">Re-Analyze Page</span>
+                  <span  className="relative z-10">Re-Analyze Page</span>
                 </button>
 
                 {/* legend */}
                 <div className="mt-6 flex flex-col gap-2 text-xs">
-                  <Legend label="Critical error" count={8} color="red" />
-                  <Legend label="Recommended" count={2} color="amber" />
-                  <Legend label="Improved" count={3} color="green" />
+                  <Legend label="Critical error" count={criticalErrors} color="red" />
+                  <Legend label="Recommended" count={recommended} color="amber" />
+                  <Legend label="Improved" count={improved} color="green" />
                 </div>
               </div>
 
@@ -100,7 +245,7 @@ export default function ResultsOverview() {
               <div className="relative">
                 <SectionTitle>SEO Factors</SectionTitle>
                 <div className="mt-3.5 space-y-3.5">
-                  {ROWS.map((r) => (
+                  {seoFactors.map((r) => (
                     <motion.div key={r.label} initial={{ opacity: 0, x: 12 }} animate={{ opacity: 1, x: 0 }}>
                       <BarRow row={r} />
                     </motion.div>
@@ -113,22 +258,31 @@ export default function ResultsOverview() {
               <div className="flex flex-col">
                 <SectionTitle>Performance Insights</SectionTitle>
 
-                <div className="mt-3 grid grid-cols-2 gap-4">
-                  <SparkCard title="Response Time" value="1 Mi">
+                   <div className="mt-3 grid grid-cols-2 gap-4">
+                  <SparkCard title="Page Load Time" value={formatLoadTime(performance?.page_load_time)}>
                     <Sparkline />
                   </SparkCard>
-                  <SparkCard title="File Size" value="1 MB">
+                  <SparkCard title="Speed Index" value={performance?.speed_index ? `${performance.speed_index}ms` : "N/A"}>
                     <Sparkline />
                   </SparkCard>
                 </div>
 
+                {/* <div className="mt-3 grid grid-cols-2 gap-4">
+                  <SparkCard title="Total Blocking Time" value={performance?.total_blocking_time ? `${performance.total_blocking_time}ms` : "N/A"}>
+                    <Sparkline />
+                  </SparkCard>
+                  <SparkCard title="File Size" value={formatFileSize(technical?.page_size_estimate)}>
+                    <Sparkline />
+                  </SparkCard>
+                </div> */}
+
                 <SectionTitle className="mt-6">Keyword Metrics</SectionTitle>
 
                 <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-6 items-start">
-                  <Metric icon={ICONS.links} label="No. of Nofollow Links" value="Awaiting analysis" />
-                  <Metric icon={ICONS.words} label="Total Words" value="Awaiting analysis" />
-                  <Metric icon={ICONS.links} label="No. of External Links" value="Awaiting analysis" />
-                  <Metric icon={ICONS.mediaFile} label="Media File" value="Awaiting analysis" />
+                  <Metric icon={ICONS.words} label="Total Words" value={readability?.total_words.toString()} />
+                  <Metric icon={ICONS.links} label="Total Sentences" value={readability?.total_sentences.toString()} />
+                  <Metric icon={ICONS.mediaFile} label="Paragraphs" value={contentAnalysis?.paragraphs_count.toString()} />
+                  <Metric icon={ICONS.links} label="Avg Sentence Length" value={`${readability?.avg_sentence_length.toFixed(1)} words`} />
                 </div>
               </div>
             </div>

@@ -8,7 +8,7 @@ export default function WhatYouGet() {
     {
       icon: <BarChart3 className="w-8 h-8 text-[#FFC553]" />,
       title: "SEO Health Score",
-      desc: "Instantly see your article’s overall SEO strength. Get a complete score that highlights content quality, optimization, and performance in one view.",
+      desc: "Instantly see your article’s overall SEO strength. Get a complete article seo score that highlights content quality, optimization, and performance in one view.",
     },
     {
       icon: <KeyRound className="w-8 h-8 text-[#F64CFF]" />,
@@ -18,7 +18,7 @@ export default function WhatYouGet() {
     {
       icon: <BookOpenText className="w-8 h-8 text-[#6B41FF]" />,
       title: "Readability & Structure",
-      desc: "Get feedback on your headings, paragraph depth, and engagement level — making your content easier to read and rank higher.",
+      desc: "Get feedback on your headings, paragraph depth, and engagement level, making your content easier to read and rank higher.",
     },
     {
       icon: <Wrench className="w-8 h-8 text-[#FFC553]" />,
@@ -28,7 +28,7 @@ export default function WhatYouGet() {
   ];
 
   return (
-    <section className="w-full relative overflow-hidden bg-[#0E032D] text-white py-20 font-inter">
+    <section className="w-full relative overflow-hidden bg-[#0E032D] text-white py-14 font-inter">
       {/* === Background Grid + Gradient === */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#2B094E]/60 via-[#0E032D]/85 to-[#100429]/95" />
@@ -79,7 +79,7 @@ export default function WhatYouGet() {
           viewport={{ once: true }}
           className="text-white/85 max-w-2xl mx-auto text-base sm:text-lg mb-14"
         >
-          Your SEO audit goes beyond surface checks. It provides in-depth insights into content structure, keyword strategy, and actionable improvements, helping you outrank your competitors faster.
+        Your free SEO article checker audit goes beyond surface checks. It provides in-depth insights into content structure, keyword strategy, and actionable improvements, helping you outrank your competitors faster.
         </motion.p>
 
         {/* Features Grid */}

@@ -23,12 +23,12 @@ export default function StatsSection() {
       icon: <Zap className="w-8 h-8 text-[#FFC553]" />,
       value: "3s",
       label: "Avg. Audit Time",
-      desc: "Get a complete breakdown of your blog’s SEO score in under 3 seconds.",
+      desc: "Get a complete breakdown of your blog’s article seo score in under 3 seconds.",
       gradient: "from-[#FFC553] via-[#F64CFF] to-[#6B41FF]",
     },
     {
       icon: <BarChart3 className="w-8 h-8 text-[#7B41FF]" />,
-      value: "85%",
+      value: "89%",
       label: "Ranking Improvement",
       desc: "Users saw significant ranking gains after consistently following our proven insights.",
       gradient: "from-[#7B41FF] via-[#9747FF] to-[#FF9B60]",
@@ -36,7 +36,7 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="w-full relative bg-[#0E032D] text-white py-20 font-inter overflow-hidden">
+    <section className="w-full relative bg-[#0E032D] text-white py-14 font-inter overflow-hidden">
       {/* Background Grid */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#2B094E]/60 via-[#0E032D]/85 to-[#100429]/95" />
@@ -81,7 +81,7 @@ export default function StatsSection() {
 
         {/* Subtext */}
         <p className="text-white/85 max-w-2xl mx-auto text-base sm:text-lg mb-14">
-          Numbers speak louder than words. Here’s how our AI engine has helped creators and marketers transform their SEO performance faster, smarter, and with precision.
+          Numbers speak louder than words. Here’s how our article SEO checker has helped creators and marketers transform their SEO performance faster, smarter, and with precision.
         </p>
 
         {/* Stats Grid */}

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { GoGraph } from "react-icons/go";
@@ -8,6 +8,11 @@ import { FiLink, FiClipboard } from "react-icons/fi";
 
 interface HeroSectionProps {
   tokens: string | null;
+}
+
+interface HeroSectionProps {
+  tokens: string | null;
+  onAnalyze: (url: string) => void;
 }
 
 const PRO_POINTS = [
@@ -19,7 +24,12 @@ const PRO_POINTS = [
   "Keyword Signals",
 ];
 
-const HeroSection: React.FC<HeroSectionProps> = ({ tokens }) => {
+const HeroSection: React.FC<HeroSectionProps> = ({
+  tokens,
+  onAnalyze,
+}) => {
+  const [urlInput, setUrlInput] = useState("");
+
   const ctaHref = process.env.NEXT_PUBLIC_APP || "/";
   const [url, setUrl] = React.useState("");
 
@@ -53,29 +63,27 @@ const HeroSection: React.FC<HeroSectionProps> = ({ tokens }) => {
           <div className="w-full lg:w-[52%] flex flex-col gap-6 lg:gap-8">
             <div className="inline-flex items-center gap-2 text-[15px] md:text-[16px] leading-relaxed text-white/70 justify-center md:justify-start">
               <BsStars className="text-white/80 text-[18px]" />
-              <span>AI-Backed • Diagnostics • Actionable Fixes</span>
+              <span>Scan • Fix • Rank</span>
             </div>
 
-            <h1 className="font-geist font-bold tracking-tight text-center md:text-left leading-[1.05] text-3xl md:text-5xl xl:text-[56px] mb-1 md:mb-2 max-w-[16ch] md:max-w-none mx-auto md:mx-0">
+            <h1 className="font-geist font-bold tracking-tight text-center md:text-left leading-[1.05] text-3xl md:text-5xl xl:text-[56px] max-w-[16ch] md:max-w-none mx-auto md:mx-0">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6B41FF] via-[#8A5BFF] to-[#3BB8FF]">
-                AI-Backed
+                Analyze and Perfect 
               </span>{" "}
-              SEO
-              <br className="hidden md:block" />{" "}
-              Diagnostics{" "}
+              Your Content with Our 
+              <br className="hidden md:block" /> {" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F64CFF] via-[#FF8AE0] to-[#FFC553]">
-                With Actionable Fixes
+                Free Article SEO Checker
               </span>
             </h1>
 
             <p
               className="text-base md:text-lg text-white/85 mx-auto md:mx-0
-                         md:max-w-[64ch] lg:max-w-[66ch] [text-wrap:balance] leading-relaxed -mt-1"
+                         md:max-w-[64ch] lg:max-w-[66ch] [text-wrap:balance] leading-relaxed -mt-2"
             >
-              Readability, structure, metadata, links, accessibility, keyword placement,
-              and snippet-readiness, all prioritized by impact
+              Intelliwriters free SEO article checker gives you professional-grade audit in under 3 seconds. Simply drop your URL to scan readability, structure, metadata, keyword placement, and more. 
               <br className="hidden md:block" />
-              with clear, step-by-step fixes.
+              
             </p>
 
             {/* URL bar */}
@@ -97,11 +105,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ tokens }) => {
                   id="hero-url"
                   type="url"
                   inputMode="url"
-                  value={url}
-                  onChange={(e) => setUrl(e.target.value)}
+                  value={urlInput}
+                  onChange={(e) => setUrlInput(e.target.value)}
                   placeholder="Drop a URL — Intelliwriter will handle the audit."
                   aria-label="Article URL"
-                  className="h-[46px] w-full pl-10 pr-12 rounded-2xl bg-white/95 backdrop-blur-0
+                  className="h-[46px] w-full pl-5 pr-12 rounded-2xl bg-white/95 backdrop-blur-0
                              text-slate-900 placeholder-slate-600 shadow-sm
                              [box-shadow:inset_0_0_0_1px_rgba(0,0,0,0.02)]
                              focus:outline-none focus:ring-2 focus:ring-[#8B5CFF]"
@@ -124,9 +132,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ tokens }) => {
                 className="relative h-[46px] px-6 rounded-xl font-inter font-semibold text-[15px] text-white shadow-lg
                            focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-[#8B5CFF] w-full sm:w-auto"
               >
-                <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#6B41FF] via-[#F64CFF] to-[#FFC553]
-                                 transition-transform will-change-transform hover:scale-[1.01]" />
-                <span className="relative z-10">Analyze Score</span>
+                <span
+                  className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#6B41FF] via-[#F64CFF] to-[#FFC553]
+                                 transition-transform will-change-transform hover:scale-[1.01]"
+                />
+                {/* <Link
+              href={`${process.env.NEXT_PUBLIC_APP}auth/register`}
+              > */}
+                <button
+                  onClick={() => onAnalyze(urlInput)}
+                  className="relative z-10"
+                >
+                  Try For Free
+                </button>
+                {/* </Link> */}
               </button>
             </motion.form>
 
@@ -182,8 +201,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ tokens }) => {
                     className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white hover:underline"
                   >
                     <span>View sample report</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" className="opacity-80">
-                      <path fill="currentColor" d="M13 5l7 7-7 7v-4H4v-6h9V5z" />
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      className="opacity-80"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M13 5l7 7-7 7v-4H4v-6h9V5z"
+                      />
                     </svg>
                   </Link>
                 </div>

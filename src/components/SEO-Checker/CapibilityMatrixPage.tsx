@@ -21,19 +21,92 @@ type Feature = {
 const CATEGORIES: Category[] = ["All", "Writer", "Editor", "SEO"];
 
 const FEATURES: Feature[] = [
-  { icon: "/seo-checker/seoanalyzerimages/Vector1.png", title: "Flesch & Sentences", desc: "Reading ease, avg length, dispersion", roles: ["Writer", "Editor"], tag: "Live" },
-  { icon: "/seo-checker/seoanalyzerimages/Vector2.png", title: "Passive & Hedging", desc: "Passage % hedge terms", roles: ["Writer", "Editor"], tag: "Live" },
-  { icon: "/seo-checker/seoanalyzerimages/Vector3.png", title: "Heading Hierarchy", desc: "H1 single, jump detection", roles: ["SEO", "Editor"], tag: "Live" },
-  { icon: "/seo-checker/seoanalyzerimages/Vector4.png", title: "Meta Audit", desc: "Title/meta windows, OG/Twitter", roles: ["SEO", "Editor"], tag: "Live" },
-  { icon: "/seo-checker/seoanalyzerimages/Vector5.png", title: "Link Balance", desc: "Internal/external counts", roles: ["SEO", "Editor"], tag: "Live" },
-  { icon: "/seo-checker/seoanalyzerimages/Vector6.png", title: "Alt Text", desc: "Missing/empty alt detection", roles: ["SEO", "Editor"], tag: "Live" },
-  { icon: "/seo-checker/seoanalyzerimages/Vector7.png", title: "Keyword Signal", desc: "Title/H1/Intro presence, density", roles: ["SEO"], tag: "Live" },
-  { icon: "/seo-checker/seoanalyzerimages/Vector10.png", title: "Article Schema", desc: "Structured data checks & hints", roles: ["SEO"], tag: "Pro (server)" },
-  { icon: "/seo-checker/seoanalyzerimages/Vector9.png", title: "E-E-A-T", desc: "Byline, updated date, about/contact", roles: ["SEO", "Editor"], tag: "Live" },
-  { icon: "/seo-checker/seoanalyzerimages/Vector8.png", title: "CORS-safe Fetch", desc: "Bypass CORS via API", roles: ["SEO"], tag: "Planned" },
-  { icon: "/seo-checker/seoanalyzerimages/Vector11.png", title: "One-Click Fixes", desc: "Rewrite titles/meta, FAQ suggestions", roles: ["Writer", "SEO"], tag: "Planned" },
-  { icon: "/seo-checker/seoanalyzerimages/Vector12.png", title: "Benchmarks", desc: "Team targets & progress", roles: ["SEO", "Editor"], tag: "Live" },
-];
+  {
+    icon: "/seo-checker/seoanalyzerimages/Vector1.png",
+    title: "Flesch & Sentences",
+    desc: "Looks at sentence length and Flesch readability to rate how easy it is to read. Draws attention to long or complicated lines and shows how they split out in the text. Makes it clear how to improve flow and reader retention to get better results.",
+    roles: ["Writer", "Editor"],
+    tag: "Live"
+  },
+  {
+    icon: "/seo-checker/seoanalyzerimages/Vector2.png",
+    title: "Passive & Hedging",
+    desc: "Finds passive voice and words that mean more than one thing in the text. Finds affected sections and counts the number of passive or uncertain words used. Stronger active rewrites are suggested to make the text clearer and more powerful.",
+    roles: ["Writer", "Editor"],
+    tag: "Live"
+  },
+  {
+    icon: "/seo-checker/seoanalyzerimages/Vector3.png",
+    title: "Heading Hierarchy",
+    desc: "Makes sure there are no structure problems with the use of H1, heading order, and jump recognition. Looks through the piece for missing levels and inconsistent heading patterns. Fixes are suggested to make a sensible hierarchy that makes the site easier to crawl and better for users.",
+    roles: ["SEO", "Editor"],
+    tag: "Live"
+  },
+  {
+    icon: "/seo-checker/seoanalyzerimages/Vector4.png",
+    title: "Meta Audit",
+    desc: "Examines the title tag, meta description, and OG/Twitter metadata usage. Marks tags that are missing, shortened, or duplicate and gives a score for snippet-readiness. It makes ideas that are optimized to boost CTR and social sharing.",
+    roles: ["SEO", "Editor"],
+    tag: "Live"
+  },
+  {
+    icon: "/seo-checker/seoanalyzerimages/Vector5.png",
+    title: "Link Balance",
+    desc: "Analyze internal and external links and anchors texts. Finds areas that are missing content, broken links, and too many external links. Recommends balancing and internal linking to improve authority and navigation.",
+    roles: ["SEO", "Editor"],
+    tag: "Live"
+  },
+  {
+    icon: "/seo-checker/seoanalyzerimages/Vector6.png",
+    title: "Alt Text",
+    desc: "Detects missing, empty, or non-descriptive image alt attributes. Gives images a score based on how accessible they are and how well they fit with the text. suggests short, keyword-rich alt text to improve picture SEO and make it more accessible.",
+    roles: ["SEO", "Editor"],
+    tag: "Live"
+  },
+  {
+    icon: "/seo-checker/seoanalyzerimages/Vector7.png",
+    title: "Keyword Signal",
+    desc: "Checks to see if the keywords are in the title, H1, introduction, and important sections. Checks placement and quantity to find weak or spammy usage. Recommends target adjustments to strengthen on-page relevance without over-optimization.",
+    roles: ["SEO"],
+    tag: "Live"
+  },
+  {
+    icon: "/seo-checker/seoanalyzerimages/Vector10.png",
+    title: "Article Schema",
+    desc: "Checks to see if the article schema and organized data are correct. Finds JSON-LD code that is missing or wrong and stops rich results from showing up. Gives model suggestions to improve the chances of getting higher SERP rankings.",
+    roles: ["SEO"],
+    tag: "Pro (server)"
+  },
+  {
+    icon: "/seo-checker/seoanalyzerimages/Vector9.png",
+    title: "E-E-A-T",
+    desc: "Checks the author byline, update date, and 'about' or 'contact' information for signs of trust. Highlight gaps in experties, experience, authority, and trustworthiness. Gives steps that can be taken to improve credibility and get in line with Google's quality signs.",
+    roles: ["SEO", "Editor"],
+    tag: "Live"
+  },
+  {
+    icon: "/seo-checker/seoanalyzerimages/Vector8.png",
+    title: "CORS-safe Fetch",
+    desc: "Does safe remote fetches through API to get around CORS restrictions. Guarantees the safe access of public pages so that analysis can be done consistently. Lets you scan any URL right away without any client-side CORS problems or blockers.",
+    roles: ["SEO"],
+    tag: "Planned"
+  },
+  {
+    icon: "/seo-checker/seoanalyzerimages/Vector11.png",
+    title: "One-Click Fixes",
+    desc: "Offers quick rewrites for titles, meta, and FAQ snippets. Uses AI to make suggestions that you can accept with just one click. Makes the optimization process go faster so editors can quickly post content that is ready to rank.",
+    roles: ["Writer", "SEO"],
+    tag: "Planned"
+  },
+  {
+    icon: "/seo-checker/seoanalyzerimages/Vector12.png",
+    title: "Benchmarks",
+    desc: "It checks your writing against team goals and averages from the past. Shows progress bars and delta measures to see how SEO is getting better over time. Helps teams set goals, measure wins, and prioritize tasks for higher rankings.",
+    roles: ["SEO", "Editor"],
+    tag: "Live"
+  }
+]
+;
 
 // Badge styles (higher contrast, consistent)
 const tagStyles: Record<Tag, string> = {
@@ -70,7 +143,7 @@ const CapabilityMatrixPage: NextPage = () => {
       </div>
 
       {/* Main Section */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 sm:px-10 md:px-12 lg:px-16 xl:px-24 py-14 md:py-16 lg:py-20">
+      <section className="relative z-10 mx-auto max-w-7xl px-6 sm:px-10 md:px-12 lg:px-16 xl:px-24 py-14 md:py-16">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 36 }}
@@ -79,15 +152,14 @@ const CapabilityMatrixPage: NextPage = () => {
           transition={{ duration: prefersReducedMotion ? 0 : 0.7 }}
           className="text-center mb-7 md:mb-9"
         >
-          <h1 className="font-bold leading-tight text-[clamp(28px,4vw,46px)]">
+          <h2 className="font-bold leading-tight text-[clamp(28px,4vw,46px)]">
             Deep{" "}
             <span className="bg-gradient-to-r from-[#6B41FF] via-[#F64CFF] to-[#FFC553] bg-clip-text text-transparent">
               Capability Matrix
             </span>
-          </h1>
+          </h2>
           <p className="mt-4 text-white/85 max-w-2xl mx-auto text-[15px] sm:text-[17px] leading-relaxed">
-            Drop in a URL. Get a real-time SEO report with actionable insights. No setup, no signup, no waiting.
-          </p>
+Drop in a URL. Get a real-time SEO article checker report with actionable insights. No setup, no signup, no waiting.          </p>
         </motion.div>
 
         {/* Category Filters */}

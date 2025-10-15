@@ -16,73 +16,136 @@ interface AuditItem {
   tableData?: TableRow[];
 }
 
-export default function SeoAuditTable() {
+interface SeoAuditTableProps {
+  analysisData: {
+    meta_data: {
+      title: string;
+      title_length: number;
+      description: string;
+      description_length: number;
+      url_slug: string;
+      url_length: number;
+    };
+    headings: {
+      h1_count: number;
+      h2_count: number;
+      h3_count: number;
+      h4_count: number;
+      h5_count: number;
+      h6_count: number;
+      total_headings: number;
+      h1_texts: string[];
+    };
+    images: {
+      images_with_alt: number;
+      images_without_alt: number;
+    };
+    readability: {
+      readability_level: string;
+    };
+  };
+}
+
+export default function SeoAuditTable({ analysisData }: SeoAuditTableProps) {
+  const { meta_data, headings, images, readability } = analysisData;
+  
   const auditItems: AuditItem[] = [
     {
       element: "URL",
-      priority: "success",
-      problem: "The length of your URL is good (16 characters).",
-      badge: "intelliwriter.io",
+      priority:
+        meta_data.url_length >= 20 && meta_data.url_length <= 75
+          ? "success"
+          : meta_data.url_length > 75
+          ? "warning"
+          : "error",
+      problem:
+        meta_data.url_length >= 20 && meta_data.url_length <= 75
+          ? `Your URL length (${meta_data.url_length} chars) is optimal.`
+          : meta_data.url_length > 75
+          ? `Your URL is too long (${meta_data.url_length} chars). Shorten it for better SEO.`
+          : `Your URL is too short (${meta_data.url_length} chars). Make it more descriptive.`,
+      badge: meta_data.url_slug,
     },
     {
       element: "Title",
-      priority: "success",
+      priority:
+        meta_data.title_length >= 50 && meta_data.title_length <= 60
+          ? "success"
+          : meta_data.title_length > 60
+          ? "warning"
+          : "error",
       problem:
-        "Your title is a bit long (61 characters). Aim for 50-60 characters.",
-      badge: "IntelliWriter – AI Content Writer for SEO and Blog Automation",
+        meta_data.title_length >= 50 && meta_data.title_length <= 60
+          ? `Title length (${meta_data.title_length} chars) is perfect.`
+          : meta_data.title_length > 60
+          ? `Title is too long (${meta_data.title_length} chars).`
+          : `Title is too short (${meta_data.title_length} chars).`,
+      badge: meta_data.title,
     },
     {
       element: "Meta Description",
-      priority: "success",
+      priority:
+        meta_data.description_length >= 140 && meta_data.description_length <= 160
+          ? "success"
+          : meta_data.description_length > 160
+          ? "warning"
+          : "error",
       problem:
-        "Your meta description is too long (175 characters). Consider shortening it to 100-130 characters.",
-      badge:
-        "IntelliWriter is an AI Content Writer for SEO and blogs. Create high-quality, SEO-Friendly.......",
+        meta_data.description_length >= 140 && meta_data.description_length <= 160
+          ? `Meta description length (${meta_data.description_length} chars) is ideal.`
+          : meta_data.description_length > 160
+          ? `Meta description too long (${meta_data.description_length} chars).`
+          : `Meta description too short (${meta_data.description_length} chars).`,
+      badge: meta_data.description,
     },
     {
       element: "H1",
-      priority: "warning",
+      priority: headings.h1_count === 1 ? "success" : headings.h1_count > 1 ? "warning" : "error",
       problem:
-        "Your H1 is missing! Add a main H1 heading to the page to improve search visibility and guide your visitors. Aim for 10-70 characters.",
+        headings.h1_count === 1
+          ? `You have one main H1 heading (“${headings.h1_texts[0]}”).`
+          : headings.h1_count > 1
+          ? `You have multiple H1s (${headings.h1_count}). Keep only one main H1.`
+          : "H1 is missing. Add one main H1 to improve structure.",
       badge: null,
     },
     {
-      element: "H2-H6 Structure",
-      priority: "success",
+      element: "Headings Structure (H2–H6)",
+      priority: headings.total_headings > 5 ? "success" : "warning",
       problem:
-        "Your page structure is problematic. Key heading levels are missing, skipped, or over-used. Consider rebuilding your page structure with H2s, H3s, and H4s used to introduce sections and subsections. Avoid hierarchy gaps (e.g., H4s directly following H2s) and excess headings.",
-      badge: null,
+        headings.total_headings > 5
+          ? "Heading hierarchy looks balanced."
+          : "Your page could use more subheadings for better readability.",
       hasTable: true,
       tableData: [
-        { heading: "H1", frequency: "0" },
-        { heading: "H2", frequency: "0" },
-        { heading: "H5", frequency: "0" },
+        { heading: "H1", frequency: headings.h1_count.toString() },
+        { heading: "H2", frequency: headings.h2_count.toString() },
+        { heading: "H3", frequency: headings.h3_count.toString() },
+        { heading: "H4", frequency: headings.h4_count.toString() },
+        { heading: "H5", frequency: headings.h5_count.toString() },
+        { heading: "H6", frequency: headings.h6_count.toString() },
       ],
-    },
-    {
-      element: "Image Alt",
-      priority: "success",
-      problem: "Your images all have alt text.",
       badge: null,
     },
     {
-      element: "Content",
-      priority: "success",
+      element: "Images",
+      priority: images.images_without_alt === 0 ? "success" : "warning",
       problem:
-        "Your title is a bit long (61 characters). Aim for 50-60 characters.",
-      badge: "IntelliWriter – AI Content Writer for SEO and Blog Automation",
+        images.images_without_alt === 0
+          ? "All images have alt text."
+          : `${images.images_without_alt} images are missing alt text.`,
+      badge: `With Alt: ${images.images_with_alt}, Without Alt: ${images.images_without_alt}`,
     },
     {
-      element: "",
-      priority: "error",
-      problem:
-        "Your content is too thin (126 words). Add more content to better inform users what your page is about. Aim for at least 500 words.",
-      badge: null,
-    },
-    {
-      element: "Keyword Density",
-      priority: "success",
-      problem: "N/A",
+      element: "Readability",
+      priority:
+        readability.readability_level.toLowerCase().includes("easy") ||
+        readability.readability_level.toLowerCase().includes("fairly easy")
+          ? "success"
+          : readability.readability_level.toLowerCase().includes("fairly difficult")
+          ? "warning"
+          : "error",
+      problem: `Readability level: ${readability.readability_level}`,
       badge: null,
     },
   ];
@@ -144,15 +207,14 @@ export default function SeoAuditTable() {
   };
 
   return (
-    <section className="w-full py-10 px-4 sm:px-6 lg:px-8 bg-[#0E032D] text-white">
-      <div className="max-w-5xl mx-auto">
+    <section className="w-full py-12 px-4 sm:px-8 lg:px-12 bg-[#0E032D] text-white">
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-10">
-          <h2 className="font-bold text-3xl md:text-4xl leading-tight">On-Page SEO</h2>
-          <p className="mt-3 text-gray-300 text-[17px] max-w-3xl mx-auto leading-relaxed">
-            This section identifies your site's most critical SEO issues and delivers
-            clear recommendations to resolve them and strengthen search performance.
-          </p>
+        <div className="mb-5">
+          <h2 className="font-bold text-3xl md:text-4xl leading-tight">On-Page SEO Insights</h2>
+            {/* <p className="mt-3 text-gray-300 text-[17px] max-w-3xl mx-auto leading-relaxed">
+            A detailed breakdown of your article’s metadata, headings, and content structure.
+          </p> */}
         </div>
 
         {/* Card with gradient frame */}
@@ -160,21 +222,9 @@ export default function SeoAuditTable() {
           <div className="rounded-2xl bg-[#120934] border border-white/10 overflow-hidden">
             {/* Table header */}
             <div className="grid grid-cols-12 gap-4 px-6 py-4 bg-[#1A0D3E] border-b border-white/10">
-              <div className="col-span-4 md:col-span-3">
-                <h3 className="text-white font-semibold text-[15px] md:text-base tracking-wide">
-                  Element
-                </h3>
-              </div>
-              <div className="col-span-4 md:col-span-2">
-                <h3 className="text-white font-semibold text-[15px] md:text-base tracking-wide">
-                  Priority
-                </h3>
-              </div>
-              <div className="col-span-12 md:col-span-7">
-                <h3 className="text-white font-semibold text-[15px] md:text-base tracking-wide">
-                  Problems & Recommendations
-                </h3>
-              </div>
+              <div className="col-span-3 font-semibold">Element</div>
+              <div className="col-span-2 font-semibold">Priority</div>
+              <div className="col-span-7 font-semibold">Problem / Recommendations</div>
             </div>
 
             {/* Rows */}
@@ -182,7 +232,7 @@ export default function SeoAuditTable() {
               {auditItems.map((item, index) => (
                 <div
                   key={index}
-                  className="grid grid-cols-12 gap-4 px-6 py-5 hover:bg-white/3 transition-colors"
+                  className="grid grid-cols-12 gap-4 px-6 py-5 hover:bg-white/3 items-center transition-colors"
                 >
                   {/* Element */}
                   <div className="col-span-4 md:col-span-3">
@@ -254,11 +304,6 @@ export default function SeoAuditTable() {
             </div>
           </div>
         </div>
-
-        {/* Optional footnote / helper text */}
-        {/* <p className="mt-5 text-center text-white/60 text-sm">
-          Tip: Fix high-priority items first to see the biggest gains.
-        </p> */}
       </div>
     </section>
   );

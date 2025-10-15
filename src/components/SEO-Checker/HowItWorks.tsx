@@ -18,12 +18,12 @@ export default function HowItWorks() {
     {
       icon: <BarChart3 className="w-8 h-8 text-[#6B41FF]" />,
       title: "Step 3 — Get Insights",
-      desc: "Receive a complete SEO report with your score, actionable fixes, and growth recommendations in seconds.",
+      desc: "Receive a complete article SEO score and a full report with actionable fixes, and growth recommendations in seconds.",
     },
   ];
 
   return (
-    <section className="w-full relative overflow-hidden bg-[#0E032D] text-white py-20 font-inter">
+    <section className="w-full relative overflow-hidden bg-[#0E032D] text-white py-14 font-inter">
       {/* === Background Grid + Gradient === */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#2B094E]/70 via-[#0E032D]/85 to-[#100429]/95" />
@@ -60,10 +60,11 @@ export default function HowItWorks() {
           viewport={{ once: true }}
           className="text-[28px] sm:text-[36px] md:text-[42px] font-bold mb-6"
         >
-          Working of{" "}
+          How Our{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6B41FF] via-[#F64CFF] to-[#FFC553]">
-            Content Analyzer
+            Article SEO Checker {" "}
           </span>
+          Works
         </motion.h2>
 
         <motion.p
@@ -73,8 +74,7 @@ export default function HowItWorks() {
           viewport={{ once: true }}
           className="text-white/85 max-w-2xl mx-auto text-base sm:text-lg mb-14"
         >
-          Auditing an article is simple and lightning fast. Follow these three
-          easy steps to uncover your content’s SEO potential.
+         Auditing an article with our article seo checker free tool is simple and lightning fast. Follow these three easy steps to uncover your content’s SEO potential.
         </motion.p>
 
         {/* Steps */}
