@@ -21,6 +21,10 @@ import BetterRank from "@/components/Home3/BetterRank";
 import DriveTraffic from "@/components/Home3/DriveTraffic";
 import Testimonial from "@/components/Home3/Testimonial";
 import HeroAnimation from "@/components/SeoWriter/HeroAnimation";
+import SEOAgent from "@/components/Home3/SEOAgent";
+import AgentCards from "@/components/Home3/AgentCards";
+
+
 
 const PricingPlan = dynamic(() => import("@/components/Home3/PricingPlan"), {
   ssr: false,
@@ -51,19 +55,21 @@ export default function PageChild() {
     <>
       <Header aboutRef={aboutRef} pricingRef={pricingRef} />
       <main className="overflow-hidden w-full">
-        <div className="relative w-full flex flex-col justify-center items-center bg-black z-10">
-          <HeroAnimation />
-          <Hero />
-          <Tools />
-          <WhyIntelli />
-          <ArticleWriter />
-          <ToolsDesc />
-          <IntelliComparison />
-          <DriveTraffic />
-          <PricingPlan />
-          <Testimonial />
-          <FAQs />
-          <BetterRank />
+        <div className="relative w-full flex flex-col justify-center items-center bg-[#010002]  z-10">
+           <Hero  />
+            <Tools />
+            <WhyIntelli />
+            <SEOAgent />
+            {/* <ArticleSEOChecker /> */}
+            <AgentCards />
+            <ArticleWriter />
+            <ToolsDesc />
+            <IntelliComparison />
+            <DriveTraffic />
+            <PricingPlan />
+            <Testimonial />
+            <FAQs />
+            <BetterRank />
         </div>
         <CookiePopup />
         <Footer />

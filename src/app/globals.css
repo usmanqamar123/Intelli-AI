@@ -1994,12 +1994,17 @@ p {
 /* Gradient Text */
 .gradient-text {
   background: linear-gradient(
-    92.91deg,
-    #298cfd 11.33%,
-    #2b38f9 38.28%,
-    #7e3bff 61.37%,
-    #ce17f8 108.98%
-  );
+      90deg,
+      #A615E1 0%,
+      #445AC8 50%,
+      #05C7EC 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0)
+    );
+
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -2094,4 +2099,20 @@ p {
 
 ul.slick-dots {
   display: none !important;
+}
+
+
+
+/* Gradient Text */
+.gradient-text-new {
+  background: linear-gradient(
+    90deg,
+    #FFFFFF 0%,
+    #FFFFFF 50%,
+    #05C7EC 70%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

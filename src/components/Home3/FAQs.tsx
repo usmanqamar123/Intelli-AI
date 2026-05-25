@@ -1,133 +1,238 @@
 "use client";
+
 import React, { useState } from "react";
-import { IoIosArrowDown } from "react-icons/io";
-import { IoIosArrowUp } from "react-icons/io";
-import { motion } from "framer-motion";
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { HiArrowRight, HiOutlineQuestionMarkCircle } from "react-icons/hi2";
+import { PiSparkle } from "react-icons/pi";
+import { FiGift, FiShield, FiLock, FiRefreshCw } from "react-icons/fi";
+import { BiHeadphone } from "react-icons/bi";
+import { IoChevronDown } from "react-icons/io5";
+import { BsLightningChargeFill } from "react-icons/bs";
+import { FaShieldAlt, FaCheck } from "react-icons/fa";
+import type { IconType } from "react-icons";
 
 interface AccordProps {
   id: number;
   question: string;
   answer: string;
+  icon: IconType;
+  iconColor: string;
+  iconBg: string;
 }
 
 interface SeoFAQsProps {
-  faqs?: AccordProps[];
+  faqs?: Omit<AccordProps, "icon" | "iconColor" | "iconBg">[];
 }
 
-const Faqs: React.FC<SeoFAQsProps> = ({}) => {
-  const [openIndex, setOpenIndex] = useState(null);
+const defaultFaqs: AccordProps[] = [
+  {
+    id: 1,
+    question: "What is IntelliWriter?",
+    answer:
+      "IntelliWriter is an all-in-one AI writing assistant that helps you create high-quality articles, build topical authority, generate SEO-optimized content, and even produce visuals and voiceovers.",
+    icon: PiSparkle,
+    iconColor: "text-[#A855F7]",
+    iconBg: "bg-[#A855F7]/15 shadow-[0_0_24px_rgba(168,85,247,0.35)]",
+  },
+  {
+    id: 2,
+    question: "Is there a free trial available?",
+    answer:
+      "Yes. You can start with a 7-day free trial and explore IntelliWriter's core features before choosing a paid plan.",
+    icon: FiGift,
+    iconColor: "text-[#3B82F6]",
+    iconBg: "bg-[#3B82F6]/15 shadow-[0_0_24px_rgba(59,130,246,0.35)]",
+  },
+  {
+    id: 3,
+    question: "Can I cancel my subscription anytime?",
+    answer:
+      "Absolutely. You can cancel your subscription at any time from your account settings with no long-term commitment.",
+    icon: FiShield,
+    iconColor: "text-[#22C55E]",
+    iconBg: "bg-[#22C55E]/15 shadow-[0_0_24px_rgba(34,197,94,0.35)]",
+  },
+  {
+    id: 4,
+    question: "Is my data safe and secure?",
+    answer:
+      "Yes. We use industry-standard encryption and security practices to keep your data private and protected at all times.",
+    icon: FiLock,
+    iconColor: "text-[#EC4899]",
+    iconBg: "bg-[#EC4899]/15 shadow-[0_0_24px_rgba(236,72,153,0.35)]",
+  },
+  {
+    id: 5,
+    question: "Do you offer refunds?",
+    answer:
+      "Refund eligibility depends on your plan and usage. Contact our support team and we'll review your request promptly.",
+    icon: FiRefreshCw,
+    iconColor: "text-[#F97316]",
+    iconBg: "bg-[#F97316]/15 shadow-[0_0_24px_rgba(249,115,22,0.35)]",
+  },
+];
 
-  const toggleAnswer = (index: any) => {
+const ctaFeatures = [
+  {
+    icon: BsLightningChargeFill,
+    label: "No Credit Card Required",
+    color: "text-[#A855F7]",
+  },
+  {
+    icon: FaShieldAlt,
+    label: "7-Day Free Trial",
+    color: "text-[#3B82F6]",
+  },
+  {
+    icon: FaCheck,
+    label: "Cancel Anytime, No Hassle",
+    color: "text-[#22C55E]",
+  },
+];
+
+const Faqs: React.FC<SeoFAQsProps> = ({ faqs: propFaqs }) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const toggleAnswer = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const faqs = [
-    {
-      id: 1,
-      question: "What is IntelliWriter and how does it help with content creation?",
-      answer:
-        "IntelliWriter is an all-in-one AI writing assistant that helps you create high-quality articles, build topical authority, generate SEO-optimized content, and even produce visuals and voiceovers. Whether you're a blogger, marketer, or business owner, it simplifies the entire content creation process with AI-driven efficiency.",
-    },
-    {
-      id: 2,
-      question: "How does the Article Writer ensure quality and originality?",
-      answer:
-        "The Article Writer uses advanced natural language models to generate human-like, plagiarism-free content based on your input. It follows SEO best practices and your desired tone, ensuring the final output is both engaging and search engine-friendly.",
-    },
-    {
-      id: 3,
-      question: "What is the Topical Authority Builder and why is it important?",
-      answer:
-        "The Topical Authority Builder helps you create a structured content strategy by generating clusters of related articles around your main niche. This improves your domain authority and helps Google recognize your site as a trusted source in your field, boosting search rankings.",
-    },
-    {
-      id: 4,
-      question: "Can I create visuals and voiceovers with IntelliWriter?",
-      answer:
-        "Yes, IntelliWriter includes an AI Image Generator and Voiceover tool. You can create custom visuals to enhance your articles and generate natural sounding voiceovers for videos, podcasts, or accessibility—without needing any design or audio editing skills.",
-    },
-    {
-      id: 5,
-      question: "Is there discount for non-profits?",
-      answer: "Please get in touch with us below.",
-    },
-  ];
+  const faqsToDisplay: AccordProps[] =
+    propFaqs && propFaqs.length > 0
+      ? propFaqs.map((faq, index) => ({
+          ...defaultFaqs[index % defaultFaqs.length],
+          ...faq,
+        }))
+      : defaultFaqs;
+
+  const loginHref = `${process.env.NEXT_PUBLIC_APP ?? ""}auth/login`;
+
   return (
-    <div className="relative w-full max-w-[1240px] font-geist max-auto px-4 md:px-6 xl:px-0 py-10 md:py-12 z-10">
-      {/* GRADIENT */}
-      <div className="absolute top-1/2 -left-96 h-[400px] w-[400px] bg-[#CE17F8] blur-[120px] opacity-40 -z-10" />
-      {/* <div className="absolute bottom-0 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px] -z-10" /> */}
-      <div className="absolute top-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px] -z-10" />
-      <div className="absolute top-1/2 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px] -z-10" />
-      <div className="absolute top-0 -left-64 h-24 lg:h-32 w-10/12 lg:w-1/4 opacity-40 bg-[#7500FF] blur-[120px] -z-10" />
+    <section className="relative w-full max-w-[1240px] mx-auto font-geist px-4 md:px-6 xl:px-0 py-14 md:py-16 z-[1]">
+      {/* Header — centered */}
+      <div className="flex flex-col items-center text-center gap-4 mb-10">
+        <p className="gradient-border-wrapper rounded-full px-5 py-2 text-[10px] md:text-xs font-semibold tracking-[0.2em] text-white/90 uppercase flex items-center gap-2">
+          <HiOutlineQuestionMarkCircle className="text-[#A855F7] text-base shrink-0" />
+          <span className="gradient-text-new text-base md:text-lg">
+            Frequently Asked Questions
+          </span>
+        </p>
 
-      <div className="w-full flex flex-col md:flex-row gap-8 items-start justify-center">
-        <div className="flex flex-col w-[90%] md:w-1/2 text-white gap-6 px-3 mx-auto">
-          {/* TITLE */}
-          <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text">
-            Got Questions?
-            <br />
-            <span className="gradient-text  text-transparent bg-clip-text leading-snug">
-              We’ve Got Answers!
-            </span>
-          </h2>
+        <h2 className="text-3xl md:text-4xl lg:text-5xl 2xl:text-[3.25rem] font-bold font-jakarta text-white leading-tight">
+          Got Questions?{" "}
+          <span className="gradient-text text-transparent bg-clip-text">
+            We&apos;ve Got Answers
+          </span>
+        </h2>
 
-          <p className="!font-extralight text-base lg:text-lg !text-white max-w-lg">
-            We&apos;re dedicated to assisting individuals interested in
-            generating AI-driven content and images.
-          </p>
-<Link href="/contact">
-          <button className="mt-6 w-fit gradient-bg rounded-full font-semibold text-white !px-14 py-4">
-            Get in Touch
-          </button>
-          </Link>
+        <p className="text-sm md:text-lg text-white/60 max-w-xl">
+          Everything you need to know about IntelliWriter.
+        </p>
+      </div>
+
+      {/* Two columns */}
+      <div className="w-full flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch">
+        {/* Left — support card */}
+        <div className="w-full lg:w-[38%] shrink-0">
+          <div className="gradient-border-wrapper rounded-2xl bg-[#010006] h-full flex flex-col items-center text-center px-6 py-8 md:py-10">
+            <div className="relative w-full h-full max-w-[300px] aspect-square">
+              <Image
+                src="/Question-mark.webp"
+                alt="Still have questions illustration"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+
+            <h3 className="text-xl md:text-2xl font-semibold text-white">
+              Still have questions?
+            </h3>
+            <p className="mt-2 gradient-text text-sm md:text-2xl">
+              We&apos;re here to help!
+            </p>
+
+            <Link href="/contact" className="mt-8 w-full max-w-xs">
+              <button
+                type="button"
+                className="w-full flex items-center justify-center gap-3 rounded-xl border border-white/25 bg-transparent px-5 py-3.5 text-white text-sm font-medium hover:border-white/50 hover:bg-white/5 transition-all duration-300"
+              >
+                <BiHeadphone className="text-[#724BB2] text-base lg:text-xl shrink-0" />
+                Contact Support
+                <HiArrowRight className="text-[#724BB2] text-base lg:text-xl shrink-0" />
+              </button>
+            </Link>
+          </div>
         </div>
 
-        <div className="w-[90%] md:w-1/2 mx-auto flex flex-col gap-5">
-          {faqs.map((item, index) => (
-            <div key={index}>
-              {/* Question Section */}
-              <div
-                className="flex flex-col items-center justify-between px-5 py-4 bg-transparent h-auto text-white cursor-pointer gradient-border-wrapper !rounded-md z-50"
-                onClick={() => toggleAnswer(index)}
-              >
-                <div className="w-full flex justify-between items-center font-bold text-base md:text-lg xl:text-2xl">
-                  {item.question}
+        {/* Right — accordion */}
+        <div className="w-full lg:flex-1 flex flex-col gap-3 md:gap-4">
+          {faqsToDisplay.map((item, index) => {
+            const Icon = item.icon;
+            const isOpen = openIndex === index;
 
-                  {/* Animated Icon */}
-                  <motion.div
-                    animate={{ rotate: openIndex === index ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
+            return (
+              <div
+                key={item.id ?? index}
+                className={`rounded-xl border transition-colors duration-300 cursor-pointer overflow-hidden ${
+                  isOpen
+                    ? "border-white/15 bg-white/[0.04]"
+                    : "border-white/10 bg-black/40 hover:border-white/15"
+                }`}
+                onClick={() => toggleAnswer(index)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    toggleAnswer(index);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-expanded={isOpen}
+              >
+                <div className="flex items-center gap-4 px-4 md:px-5 py-4 md:py-5">
+                  <div
+                    className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 ${item.iconBg}`}
                   >
-                    {openIndex === index ? (
-                      <IoIosArrowUp size={20} />
-                    ) : (
-                      <IoIosArrowDown size={20} />
-                    )}
-                  </motion.div>
+                    <Icon className={`text-xl ${item.iconColor}`} />
+                  </div>
+
+                  <h3 className="flex-1 text-left text-sm md:text-base lg:text-lg font-medium text-white pr-2">
+                    {item.question}
+                  </h3>
+
+                  <motion.span
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.25 }}
+                    className={`shrink-0 ${item.iconColor}`}
+                  >
+                    <IoChevronDown size={22} />
+                  </motion.span>
                 </div>
 
-                {/* Answer Section */}
-                <motion.div
-                  initial={false}
-                  animate={{
-                    maxHeight: openIndex === index ? "300px" : "0px",
-                    opacity: openIndex === index ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="overflow-hidden w-full"
-                >
-                  <div className="px-0 py-2 mt-4 text-left bg-transparent h-auto text-white">
-                    {item.answer}
-                  </div>
-                </motion.div>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p className="px-4 md:px-5 pb-5 pl-[4.25rem] md:pl-[4.75rem] text-sm md:text-[15px] text-white/55 leading-relaxed text-left">
+                        {item.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

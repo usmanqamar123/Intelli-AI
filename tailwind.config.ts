@@ -1,51 +1,3 @@
-// import type { Config } from "tailwindcss";
-// // const { nextui } = require("@nextui-org/react");
-// const config: Config = {
-//   content: [
-//     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-//     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-//     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-//     // "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}", // Add NextUI theme files
-//   ],
-//   theme: {
-//     extend: {
-//       keyframes: {
-//         loadingBar: {
-//           "0%": { transform: "translateX(-100%)" },
-//           "100%": { transform: "translateX(100%)" },
-//         },
-//       },
-//       animation: {
-//         "loading-bar": "loadingBar 1.5s ease-in-out infinite",
-//       },
-//       screens: {
-//         xxl: "1886px",
-//         xs: { min: "376px" },
-//       },
-//       colors: {
-//         primary: "#010409",
-//         btnPrimary: "#471c7c",
-//         btnSecondary: "#7628d6",
-//       },
-//       backgroundImage: {
-//         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-
-//         "gradient-conic":
-//           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-//       },
-//       backgroundColor: {
-//         primary: "#010409",
-//         "primary-two": "#22243b",
-//       },
-//       fontFamily:{
-//         "montserrat":["Nunito", "san-serif"],
-//         "sans": ['Inter', 'sans-serif'],
-//     },
-//   },
-//   plugins: [],
-// };
-// export default config;
-
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -53,7 +5,6 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    // "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}", // Add NextUI theme files
   ],
   theme: {
     extend: {
@@ -73,7 +24,7 @@ const config: Config = {
       },
       animation: {
         "loading-bar": "loadingBar 1.5s ease-in-out infinite",
-        "scrollX": 'scrollX 15s linear infinite',
+        scrollX: "scrollX 15s linear infinite",
         "fade-in": "fadeIn 0.5s ease-in-out",
       },
       screens: {
@@ -104,13 +55,13 @@ const config: Config = {
       fontFamily: {
         montserrat: ["Nunito", "sans-serif"],
         sans: ["Inter", "sans-serif"],
+        geist: ["var(--font-geist)", "sans-serif"],
+        geistMono: ["var(--font-geist-mono)", "monospace"],
+        jakarta: ["var(--font-plus-jakarta)"],
       },
     },
   },
-  plugins: [
-        require('tailwind-scrollbar-hide')
-
-  ],
+  plugins: [require("tailwind-scrollbar-hide")],
 };
 
 export default config;
