@@ -10,40 +10,13 @@ import Link from "next/link";
 
 const ToolsDesc = () => {
   const allTools = [
-    {
+     {
       id: 0,
-      title: "Topical Authority Builder",
-      desc: "Launch a full blog content strategy in minutes. Expand topics, dominate niches, and create expert-level content that sounds human — with just one click.",
-      btn1Text: "BUILD AUTHORITY AT SCALE",
-      btn2Text: "Build Your Authority Today",
-      img: "/TopicalAuthority.png",
-      link: "/topical-authority-builder",
-      list: [
-        {
-          listItem: "Generate 100+ blogs in minutes",
-        },
-        {
-          listItem: "Expand into profitable topic clusters",
-        },
-        {
-          listItem: "Authentic, human-sounding output",
-        },
-        {
-          listItem: "One-click WordPress integration",
-        },
-        {
-          listItem: "Build topical authority and trust fast",
-        },
-      ],
-      color: "#298CFD",
-    },
-    {
-      id: 1,
-      title: "Website Content Updater",
-      desc: "Easily refresh and upgrade your existing website articles. Boost SEO, improve engagement, and keep your site at the top of Google’s rankings.",
+      title: "WordPress Blog Automation",
+      desc: "Stay ahead in rankings by keeping your site fresh. Easily refresh and upgrade your existing website articles. Boost SEO, improve engagement, and keep your site at the top of Google’s rankings.",
       btn1Text: "KEEP CONTENT FRESH & RANKING",
       btn2Text: "Create Fresh Content Daily",
-      img: "/WebsiteContent.png",
+      img: "/WebsiteContent.svg",
       link: `${process.env.NEXT_PUBLIC_APP}user/wp-automation`,
       list: [
         {
@@ -65,131 +38,133 @@ const ToolsDesc = () => {
       color: "#CE17F8",
     },
     {
-      id: 2,
-      title: "Blog Image Generator",
-      desc: "Turn words into beautiful, scroll-worthy blogs — complete with custom AI graphics that make every post look professionally designed.",
-      btn1Text: "CREATE VISUAL-FIRST BLOG POSTS",
-      btn2Text: "Generate Impactful Blogs",
-      img: "/BlogGenerator.png",
-      link: `${process.env.NEXT_PUBLIC_APP}user/seo-article-writer`,
+      id: 1,
+      title: "Topical Authority Builder",
+      desc: "Launch a full blog content strategy in minutes. Perfect for brands wanting to dominate their niche with AI-driven topical authority.",
+      btn1Text: "BUILD AUTHORITY AT SCALE",
+      btn2Text: "Build Your Authority Today",
+      img: "/TopicalAuthority.webp",
+      link: `${process.env.NEXT_PUBLIC_APP}user/topical-map`,
       list: [
         {
-          listItem: "Auto-generate blog visuals",
+          listItem: "Generate 100+ blogs in minutes",
         },
         {
-          listItem: "Save on stock photo costs",
+          listItem: "Expand into profitable topic clusters",
         },
         {
-          listItem: "Speed up publishing workflow",
+          listItem: "Authentic, human-sounding output",
         },
         {
-          listItem: "Make posts visually engaging",
+          listItem: "One-click WordPress integration",
         },
         {
-          listItem: "Stand out with original graphics",
-        },
-      ],
-      color: "#7E3BFF",
-    },
-    {
-      id: 3,
-      title: "SEO Humanizer",
-      desc: "Instantly transform robotic AI output into natural, authentic human language — helping you pass AI detection tools and connect with real audiences.",
-      btn1Text: "MAKE AI SOUND HUMAN",
-      btn2Text: "Humanize Your Content Now",
-      img: "/Humanizer.png",
-      link: `${process.env.NEXT_PUBLIC_APP}user/new-ai-humanizer`,
-      list: [
-        {
-          listItem: "Reduce AI-detection risks",
-        },
-        {
-          listItem: "Enhance reader trust",
-        },
-        {
-          listItem: "Boost content relatability",
-        },
-        {
-          listItem: "Improve SEO authenticity scores",
-        },
-        {
-          listItem: "Sound natural, stay credible",
+          listItem: "Build topical authority and trust fast",
         },
       ],
       color: "#298CFD",
     },
-    {
-      id: 4,
-      title: "SEO Keyword Research",
-      desc: "Discover the keywords your audience is actually searching for — so you can rank higher, attract more traffic, and outsmart your competition faster.",
-      btn1Text: "FIND HIGH-IMPACT KEYWORDS",
-      btn2Text: "Find Winning Keyword",
-      img: "/KeywordResearch.png",
-      link: `${process.env.NEXT_PUBLIC_APP}user/seo-keyword-research`,
-      list: [
-        {
-          listItem: "Instant keyword discovery",
-        },
-        {
-          listItem: "Find hidden ranking opportunities",
-        },
-        {
-          listItem: "Target long-tail and trending terms",
-        },
-        {
-          listItem: "Speed up content planning",
-        },
-        {
-          listItem: "Win faster SEO results",
-        },
-      ],
-      color: "#DF1DF7",
-    },
-    {
-      id: 5,
-      title: "YouTube Content  Generator",
-      desc: "Instantly generate high-converting YouTube scripts and content ideas — no video editing skills needed, just pure content that gets views.",
-      btn1Text: "CREATE VIDEO CONTENT AT SCALE",
-      btn2Text: "Create Your Next Viral Video",
-      img: "/YoutubeContent.png",
-      link: `${process.env.NEXT_PUBLIC_APP}user/modules/youtube-content/content-generator`,
-      list: [
-        {
-          listItem: "Create video scripts fast",
-        },
-        {
-          listItem: "No editing experience required",
-        },
-        {
-          listItem: "Craft scroll-stopping video ideas",
-        },
-        {
-          listItem: "Boost YouTube SEO",
-        },
-        {
-          listItem: "Grow your video presence quickly",
-        },
-      ],
-      color: "#7E3BFF",
-    },
+   
+    // {
+    //   id: 3,
+    //   title: "Blog Image Generator",
+    //   desc: "Turn words into beautiful, scroll-worthy blogs complete with custom AI-generated visuals that make every post look professionally designed.",
+    //   btn1Text: "CREATE VISUAL-FIRST BLOG POSTS",
+    //   btn2Text: "Generate Impactful Blogs",
+    //   img: "/BlogGenerator.webp",
+    //   link: `${process.env.NEXT_PUBLIC_APP}user/ai-seo-articlewriter`,
+    //   list: [
+    //     {
+    //       listItem: "Auto-generate blog visuals",
+    //     },
+    //     {
+    //       listItem: "Save on stock photo costs",
+    //     },
+    //     {
+    //       listItem: "Speed up publishing workflow",
+    //     },
+    //     {
+    //       listItem: "Make posts visually engaging",
+    //     },
+    //     {
+    //       listItem: "Stand out with original graphics",
+    //     },
+    //   ],
+    //   color: "#7E3BFF",
+    // },
+    // {
+    //   id: 3,
+    //   title: "AI Humanizer",
+    //   desc: "Turn robotic AI output into natural human written content by using AI Humanizer Tool. This help you pass AI detection tools and connect with real audiences.",
+    //   btn1Text: "MAKE AI SOUND HUMAN",
+    //   btn2Text: "Humanize Your Content Now",
+    //   img: "/Humanizer.webp",
+    //   link: `${process.env.NEXT_PUBLIC_APP}user/new-ai-humanizer`,
+    //   list: [
+    //     {
+    //       listItem: "Reduce AI-detection risks",
+    //     },
+    //     {
+    //       listItem: "Enhance reader trust",
+    //     },
+    //     {
+    //       listItem: "Boost content relatability",
+    //     },
+    //     {
+    //       listItem: "Improve SEO authenticity scores",
+    //     },
+    //     {
+    //       listItem: "Sound natural, stay credible",
+    //     },
+    //   ],
+    //   color: "#298CFD",
+    // },
+    // {
+    //   id: 4,
+    //   title: "SEO Keyword Research",
+    //   desc: "Discover the keywords your audience is actually searching for with AI SEO keyword research, so you can rank higher, attract more traffic, and outsmart your competition faster.",
+    //   btn1Text: "FIND HIGH-IMPACT KEYWORDS",
+    //   btn2Text: "Find Winning Keyword",
+    //   img: "/KeywordResearch.webp",
+    //   link: `${process.env.NEXT_PUBLIC_APP}user/seo-keyword-research`,
+    //   list: [
+    //     {
+    //       listItem: "Instant keyword discovery",
+    //     },
+    //     {
+    //       listItem: "Find hidden ranking opportunities",
+    //     },
+    //     {
+    //       listItem: "Target long-tail and trending terms",
+    //     },
+    //     {
+    //       listItem: "Speed up content planning",
+    //     },
+    //     {
+    //       listItem: "Win faster SEO results",
+    //     },
+    //   ],
+    //   color: "#DF1DF7",
+    // },
+    
   ];
 
   return (
-    <div className="relative w-full py-4 px-4 font-geist xl:px-0">
-      <div className="absolute bottom-16 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
-      <div className="absolute bottom-64 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
-      <div className="absolute bottom-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
-      <div className="absolute bottom-1/4 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7E3BFF] blur-[120px]"></div>
-      <div className="absolute bottom-1/4 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div>
-      <div className="absolute bottom-[30%] right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
-      <div className="absolute top-1/4 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
-      <div className="absolute top-[30%] left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
-      <div className="absolute top-[70%] left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
-      <div className="absolute top-1/2 left-1/4 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
-      <div className="absolute top-[40%] left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]"></div>
-      <div className="absolute top-[18%] right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]"></div>
-      <div className="absolute top-32 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px]"></div>
-      <div className="absolute top-10 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]"></div>
+    <div className="relative w-full py-4 px-4 font-geist lg:px-12 xl:px-0 z-10">
+      {/* <div className="absolute bottom-16 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px] -z-10"></div>
+      <div className="absolute bottom-64 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px] -z-10"></div>
+      <div className="absolute bottom-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px] -z-10"></div>
+      <div className="absolute bottom-1/4 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7E3BFF] blur-[120px] -z-10"></div>
+      <div className="absolute bottom-1/4 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px] -z-10"></div>
+      <div className="absolute bottom-[30%] right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px] -z-10"></div>
+      <div className="absolute top-1/4 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px] -z-10"></div>
+      <div className="absolute top-[30%] left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px] -z-10"></div>
+      <div className="absolute top-[70%] left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px] -z-10"></div>
+      <div className="absolute top-1/2 left-1/4 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px] -z-10"></div>
+      <div className="absolute top-[40%] left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px] -z-10"></div>
+      <div className="absolute top-[18%] right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px] -z-10"></div>
+      <div className="absolute top-32 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#DF1DF7] blur-[120px] -z-10"></div>
+      <div className="absolute top-10 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px] -z-10"></div> */}
 
       <div className="w-full max-w-[1240px] mx-auto flex flex-col gap-10 items-center justify-center">
         <div className="w-full flex flex-col gap-6 md:gap-8 lg:gap-10 mx-auto">
@@ -201,7 +176,7 @@ const ToolsDesc = () => {
             return (
               <div key={item.id} className="group relative overflow-hidden">
                 {/* Gradient overlay container */}
-                <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                <div className="absolute inset-0 bg-black/40 z-0 rounded-2xl">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-[1]" />
                 </div>
 
@@ -213,19 +188,19 @@ const ToolsDesc = () => {
                   >
                     {/* Text Content */}
                     <div className="flex-1 space-y-4 md:space-y-7 ">
-                      <button className="px-8 py-1 gradient-border-wrapper rounded-full font-semibold text-white hover:text-white/90 flex items-center gap-3 shadow-lg hover:shadow-purple-500/20">
-                        <span className="text-[10px] md:text-xs text-center xl:text-sm">
+                      <div className="w-fit px-2 md:px-4 py-1 gradient-border-wrapper rounded-full font-semibold text-white hover:text-white/90 flex items-center gap-3">
+                        <span className="text-[10px] px-2 md:text-xs text-center xl:text-sm">
                           {item.btn1Text}
                         </span>
-                      </button>
+                      </div>
 
-                      <h3 className="text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight">
+                      <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold font-geist text-white leading-tight">
                         {firstPart}{" "}
-                        <span className="gradient-text bg-clip-text text-transparent">
+                        <span className="gradient-text bg-clip-text text-transparent font-geist">
                           {lastWord}
                         </span>
-                      </h3>
-                      <p>{item.desc}</p>
+                      </h2>
+                      <p className="!text-white">{item.desc}</p>
 
                       <div className="grid grid-cols-1 md:grid-cols-2">
                         <ul className="space-y-3">
@@ -240,7 +215,7 @@ const ToolsDesc = () => {
                               >
                                 <FaRegCheckCircle />
                               </span>
-                              <p className="!text-white font-semibold text-xs md:text-sm lg:text-base leading-relaxed">
+                              <p className="!text-white text-xs md:text-sm lg:text-base leading-relaxed">
                                 {listItem.listItem}
                               </p>
                             </li>
@@ -259,7 +234,7 @@ const ToolsDesc = () => {
                               >
                                 <FaRegCheckCircle />
                               </span>
-                              <p className="!text-white font-semibold text-xs md:text-sm lg:text-base leading-relaxed">
+                              <p className="!text-white text-xs md:text-sm lg:text-base leading-relaxed">
                                 {listItem.listItem}
                               </p>
                             </li>

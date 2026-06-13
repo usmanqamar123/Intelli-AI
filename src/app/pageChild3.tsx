@@ -57,9 +57,9 @@ export default function PageChild() {
       <main className="overflow-hidden w-full">
         <div className="relative w-full flex flex-col justify-center items-center bg-[#010002]  z-10">
            <Hero  />
-            <Tools />
+            {/* <Tools />
             <WhyIntelli />
-            <SEOAgent />
+            <SEOAgent /> */}
             {/* <ArticleSEOChecker /> */}
             <AgentCards />
             <ArticleWriter />

@@ -20,7 +20,7 @@ import Link from "next/link";
 interface FeatureProps {
   id: number;
   title: string | React.ReactNode;
-  description: string;
+  description: React.ReactNode;
   image: string;
   bulletColor: string;
   extraFeature?: React.ReactNode;
@@ -96,11 +96,11 @@ const FeatureItem = ({
             {/* CTA Button */}
             <Link href="https://superagents.intelliwriter.io/" target="_blank">
               <div
-                className="mb-6 flex justify-center lg:justify-start hover:opacity-80"
+                className="mb-6 w-fit flex justify-center lg:justify-start hover:opacity-80"
                 style={{ backgroundColor: bulletColor }}
               >
                 <button className="text-white text-center  font-semibold px-6 py-3 !rounded-xl shadow-lg">
-                  Activate your SEO Agents Now
+                  Activate SEO Agents
                 </button>
               </div>
             </Link>
@@ -124,25 +124,29 @@ const AgentCards = () => {
       id: 1,
       title: (
         <>
-          Optimize <span style={{ color: "#2D8FE9" }}>Smarter</span> With{" "}
-          <span style={{ color: "#2D8FE9" }}>AI-Powered</span> Metadata
+          Write <span style={{ color: "#2D8FE9" }}>Better</span> Page Titles
         </>
       ),
       logo: FileCode,
-      slideName: "metadata agent",
-      description:
-        "The Metadata Agent automatically generates and optimizes meta titles, descriptions, and Open Graph tags using advanced AI analysis for maximum click-through rates and search visibility.",
+      slideName: "page title helper",
+      description: (
+        <>
+          <span className="font-bold">Improve page discoverability</span>
+          <br />
+          Clear titles and descriptions that help people find your site.
+        </>
+      ),
       image: "/seo-agents/metadata.jpeg",
       bulletColor: "#2D8FE9",
       bulletPoints: [
-        "Generate optimized meta titles automatically",
-        "Create compelling meta descriptions",
-        "Auto-update Open Graph tags for social sharing",
-        "Improve CTR with AI-driven insights",
+        "Write simple page titles",
+        "Create clear descriptions",
+        "Set social preview info",
+        "Keep page tags updated",
       ],
       extraFeature: (
         <>
-          <span className="font-bold">Boost your search rankings and </span>{" "}
+          <span className="font-bold">Boost your search rankings and </span>
           <br />
           drive more organic traffic with intelligent metadata optimization
           working 24/7.
@@ -153,25 +157,29 @@ const AgentCards = () => {
       id: 2,
       title: (
         <>
-          Get <span style={{ color: "#AD46FF" }}>Indexed</span> Faster{" "}
-          <span style={{ color: "#AD46FF" }}>With</span> Smart Automation
+          Help <span style={{ color: "#AD46FF" }}>Search Engines</span> Find You
         </>
       ),
       logo: SearchCheck,
-      slideName: "indexation agent",
-      description:
-        "The Indexation Agent monitors search engine crawling status, automatically submits URLs, manages sitemaps, and resolves indexation issues before they impact your rankings.",
+      slideName: "page discovery helper",
+      description: (
+        <>
+          <span className="font-bold">Ensure pages are discoverable</span>
+          <br />
+          Make it easy for search engines to find your content.
+        </>
+      ),
       image: "/seo-agents/indexation.jpeg",
       bulletColor: "#AD46FF",
       bulletPoints: [
-        "Monitor crawl status across all search engines",
-        "Auto-submit new pages for faster indexation",
-        "Manage and update XML sitemaps automatically",
-        "Detect and fix indexation errors instantly",
+        "Check page visibility",
+        "Submit new pages fast",
+        "Keep your sitemap current",
+        "Fix pages that are missing",
       ],
       extraFeature: (
         <>
-          <span className="font-bold">Ensure every page gets indexed </span>{" "}
+          <span className="font-bold">Ensure every page gets indexed </span>
           <br />
           quickly and maintain optimal search engine visibility around the
           clock.
@@ -182,27 +190,30 @@ const AgentCards = () => {
       id: 3,
       title: (
         <>
-          Manage <span style={{ color: "#8B0A50" }}>Crawlers</span> With{" "}
-          <span style={{ color: "#8B0A50" }}>Intelligent</span> Control
+          Manage <span style={{ color: "#8B0A50" }}>Site Access</span>
+          <br />for Search Engines
         </>
       ),
       logo: FileText,
-      slideName: "robot.txt control agent",
-      description:
-        "The Robot.txt Control Agent intelligently manages robots.txt directives, optimizes crawl budgets, and controls search engine access to protect sensitive pages and prevent duplicate content.",
+      slideName: "site access manager",
+      description: (
+        <>
+          <span className="font-bold">Control site visibility</span>
+          <br />
+          Choose which pages are public and which remain private.
+        </>
+      ),
       image: "/seo-agents/robots.jpeg",
       bulletColor: "#8B0A50",
       bulletPoints: [
-        "Auto-generate optimal robots.txt rules",
-        "Control crawler access to specific pages",
-        "Optimize crawl budget allocation",
-        "Prevent indexing of duplicate content",
+        "Block private pages",
+        "Allow public pages to be found",
+        "Hide duplicate pages",
+        "Control search access easily",
       ],
       extraFeature: (
         <>
-          <span className="font-bold">
-            Maximize crawl efficiency and protect{" "}
-          </span>{" "}
+          <span className="font-bold">Maximize crawl efficiency and protect </span>
           <br />
           your site architecture with automated robots.txt management.
         </>
@@ -212,27 +223,32 @@ const AgentCards = () => {
       id: 4,
       title: (
         <>
-          Write <span style={{ color: "#F54900" }}>Better</span> Content{" "}
-          <span style={{ color: "#F54900" }}>With</span> AI Insights
+          Write <span style={{ color: "#F54900" }}>Clearer</span> Content
+          <br />Faster
         </>
       ),
       logo: Zap,
-      slideName: "content optimization agent",
-      description:
-        "The Content Optimization Agent analyzes content quality, keyword density, readability scores, and semantic relevance to provide actionable AI-driven suggestions for improved rankings.",
+      slideName: "content helper",
+      description: (
+        <>
+          <span className="font-bold">Strengthen your content</span>
+          <br />
+          Actionable edits that improve clarity and reader engagement.
+        </>
+      ),
       image: "/seo-agents/content-opt.jpeg",
       bulletColor: "#F54900",
       bulletPoints: [
-        "Analyze content quality and readability",
-        "Optimize keyword density automatically",
-        "Enhance semantic relevance with AI",
-        "Get real-time content improvement suggestions",
+        "Improve headlines and layout",
+        "Make text easier to read",
+        "Add missing useful details",
+        "Fix weak paragraphs fast",
       ],
       extraFeature: (
         <>
           <span className="font-bold">
-            Create high-ranking content that resonates{" "}
-          </span>{" "}
+            Create high-ranking content that resonates
+          </span>
           <br />
           with both search engines and your audience effortlessly.
         </>
@@ -242,25 +258,30 @@ const AgentCards = () => {
       id: 5,
       title: (
         <>
-          Track <span style={{ color: "#5D1451" }}>Results</span> With{" "}
-          <span style={{ color: "#5D1451" }}>Real-Time</span> Analytics
+          Track <span style={{ color: "#5D1451" }}>Page</span> Results
+          <br />Easily
         </>
       ),
       logo: ChartColumn,
-      slideName: "performance tracking agent",
-      description:
-        "The Performance Tracking Agent continuously monitors rankings, traffic patterns, conversions, and technical performance metrics while detecting anomalies and alerting you to critical changes.",
+      slideName: "traffic tracker",
+      description: (
+        <>
+          <span className="font-bold">Monitor page performance</span>
+          <br />
+          Track visits and receive alerts before traffic drops.
+        </>
+      ),
       image: "/seo-agents/performance-tracking.jpeg",
       bulletColor: "#5D1451",
       bulletPoints: [
-        "Track keyword rankings in real-time",
-        "Monitor traffic and conversion metrics",
-        "Detect performance anomalies instantly",
-        "Receive alerts for critical ranking changes",
+        "Track page visits",
+        "See your top pages",
+        "Find pages losing traffic",
+        "Get alerts when things change",
       ],
       extraFeature: (
         <>
-          <span className="font-bold">Stay ahead of the competition </span>{" "}
+          <span className="font-bold">Stay ahead of the competition </span>
           <br />
           with 24/7 performance monitoring and instant insights into your SEO
           success.
@@ -280,7 +301,7 @@ const AgentCards = () => {
       <div className="absolute bottom-0 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]" />
       <div className="absolute top-1/2 left-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[120px]" />
       <div className="absolute bottom-1/4 left-1/2 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#7500FF] blur-[110px]" />
-      <div className="absolute top-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]" />
+      {/* <div className="absolute top-0 right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#208EFB] blur-[120px]" /> */}
       <div className="absolute top-[40%] right-0 h-20 lg:h-28 w-10/12 lg:w-1/4 bg-[#0009FF] blur-[120px]" />
 
       {/* Header */}
@@ -292,10 +313,8 @@ const AgentCards = () => {
           </i>
         </h2>
         <p className="mt-3 text-base md:text-lg !text-white leading-relaxed max-w-4xl mx-auto animate-fadeInUp [animation-delay:0.4s]">
-          Ready to create amazing content without the hassle? Welcome to
-          IntelliWriter—your all-in-one AI tool for crafting images, articles,
-          WordPress integration, SEO keyword research, AI models, voiceovers,
-          and so much more!
+         Automate metadata, indexing, content quality, and performance improvements with intelligent super SEO agents designed for modern WordPress websites.
+
         </p>
       </div>
 

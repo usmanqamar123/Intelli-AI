@@ -1,273 +1,360 @@
 "use client";
 
-import React, { memo, useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
-import { FaStar } from "react-icons/fa";
-import { HiChatBubbleLeftRight, HiUsers } from "react-icons/hi2";
-import { BsQuote } from "react-icons/bs";
 import {
-  LuTrendingUp,
-  LuClock,
-  LuTrophy,
-  LuUsers,
-  LuFileText,
-  LuPenSquare,
-  LuBarChart3,
-} from "react-icons/lu";
-import type { IconType } from "react-icons";
-
-/* ─── Data (edit copy / avatars here) ─── */
+  ChartNoAxesCombined,
+  Clock3,
+  FileText,
+  MessageCircleMore,
+  PencilLine,
+  Quote,
+  Star,
+  Trophy,
+  TrendingUp,
+  Users,
+} from "lucide-react";
+import {
+  SectionBadge,
+  TrustBarCell,
+  TrustBarGrid,
+  panelBorder,
+  sectionSubtextClass,
+} from "./SectionBadge";
 
 type Accent = "purple" | "blue" | "pink" | "green" | "gold";
 
-const ACCENT: Record<Accent, { icon: string; bg: string; text: string }> = {
+const ACCENT = {
   purple: {
-    icon: "text-[#A855F7]",
-    bg: "bg-[#A855F7]/15",
-    text: "text-[#A855F7]",
+    ring: "ring-2 ring-[#a855f7]/55 shadow-[0_0_20px_rgba(168,85,247,0.25)]",
+    star: "text-[#a855f7]",
+    quote: "text-[#9333ea]",
+    metricText: "text-[#c084fc]",
+    metricIcon: "text-[#a855f7]",
+    metricBorder: "border-[#9333ea]/30",
+    metricBg: "bg-[#12081f]/90",
+    iconRing: "border-[#a855f7]/45",
+    iconBg:
+      "bg-[radial-gradient(circle,_rgba(168,85,247,0.18)_0%,_rgba(59,18,109,0.12)_55%,_transparent_100%)]",
   },
   blue: {
-    icon: "text-[#3B82F6]",
-    bg: "bg-[#3B82F6]/15",
-    text: "text-[#3B82F6]",
+    ring: "ring-2 ring-[#3b82f6]/55 shadow-[0_0_20px_rgba(59,130,246,0.22)]",
+    star: "text-[#3b82f6]",
+    quote: "text-[#2563eb]",
+    metricText: "text-[#60a5fa]",
+    metricIcon: "text-[#3b82f6]",
+    metricBorder: "border-[#3b82f6]/30",
+    metricBg: "bg-[#08101f]/90",
+    iconRing: "border-[#3b82f6]/45",
+    iconBg:
+      "bg-[radial-gradient(circle,_rgba(59,130,246,0.18)_0%,_rgba(16,45,122,0.12)_55%,_transparent_100%)]",
   },
   pink: {
-    icon: "text-[#EC4899]",
-    bg: "bg-[#EC4899]/15",
-    text: "text-[#EC4899]",
+    ring: "ring-2 ring-[#ec4899]/55 shadow-[0_0_20px_rgba(236,72,153,0.22)]",
+    star: "text-[#ec4899]",
+    quote: "text-[#db2777]",
+    metricText: "text-[#f472b6]",
+    metricIcon: "text-[#ec4899]",
+    metricBorder: "border-[#ec4899]/30",
+    metricBg: "bg-[#1a0814]/90",
+    iconRing: "border-[#ec4899]/45",
+    iconBg:
+      "bg-[radial-gradient(circle,_rgba(236,72,153,0.18)_0%,_rgba(106,19,71,0.12)_55%,_transparent_100%)]",
   },
   green: {
-    icon: "text-[#22C55E]",
-    bg: "bg-[#22C55E]/15",
-    text: "text-[#22C55E]",
+    ring: "ring-2 ring-[#22c55e]/55 shadow-[0_0_20px_rgba(34,197,94,0.2)]",
+    star: "text-[#22c55e]",
+    quote: "text-[#16a34a]",
+    metricText: "text-[#4ade80]",
+    metricIcon: "text-[#22c55e]",
+    metricBorder: "border-[#22c55e]/30",
+    metricBg: "bg-[#061410]/90",
+    iconRing: "border-[#22c55e]/45",
+    iconBg:
+      "bg-[radial-gradient(circle,_rgba(34,197,94,0.18)_0%,_rgba(11,81,43,0.12)_55%,_transparent_100%)]",
   },
   gold: {
-    icon: "text-[#FBBF24]",
-    bg: "bg-[#FBBF24]/15",
-    text: "text-[#FBBF24]",
+    ring: "ring-2 ring-[#f59e0b]/55 shadow-[0_0_20px_rgba(245,158,11,0.2)]",
+    star: "text-[#f59e0b]",
+    quote: "text-[#d97706]",
+    metricText: "text-[#fbbf24]",
+    metricIcon: "text-[#f59e0b]",
+    metricBorder: "border-[#f59e0b]/30",
+    metricBg: "bg-[#141008]/90",
+    iconRing: "border-[#f59e0b]/45",
+    iconBg:
+      "bg-[radial-gradient(circle,_rgba(245,158,11,0.18)_0%,_rgba(99,67,10,0.12)_55%,_transparent_100%)]",
   },
-};
+} as const;
 
-const CARDS = [
+const TESTIMONIALS = [
   {
     id: 1,
-    name: "Sarah Mitchell",
+    name: "James Carter",
     role: "SEO Specialist",
     avatar: "/Testimonial1.webp",
+    accent: "purple" as Accent,
     quote:
-      "IntelliWriter helped us scale content production without sacrificing quality. Our organic traffic jumped within weeks.",
-    metricIcon: LuTrendingUp,
-    metricLabel: "+171% Organic Traffic",
-    metricAccent: "purple" as Accent,
-    ring: "ring-[#A855F7]/60 shadow-[0_0_20px_rgba(168,85,247,0.45)]",
+      "IntelliWriter has completely changed the way I create and optimize content. My rankings and traffic have never been better!",
+    metricValue: "+171%",
+    metricLabel: "Organic Traffic",
+    metricIcon: TrendingUp,
   },
   {
     id: 2,
-    name: "James Carter",
+    name: "Sophia Martinez",
     role: "Content Creator",
     avatar: "/Testimonial2.webp",
+    accent: "blue" as Accent,
     quote:
-      "I used to spend entire weekends writing blogs. Now I draft, optimize, and publish in a single afternoon.",
-    metricIcon: LuClock,
-    metricLabel: "12+ Hours Saved Every Week",
-    metricAccent: "blue" as Accent,
-    ring: "ring-[#3B82F6]/60 shadow-[0_0_20px_rgba(59,130,246,0.45)]",
+      "The AI writing is incredible! It's fast, accurate, and the content sounds so natural. It saves me hours every single day.",
+    metricValue: "12+ Hours",
+    metricLabel: "Saved Every Week",
+    metricIcon: Clock3,
   },
   {
     id: 3,
-    name: "Emily Rodriguez",
-    role: "Marketing Manager",
-    avatar: "/Testimonial3.webp ",
+    name: "Daniel Thomas",
+    role: "Agency Owner",
+    avatar: "/Testimonial3.webp",
+    accent: "pink" as Accent,
     quote:
-      "The topical authority workflows are a game-changer. We rank for competitive keywords we never touched before.",
-    metricIcon: LuTrophy,
-    metricLabel: "Top 3 Rankings For 50+ Keywords",
-    metricAccent: "pink" as Accent,
-    ring: "ring-[#EC4899]/60 shadow-[0_0_20px_rgba(236,72,153,0.45)]",
+      "From keyword research to auto publishing, everything is automated. My team is more productive and our clients love the results.",
+    metricValue: "Top 3 Rankings",
+    metricLabel: "For 50+ Keywords",
+    metricIcon: Trophy,
   },
   {
     id: 4,
-    name: "David Kim",
-    role: "Blogger & Founder",
+    name: "Olivia Bennett",
+    role: "Blogger",
     avatar: "/Testimonial4.webp",
+    accent: "blue" as Accent,
     quote:
-      "Publishing consistently was my bottleneck. IntelliWriter keeps my site fresh and my traffic climbing.",
-    metricIcon: LuUsers,
-    metricLabel: "100K+ Monthly Visitors",
-    metricAccent: "blue" as Accent,
-    ring: "ring-[#3B82F6]/60 shadow-[0_0_20px_rgba(59,130,246,0.45)]",
+      "IntelliWriter helped me grow my blog from 0 to 100K+ monthly visitors. The automation and SEO tools are a game changer!",
+    metricValue: "100K+",
+    metricLabel: "Monthly Visitors",
+    metricIcon: Users,
   },
 ] as const;
 
-const STATS: { icon: IconType; label: string; accent: Accent }[] = [
-  { icon: HiUsers, label: "25,000+ Active Users", accent: "purple" },
-  { icon: LuFileText, label: "3M+ Words Generated", accent: "blue" },
-  { icon: LuPenSquare, label: "1M+ Pieces of Content", accent: "pink" },
-  { icon: LuBarChart3, label: "200K+ Reports Generated", accent: "green" },
-  { icon: FaStar, label: "4.9/5 User Rating", accent: "gold" },
-];
+const STATS = [
+  {
+    label: "25,000+",
+    sublabel: "Active Users",
+    accent: "purple" as Accent,
+    Icon: Users,
+  },
+  {
+    label: "3M+",
+    sublabel: "Words Generated",
+    accent: "blue" as Accent,
+    Icon: FileText,
+  },
+  {
+    label: "1M+",
+    sublabel: "Pieces of Content",
+    accent: "pink" as Accent,
+    Icon: PencilLine,
+  },
+  {
+    label: "200K+",
+    sublabel: "SEO Reports Generated",
+    accent: "green" as Accent,
+    Icon: ChartNoAxesCombined,
+  },
+  {
+    label: "4.9/5",
+    sublabel: "User Rating",
+    accent: "gold" as Accent,
+    Icon: Star,
+  },
+] as const;
 
-const STARS = Array.from({ length: 5 }, (_, i) => i);
+const STAR_SLOTS = Array.from({ length: 5 }, (_, index) => index);
 
-/* ─── Sub-components ─── */
+function TestimonialCard({
+  testimonial,
+}: {
+  testimonial: (typeof TESTIMONIALS)[number];
+}) {
+  const accent = ACCENT[testimonial.accent];
+  const MetricIcon = testimonial.metricIcon;
 
-const Stars = memo(function Stars({ accent }: { accent: Accent }) {
-  const starColor = ACCENT[accent].icon;
   return (
-    <div className="flex gap-0.5" aria-label="5 out of 5 stars">
-      {STARS.map((i) => (
-        <FaStar key={i} className={`text-xs ${starColor}`} />
-      ))}
-    </div>
-  );
-});
-Stars.displayName = "Stars";
-
-type CardData = (typeof CARDS)[number];
-
-const Card = memo(function Card({ data }: { data: CardData }) {
-  const MetricIcon = data.metricIcon;
-  const s = ACCENT[data.metricAccent];
-
-  return (
-    <article className="gradient-border-wrapper rounded-2xl bg-black/50 h-full flex flex-col min-w-[280px] sm:min-w-[300px] xl:min-w-0">
-      <div className="flex flex-col flex-1 p-5 md:p-6">
-        <header className="flex items-center gap-3">
-          <div
-            className={`relative size-12 rounded-full ring-2 ${data.ring} shrink-0 overflow-hidden`}
-          >
-            <Image
-              src={data.avatar}
-              alt={data.name}
-              fill
-              sizes="48px"
-              className="object-cover"
-            />
-          </div>
-          <div className="min-w-0">
-            <p className="text-white font-semibold text-sm md:text-base truncate">
-              {data.name}
-            </p>
-            <p className="text-[#7DD3FC] text-xs md:text-sm">{data.role}</p>
-            <div className="mt-1">
-              <Stars accent={data.metricAccent} />
-            </div>
-          </div>
-        </header>
-
-        <blockquote className="mt-5 flex gap-2">
-          <BsQuote
-            className="text-xl shrink-0 rotate-180"
-            style={{ color: data.metricAccent }}
-            aria-hidden
+    <article
+      className={`relative flex h-full min-h-[400px] flex-col rounded-[20px] ${panelBorder} bg-[#070a14]/96 p-5 md:min-h-[420px] md:p-6`}
+    >
+      <header className="flex items-center gap-3.5 md:gap-4">
+        <div
+          className={`relative h-[72px] w-[72px] shrink-0 overflow-hidden rounded-full md:h-[76px] md:w-[76px] ${accent.ring}`}
+        >
+          <Image
+            src={testimonial.avatar}
+            alt={testimonial.name}
+            fill
+            sizes="76px"
+            className="object-cover"
           />
-          <p className="text-white/80 text-sm leading-relaxed">{data.quote}</p>
-        </blockquote>
+        </div>
 
-        <footer className="mt-auto pt-5">
-          <div className="rounded-xl border border-white/10 bg-black/40 px-4 py-3 flex items-center gap-3">
-            <span
-              className={`size-9 rounded-full flex items-center justify-center shrink-0 ${s.bg}`}
-            >
-              <MetricIcon className={`text-lg ${s.icon}`} />
-            </span>
-            <span className={`text-sm font-medium ${s.text}`}>
-              {data.metricLabel}
-            </span>
+        <div className="min-w-0">
+          <h3 className="truncate text-[1.15rem] font-semibold text-white md:text-[1.2rem]">
+            {testimonial.name}
+          </h3>
+          <p className="mt-0.5 text-[0.9rem] text-[#94a3b8] md:text-[0.95rem]">
+            {testimonial.role}
+          </p>
+          <div className="mt-3 flex items-center gap-0.5">
+            {STAR_SLOTS.map((slot) => (
+              <Star
+                key={slot}
+                size={16}
+                fill="currentColor"
+                className={accent.star}
+                strokeWidth={1.8}
+              />
+            ))}
           </div>
-        </footer>
+        </div>
+      </header>
+
+      <div className="mt-7 flex flex-1 gap-3">
+        <Quote
+          size={32}
+          fill="currentColor"
+          strokeWidth={0}
+          className={`mt-0.5 shrink-0 rotate-180 ${accent.quote}`}
+        />
+        <p className="text-[0.98rem] leading-[1.7] text-white/88 md:text-[1rem] md:leading-[1.75]">
+          {testimonial.quote}
+        </p>
       </div>
+
+      <footer className="mt-6">
+        <div
+          className={`flex min-h-[92px] items-center gap-3 rounded-[16px] border px-3.5 py-3 md:gap-4 md:px-4 ${accent.metricBorder} ${accent.metricBg}`}
+        >
+          <span
+            className={`flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-full border-2 md:h-[54px] md:w-[54px] ${accent.iconRing} ${accent.iconBg}`}
+          >
+            <MetricIcon
+              size={24}
+              strokeWidth={2.1}
+              className={accent.metricIcon}
+            />
+          </span>
+
+          <div className="min-w-0 flex-1">
+            <p
+              className={`text-[1.1rem] font-semibold leading-tight md:text-[1.25rem] ${accent.metricText}`}
+            >
+              {testimonial.metricValue}
+            </p>
+            <p className="mt-1 text-[0.85rem] leading-snug text-white/82 md:text-[0.92rem]">
+              {testimonial.metricLabel}
+            </p>
+          </div>
+        </div>
+      </footer>
     </article>
   );
-});
-
-/* ─── Main section ─── */
+}
 
 export default function Testimonial() {
   const [active, setActive] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
 
-  const goTo = useCallback((i: number) => {
-    setActive(i);
-    (trackRef.current?.children[i] as HTMLElement | undefined)?.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "nearest",
-    });
+  const goTo = useCallback((index: number) => {
+    setActive(index);
+    (trackRef.current?.children[index] as HTMLElement | undefined)?.scrollIntoView(
+      {
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      },
+    );
   }, []);
 
   const onScroll = useCallback(() => {
     const track = trackRef.current;
     if (!track) return;
+
     const center = track.scrollLeft + track.clientWidth / 2;
     let best = 0;
-    let min = Infinity;
-    Array.from(track.children).forEach((el, i) => {
-      const node = el as HTMLElement;
-      const d = Math.abs(node.offsetLeft + node.offsetWidth / 2 - center);
-      if (d < min) {
-        min = d;
-        best = i;
+    let minDistance = Infinity;
+
+    Array.from(track.children).forEach((child, index) => {
+      const node = child as HTMLElement;
+      const distance = Math.abs(
+        node.offsetLeft + node.offsetWidth / 2 - center,
+      );
+      if (distance < minDistance) {
+        minDistance = distance;
+        best = index;
       }
     });
+
     setActive(best);
   }, []);
 
   return (
-    <section className="relative w-full max-w-[1240px] mx-auto font-geist px-4 md:px-6 xl:px-0 py-14 md:py-20 z-10 overflow-hidden">
+    <section className="relative z-10 mx-auto w-full max-w-[1240px] overflow-hidden px-4 py-14 font-geist md:px-6 md:py-16 xl:px-0 xl:py-20">
       <Image
         src="/purple-spot.webp"
         alt=""
-        width={200}
-        height={200}
-        className="absolute top-0 lg:top-24 -left-16 opacity-70 pointer-events-none -z-[1]"
+        width={220}
+        height={220}
+        className="pointer-events-none absolute left-0 top-10 -z-[1] opacity-70"
         aria-hidden
       />
-
       <Image
         src="/blue-spot.webp"
         alt=""
-        width={200}
-        height={200}
-        className="absolute top-0 lg:top-24 -right-16 opacity-70 pointer-events-none -z-[1]"
+        width={220}
+        height={220}
+        className="pointer-events-none absolute right-0 top-10 -z-[1] opacity-70"
         aria-hidden
       />
-
       <Image
         src="/Quote-Purple.svg"
         alt=""
-        width={120}
+        width={118}
         height={160}
-        className="absolute top-0 lg:top-24 left-0 md:left-16 opacity-70 pointer-events-none -z-[1]"
+        className="pointer-events-none absolute left-4 top-28 -z-[1] hidden opacity-85 md:block xl:left-10"
         aria-hidden
       />
-
       <Image
         src="/Quote-Blue.svg"
         alt=""
-        width={120}
+        width={118}
         height={160}
-        className="absolute top-0 lg:top-24 right-0 md:right-16 opacity-70 pointer-events-none -z-[1]"
+        className="pointer-events-none absolute right-4 top-28 -z-[1] hidden opacity-85 md:block xl:right-10"
         aria-hidden
       />
 
-      <header className="relative flex flex-col items-center text-center gap-4 mb-6 md:mb-8 max-w-4xl mx-auto">
-        {/* <Image src="/home3/testimonials/quote-decoration-left.svg" alt="" width={100} height={84} className="hidden lg:block absolute -left-4 xl:-left-16 top-8 opacity-80 pointer-events-none" aria-hidden />
-        <Image src="/home3/testimonials/quote-decoration-right.svg" alt="" width={100} height={84} className="hidden lg:block absolute -right-4 xl:-right-16 top-8 opacity-80 pointer-events-none" aria-hidden /> */}
+      <header className="relative z-10 mx-auto mb-9 flex max-w-5xl flex-col items-center gap-4 text-center md:mb-11">
+        <SectionBadge
+          icon={
+            <MessageCircleMore
+              size={15}
+              className="shrink-0 text-[#60a5fa]"
+              fill="#60a5fa"
+            />
+          }
+        >
+          <span className="text-white/95">Trusted by Thousands</span>
+        </SectionBadge>
 
-        <p className="gradient-border-wrapper rounded-full px-5 py-2 text-[10px] md:text-xs font-semibold tracking-[0.2em] text-white/90 uppercase flex items-center gap-2">
-          <HiChatBubbleLeftRight className="text-[#A855F7] text-base shrink-0" />
-          <span className="gradient-text-new">Trusted by Thousands</span>
-        </p>
-
-        <h2 className="text-3xl md:text-4xl lg:text-5xl 2xl:text-[3.25rem] font-bold font-jakarta text-white !leading-tight px-2">
-          Loved by Marketers, <br />
-          <span className="gradient-text text-transparent bg-clip-text">
+        <h2 className="px-2 font-jakarta text-[2.35rem] font-bold leading-[1.02] text-white sm:text-[2.9rem] md:text-[3.5rem] lg:text-[4.3rem]">
+          Loved by Marketers,
+          <br />
+          <span className="gradient-text bg-clip-text text-transparent">
             Writers &amp; Business Owners
           </span>
         </h2>
 
-        <p className="text-sm md:text-base text-white/60 max-w-xl">
+        <p className={`${sectionSubtextClass} max-w-[44rem]`}>
           See how IntelliWriter is helping people create better content, rank
           higher, and save hours of work every day.
         </p>
@@ -276,56 +363,37 @@ export default function Testimonial() {
       <div
         ref={trackRef}
         onScroll={onScroll}
-        className="flex xl:grid xl:grid-cols-4 gap-4 md:gap-5 overflow-x-auto xl:overflow-visible snap-x snap-mandatory scroll-smooth pb-2 xl:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="relative z-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:gap-5 lg:grid lg:grid-cols-2 lg:overflow-visible lg:pb-0 xl:grid-cols-4"
       >
-        {CARDS.map((card) => (
+        {TESTIMONIALS.map((testimonial) => (
           <div
-            key={card.id}
-            className="snap-center shrink-0 w-[85vw] sm:w-[320px] xl:w-auto xl:shrink"
+            key={testimonial.id}
+            className="w-[min(88vw,340px)] shrink-0 snap-center sm:w-[min(88vw,352px)] lg:w-auto lg:max-w-none lg:shrink"
           >
-            <Card data={card} />
+            <TestimonialCard testimonial={testimonial} />
           </div>
         ))}
       </div>
 
       <nav
-        className="flex xl:hidden justify-center gap-2 mt-6"
+        className="relative z-10 mt-7 flex justify-center gap-3 lg:hidden"
         aria-label="Testimonial pagination"
       >
-        {CARDS.map((_, i) => (
+        {TESTIMONIALS.map((_, index) => (
           <button
-            key={i}
+            key={index}
             type="button"
-            aria-label={`Testimonial ${i + 1}`}
-            aria-current={active === i}
-            onClick={() => goTo(i)}
-            className={`h-2 rounded-full transition-all duration-300 ${active === i ? "w-6 bg-[#A855F7]" : "w-2 bg-white/25 hover:bg-white/40"}`}
+            aria-label={`Testimonial ${index + 1}`}
+            aria-current={active === index}
+            onClick={() => goTo(index)}
+            className={`rounded-full transition-all duration-300 ${
+              active === index
+                ? "h-3 w-3 bg-[#a855f7] shadow-[0_0_18px_rgba(168,85,247,0.55)]"
+                : "h-3 w-3 bg-white/20 hover:bg-white/35"
+            }`}
           />
         ))}
       </nav>
-
-      <div className="gradient-border-wrapper border-[0.5px] rounded-2xl mt-6 md:mt-8 bg-black/50 overflow-hidden">
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
-          {STATS.map(({ icon: Icon, label, accent }) => {
-            const s = ACCENT[accent];
-            return (
-              <li
-                key={label}
-                className="flex items-center justify-center sm:justify-start gap-3 px-5 py-5 md:py-6"
-              >
-                <span
-                  className={`size-10 rounded-xl flex items-center justify-center shrink-0 ${s.bg}`}
-                >
-                  <Icon className={`text-lg ${s.icon}`} />
-                </span>
-                <span className="text-sm md:text-[15px] font-medium text-white whitespace-nowrap">
-                  {label}
-                </span>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
     </section>
   );
 }

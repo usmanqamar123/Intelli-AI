@@ -3,27 +3,45 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { HiArrowRight, HiOutlineQuestionMarkCircle } from "react-icons/hi2";
-import { PiSparkle } from "react-icons/pi";
-import { FiGift, FiShield, FiLock, FiRefreshCw } from "react-icons/fi";
-import { BiHeadphone } from "react-icons/bi";
-import { IoChevronDown } from "react-icons/io5";
-import { BsLightningChargeFill } from "react-icons/bs";
-import { FaShieldAlt, FaCheck } from "react-icons/fa";
-import type { IconType } from "react-icons";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  ArrowRight,
+  BadgeHelp,
+  Check,
+  ChevronDown,
+  ChevronUp,
+  Headset,
+  Lock,
+  RefreshCw,
+  Shield,
+  ShieldCheck,
+  Sparkles,
+  Ticket,
+  Zap,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import {
+  SectionBadge,
+  panelBg,
+  panelBorder,
+  sectionSubtextClass,
+} from "./SectionBadge";
 
 interface AccordProps {
   id: number;
   question: string;
   answer: string;
-  icon: IconType;
+  icon: LucideIcon;
   iconColor: string;
   iconBg: string;
+  iconBorder: string;
 }
 
 interface SeoFAQsProps {
-  faqs?: Omit<AccordProps, "icon" | "iconColor" | "iconBg">[];
+  faqs?: Omit<
+    AccordProps,
+    "icon" | "iconColor" | "iconBg" | "iconBorder"
+  >[];
 }
 
 const defaultFaqs: AccordProps[] = [
@@ -31,73 +49,85 @@ const defaultFaqs: AccordProps[] = [
     id: 1,
     question: "What is IntelliWriter?",
     answer:
-      "IntelliWriter is an all-in-one AI writing assistant that helps you create high-quality articles, build topical authority, generate SEO-optimized content, and even produce visuals and voiceovers.",
-    icon: PiSparkle,
-    iconColor: "text-[#A855F7]",
-    iconBg: "bg-[#A855F7]/15 shadow-[0_0_24px_rgba(168,85,247,0.35)]",
+      "IntelliWriter is an all-in-one AI SEO platform that helps you create, optimize, automate, and rank content with powerful AI tools and advanced SEO features.",
+    icon: Sparkles,
+    iconColor: "text-[#d98cff]",
+    iconBg:
+      "bg-[radial-gradient(circle,_rgba(198,92,255,0.22)_0%,_rgba(74,17,122,0.14)_54%,_transparent_100%)]",
+    iconBorder: "border-2 border-[#a855f7]/50",
   },
   {
     id: 2,
     question: "Is there a free trial available?",
     answer:
       "Yes. You can start with a 7-day free trial and explore IntelliWriter's core features before choosing a paid plan.",
-    icon: FiGift,
-    iconColor: "text-[#3B82F6]",
-    iconBg: "bg-[#3B82F6]/15 shadow-[0_0_24px_rgba(59,130,246,0.35)]",
+    icon: Ticket,
+    iconColor: "text-[#4f93ff]",
+    iconBg:
+      "bg-[radial-gradient(circle,_rgba(79,147,255,0.2)_0%,_rgba(18,53,137,0.12)_54%,_transparent_100%)]",
+    iconBorder: "border-2 border-[#3b82f6]/50",
   },
   {
     id: 3,
     question: "Can I cancel my subscription anytime?",
     answer:
       "Absolutely. You can cancel your subscription at any time from your account settings with no long-term commitment.",
-    icon: FiShield,
-    iconColor: "text-[#22C55E]",
-    iconBg: "bg-[#22C55E]/15 shadow-[0_0_24px_rgba(34,197,94,0.35)]",
+    icon: ShieldCheck,
+    iconColor: "text-[#45de81]",
+    iconBg:
+      "bg-[radial-gradient(circle,_rgba(69,222,129,0.18)_0%,_rgba(15,79,46,0.12)_54%,_transparent_100%)]",
+    iconBorder: "border-2 border-[#22c55e]/50",
   },
   {
     id: 4,
     question: "Is my data safe and secure?",
     answer:
       "Yes. We use industry-standard encryption and security practices to keep your data private and protected at all times.",
-    icon: FiLock,
-    iconColor: "text-[#EC4899]",
-    iconBg: "bg-[#EC4899]/15 shadow-[0_0_24px_rgba(236,72,153,0.35)]",
+    icon: Lock,
+    iconColor: "text-[#eb54d8]",
+    iconBg:
+      "bg-[radial-gradient(circle,_rgba(235,84,216,0.18)_0%,_rgba(98,19,93,0.12)_54%,_transparent_100%)]",
+    iconBorder: "border-2 border-[#ec4899]/50",
   },
   {
     id: 5,
     question: "Do you offer refunds?",
     answer:
       "Refund eligibility depends on your plan and usage. Contact our support team and we'll review your request promptly.",
-    icon: FiRefreshCw,
-    iconColor: "text-[#F97316]",
-    iconBg: "bg-[#F97316]/15 shadow-[0_0_24px_rgba(249,115,22,0.35)]",
+    icon: RefreshCw,
+    iconColor: "text-[#ffb72d]",
+    iconBg:
+      "bg-[radial-gradient(circle,_rgba(255,183,45,0.18)_0%,_rgba(110,68,12,0.12)_54%,_transparent_100%)]",
+    iconBorder: "border-2 border-[#f59e0b]/50",
   },
 ];
 
 const ctaFeatures = [
   {
-    icon: BsLightningChargeFill,
-    label: "No Credit Card Required",
-    color: "text-[#A855F7]",
+    icon: Zap,
+    lines: ["No Credit", "Card Required"] as const,
+    color: "text-[#b57aff]",
+    border: "border-2 border-[#a855f7]/55",
+    bg: "bg-[radial-gradient(circle,_rgba(168,85,247,0.2)_0%,_transparent_72%)]",
   },
   {
-    icon: FaShieldAlt,
-    label: "7-Day Free Trial",
-    color: "text-[#3B82F6]",
+    icon: Shield,
+    lines: ["7-Day Free", "Trial"] as const,
+    color: "text-[#5ecfff]",
+    border: "border-2 border-[#3b82f6]/55",
+    bg: "bg-[radial-gradient(circle,_rgba(59,130,246,0.2)_0%,_transparent_72%)]",
   },
   {
-    icon: FaCheck,
-    label: "Cancel Anytime, No Hassle",
-    color: "text-[#22C55E]",
+    icon: Check,
+    lines: ["Cancel Anytime,", "No Hassle"] as const,
+    color: "text-[#5ee89a]",
+    border: "border-2 border-[#22c55e]/55",
+    bg: "bg-[radial-gradient(circle,_rgba(34,197,94,0.2)_0%,_transparent_72%)]",
   },
-];
+] as const;
 
 const Faqs: React.FC<SeoFAQsProps> = ({ faqs: propFaqs }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-  const toggleAnswer = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
 
   const faqsToDisplay: AccordProps[] =
     propFaqs && propFaqs.length > 0
@@ -110,34 +140,32 @@ const Faqs: React.FC<SeoFAQsProps> = ({ faqs: propFaqs }) => {
   const loginHref = `${process.env.NEXT_PUBLIC_APP ?? ""}auth/login`;
 
   return (
-    <section className="relative w-full max-w-[1240px] mx-auto font-geist px-4 md:px-6 xl:px-0 py-14 md:py-16 z-[1]">
-      {/* Header — centered */}
-      <div className="flex flex-col items-center text-center gap-4 mb-10">
-        <p className="gradient-border-wrapper rounded-full px-5 py-2 text-[10px] md:text-xs font-semibold tracking-[0.2em] text-white/90 uppercase flex items-center gap-2">
-          <HiOutlineQuestionMarkCircle className="text-[#A855F7] text-base shrink-0" />
-          <span className="gradient-text-new text-base md:text-lg">
-            Frequently Asked Questions
-          </span>
-        </p>
+    <section className="relative z-[1] mx-auto w-full max-w-[1240px] px-4 py-14 font-geist md:px-6 md:py-16 xl:px-0 xl:py-20">
+      <div className="mb-10 flex flex-col items-center gap-4 text-center md:mb-12">
+        <SectionBadge
+          icon={<BadgeHelp size={15} className="shrink-0 text-[#c084fc]" />}
+        >
+          <span className="text-white/95">Frequently Asked Questions</span>
+        </SectionBadge>
 
-        <h2 className="text-3xl md:text-4xl lg:text-5xl 2xl:text-[3.25rem] font-bold font-jakarta text-white leading-tight">
+        <h2 className="px-2 font-jakarta text-[2.25rem] font-bold leading-[1.03] text-white sm:text-[2.85rem] md:text-[3.5rem] lg:text-[4.2rem]">
           Got Questions?{" "}
-          <span className="gradient-text text-transparent bg-clip-text">
+          <span className="gradient-text bg-clip-text text-transparent">
             We&apos;ve Got Answers
           </span>
         </h2>
 
-        <p className="text-sm md:text-lg text-white/60 max-w-xl">
+        <p className={`${sectionSubtextClass} px-2`}>
           Everything you need to know about IntelliWriter.
         </p>
       </div>
 
-      {/* Two columns */}
-      <div className="w-full flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch">
-        {/* Left — support card */}
-        <div className="w-full lg:w-[38%] shrink-0">
-          <div className="gradient-border-wrapper rounded-2xl bg-[#010006] h-full flex flex-col items-center text-center px-6 py-8 md:py-10">
-            <div className="relative w-full h-full max-w-[300px] aspect-square">
+      <div className="flex w-full flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-7">
+        <div className="w-full lg:w-[35.5%] lg:min-w-[340px]">
+          <div
+            className={`flex h-full flex-col items-center rounded-[24px] ${panelBorder} bg-[#070a14]/94 px-6 py-8 text-center shadow-[0_0_40px_rgba(109,40,217,0.06)] md:px-8 md:py-9`}
+          >
+            <div className="relative mb-6 aspect-square w-full max-w-[330px]">
               <Image
                 src="/Question-mark.webp"
                 alt="Still have questions illustration"
@@ -147,28 +175,24 @@ const Faqs: React.FC<SeoFAQsProps> = ({ faqs: propFaqs }) => {
               />
             </div>
 
-            <h3 className="text-xl md:text-2xl font-semibold text-white">
+            <h3 className="text-[1.7rem] font-semibold leading-tight text-white md:text-[2rem]">
               Still have questions?
             </h3>
-            <p className="mt-2 gradient-text text-sm md:text-2xl">
+            <p className="mt-2 text-[1.55rem] font-semibold leading-tight gradient-text md:text-[1.85rem]">
               We&apos;re here to help!
             </p>
 
-            <Link href="/contact" className="mt-8 w-full max-w-xs">
-              <button
-                type="button"
-                className="w-full flex items-center justify-center gap-3 rounded-xl border border-white/25 bg-transparent px-5 py-3.5 text-white text-sm font-medium hover:border-white/50 hover:bg-white/5 transition-all duration-300"
-              >
-                <BiHeadphone className="text-[#724BB2] text-base lg:text-xl shrink-0" />
+            <Link href="/contact" className="mt-7 w-full max-w-[270px]">
+              <span className="flex w-full items-center justify-center gap-3 rounded-full border border-[#7c3aed]/45 bg-transparent px-6 py-3.5 text-[1.02rem] font-medium text-white transition-all duration-300 hover:border-[#a855f7]/55 hover:bg-[#9333ea]/[0.06]">
+                <Headset size={19} className="text-[#b175ff]" />
                 Contact Support
-                <HiArrowRight className="text-[#724BB2] text-base lg:text-xl shrink-0" />
-              </button>
+                <ArrowRight size={19} className="text-[#a56cff]" />
+              </span>
             </Link>
           </div>
         </div>
 
-        {/* Right — accordion */}
-        <div className="w-full lg:flex-1 flex flex-col gap-3 md:gap-4">
+        <div className="flex w-full flex-1 flex-col gap-3.5 md:gap-4">
           {faqsToDisplay.map((item, index) => {
             const Icon = item.icon;
             const isOpen = openIndex === index;
@@ -176,41 +200,42 @@ const Faqs: React.FC<SeoFAQsProps> = ({ faqs: propFaqs }) => {
             return (
               <div
                 key={item.id ?? index}
-                className={`rounded-xl border transition-colors duration-300 cursor-pointer overflow-hidden ${
+                className={`overflow-hidden rounded-[20px] border transition-colors duration-300 ${
                   isOpen
-                    ? "border-white/15 bg-white/[0.04]"
-                    : "border-white/10 bg-black/40 hover:border-white/15"
+                    ? "border-[#5b4a8f]/55 bg-[#0b0d19]/92"
+                    : "border-[#4c3d8f]/40 bg-[#080a16]/88 hover:border-[#6d4aff]/45"
                 }`}
-                onClick={() => toggleAnswer(index)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    toggleAnswer(index);
-                  }
-                }}
-                role="button"
-                tabIndex={0}
-                aria-expanded={isOpen}
               >
-                <div className="flex items-center gap-4 px-4 md:px-5 py-4 md:py-5">
-                  <div
-                    className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 ${item.iconBg}`}
+                <button
+                  type="button"
+                  onClick={() =>
+                    setOpenIndex(openIndex === index ? null : index)
+                  }
+                  className="flex w-full items-center gap-4 px-4 py-4 text-left md:px-5 md:py-5"
+                  aria-expanded={isOpen}
+                >
+                  <span
+                    className={`flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-full border ${item.iconBorder} ${item.iconBg} md:h-[52px] md:w-[52px]`}
                   >
-                    <Icon className={`text-xl ${item.iconColor}`} />
-                  </div>
+                    <Icon
+                      size={23}
+                      strokeWidth={2.15}
+                      className={item.iconColor}
+                    />
+                  </span>
 
-                  <h3 className="flex-1 text-left text-sm md:text-base lg:text-lg font-medium text-white pr-2">
+                  <span className="flex-1 pr-2 text-[1.06rem] font-medium leading-snug text-white md:text-[1.22rem]">
                     {item.question}
-                  </h3>
+                  </span>
 
-                  <motion.span
-                    animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.25 }}
-                    className={`shrink-0 ${item.iconColor}`}
-                  >
-                    <IoChevronDown size={22} />
-                  </motion.span>
-                </div>
+                  <span className="shrink-0 text-[#a959ff]">
+                    {isOpen ? (
+                      <ChevronUp size={28} strokeWidth={2.1} />
+                    ) : (
+                      <ChevronDown size={28} strokeWidth={2.1} />
+                    )}
+                  </span>
+                </button>
 
                 <AnimatePresence initial={false}>
                   {isOpen && (
@@ -218,10 +243,10 @@ const Faqs: React.FC<SeoFAQsProps> = ({ faqs: propFaqs }) => {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      transition={{ duration: 0.24, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <p className="px-4 md:px-5 pb-5 pl-[4.25rem] md:pl-[4.75rem] text-sm md:text-[15px] text-white/55 leading-relaxed text-left">
+                      <p className="px-4 pb-5 pl-[4.9rem] text-[0.98rem] leading-[1.78] text-white/78 md:px-5 md:pb-6 md:pl-[5.35rem] md:text-[1rem]">
                         {item.answer}
                       </p>
                     </motion.div>
