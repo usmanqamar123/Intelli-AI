@@ -16,7 +16,7 @@ const ToolsDesc = () => {
       desc: "Stay ahead in rankings by keeping your site fresh. Easily refresh and upgrade your existing website articles. Boost SEO, improve engagement, and keep your site at the top of Google’s rankings.",
       btn1Text: "KEEP CONTENT FRESH & RANKING",
       btn2Text: "Create Fresh Content Daily",
-      img: "/WebsiteContent.svg",
+      img: "/WebsiteContent.png",
       link: `${process.env.NEXT_PUBLIC_APP}user/wp-automation`,
       list: [
         {
@@ -43,7 +43,7 @@ const ToolsDesc = () => {
       desc: "Launch a full blog content strategy in minutes. Perfect for brands wanting to dominate their niche with AI-driven topical authority.",
       btn1Text: "BUILD AUTHORITY AT SCALE",
       btn2Text: "Build Your Authority Today",
-      img: "/TopicalAuthority.webp",
+      img: "/TopicalAuthority.png",
       link: `${process.env.NEXT_PUBLIC_APP}user/topical-map`,
       list: [
         {

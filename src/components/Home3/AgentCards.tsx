@@ -96,10 +96,10 @@ const FeatureItem = ({
             {/* CTA Button */}
             <Link href="https://superagents.intelliwriter.io/" target="_blank">
               <div
-                className="mb-6 w-fit flex justify-center lg:justify-start hover:opacity-80"
+                className="mb-6 w-fit flex justify-center lg:justify-start rounded-2xl hover:opacity-80"
                 style={{ backgroundColor: bulletColor }}
               >
-                <button className="text-white text-center  font-semibold px-6 py-3 !rounded-xl shadow-lg">
+                <button className="text-white text-center  font-semibold px-6 py-3 shadow-lg">
                   Activate SEO Agents
                 </button>
               </div>
@@ -124,7 +124,7 @@ const AgentCards = () => {
       id: 1,
       title: (
         <>
-          Write <span style={{ color: "#2D8FE9" }}>Better</span> Page Titles
+          Write <span style={{ color: "#2D8FE9" }}></span> Page Titles
         </>
       ),
       logo: FileCode,
@@ -223,8 +223,7 @@ const AgentCards = () => {
       id: 4,
       title: (
         <>
-          Write <span style={{ color: "#F54900" }}>Clearer</span> Content
-          <br />Faster
+          Update <span style={{ color: "#F54900" }}>Content</span> Faster
         </>
       ),
       logo: Zap,
@@ -258,8 +257,7 @@ const AgentCards = () => {
       id: 5,
       title: (
         <>
-          Track <span style={{ color: "#5D1451" }}>Page</span> Results
-          <br />Easily
+          Track <span style={{ color: "#5D1451" }}>Results</span> Easily
         </>
       ),
       logo: ChartColumn,
@@ -318,40 +316,90 @@ const AgentCards = () => {
         </p>
       </div>
 
-      {/* Slide-name cards */}
-      <div className="flex flex-wrap justify-center gap-3 mb-12 px-4 sm:px-6 md:px-12 transition-all">
-        {featuresList.map((feature, idx) => {
-          const Logo = feature.logo;
-          const isActive = idx === activeIndex;
-          return (
+     {/* PREMIUM FEATURE TABS */}
+<div className="flex justify-center mb-14 px-4">
+  <div
+    className="
+      flex flex-wrap items-center justify-center gap-2
+      p-2
+      rounded-full
+      border border-[#6B41FF]
+      bg-white/[0.03]
+      backdrop-blur-xl
+      shadow-[0_10px_60px_rgba(0,0,0,0.35)]
+      w-fit
+      max-w-full
+    "
+  >
+    {featuresList.map((feature, idx) => {
+      const Logo = feature.logo;
+      const isActive = idx === activeIndex;
+
+      return (
+        <button
+          key={feature.id}
+          onClick={() => swiperRef.current?.slideTo(idx)}
+          className={`
+            relative
+            flex items-center gap-2
+            px-5 py-3
+            rounded-full
+            overflow-hidden
+            transition-all
+            duration-500
+            cursor-pointer
+            group
+            ${
+              isActive
+                ? "scale-105"
+                : "hover:scale-105 opacity-75 hover:opacity-100"
+            }
+          `}
+        >
+          {/* Active Background */}
+          {isActive && (
             <div
-              key={feature.id}
-              onClick={() => swiperRef.current?.slideTo(idx)}
-              className="flex flex-row items-center justify-center gap-3 px-3 py-2 rounded-full border flex-shrink-0 cursor-pointer hover:scale-[1.03] hover:opacity-80"
-              style={{
-                backgroundColor: isActive ? feature.bulletColor : "#59168B80",
-                borderColor: isActive ? feature.bulletColor : "#8200DB80",
-                transition: "all 0.3s",
-              }}
+              className="
+                absolute inset-0
+                rounded-full
+                bg-gradient-to-r
+                from-[#6B41FF]
+                via-[#8B5CF6]
+                to-[#A855F7]
+                shadow-[0_0_30px_rgba(139,92,246,0.55)]
+                animate-pulse
+              "
+            />
+          )}
+
+          {/* Content */}
+          <div className="relative z-10 flex items-center gap-2">
+            <Logo
+              size={18}
+              className={`transition-all duration-300 ${
+                isActive ? "text-white" : "text-gray-400"
+              }`}
+            />
+
+            <span
+              className={`
+                text-sm font-medium tracking-wide uppercase
+                transition-all duration-300
+                ${
+                  isActive
+                    ? "text-white"
+                    : "text-gray-400 group-hover:text-white"
+                }
+              `}
             >
-              <Logo
-                size={18}
-                style={{ color: isActive ? "#FFFFFF" : "#D1D5DC" }}
-              />
-              <p
-                className="uppercase text-sm leading-relaxed"
-                style={{
-                  color: isActive ? "#FFFFFF" : "#D1D5DC",
-                  transition: "color 0.3s",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {feature.slideName}
-              </p>
-            </div>
-          );
-        })}
-      </div>
+              {feature.slideName}
+            </span>
+          </div>
+        </button>
+      );
+    })}
+  </div>
+</div>
 
       {/* Swiper */}
       <div className="relative w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-0">

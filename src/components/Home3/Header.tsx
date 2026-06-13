@@ -28,11 +28,6 @@ import {
   FaFileAlt,
   FaSearch,
   FaTags,
-  FaStar,
-  FaArrowRight,
-  FaBook,
-  FaCogs,
-  FaTachometerAlt,
 } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import { useAuth } from "@/context/AuthContext";
@@ -64,18 +59,20 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
   const [dropdown, setDropdown] = useState<boolean>(false);
   const { nameLetter, setNameLetter } = useAuth();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
 
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
   const [tokens, setTokens] = useState<string | null>(null);
   const NAV_TOP_OFFSET = 80;
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [activeMenu, setActiveMenu] = useState("automation");
 
   const closeTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
-  const handleOpen = () => {
+  const handleOpen = (menuId: string) => {
     if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    setActiveMegaMenu(menuId);
     setShowDropdown(true);
   };
 
@@ -127,22 +124,9 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
-
-  const handleMouseEnter = (id: string) => {
-    setActiveMenu(id);
-    setShowDropdown(true);
-  };
-
- const handleMouseLeave = () => {
-  closeTimeoutRef.current = setTimeout(() => {
-    setShowDropdown(false);
-    setActiveMenu(null);
-  }, 100); 
-};
-
   const navlinks = [
     { id: "1", label: "AI Tools", href: "" },
-    { id: "2", label: "Wordpress SEO Agents", href: "" },
+    { id: "2", label: "Super SEO Agents", href: "" },
     { id: "3", label: "AI Humanizer", href: "/ai-humanizer" },
     { id: "4", label: "Pricing", href: "/intelliwriter-pricing-plans" },
     { id: "5", label: "Article SEO Checker", href: "/article-seo-checker" },
@@ -164,52 +148,46 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
 
   const writingTools = [
     {
-      icon: <FaPen className="text-[#5595BF]" />,
+      icon: <FaPen className="text-yellow-500" />,
       title: "AI Article Writer",
       description: "Create SEO-friendly articles with AI-driven generation.",
       link: `${process.env.NEXT_PUBLIC_APP}user/ai-seo-articlewriter`,
       route: "/seo-ai-blog-writer",
-      color: "bg-[#041F5E]",
     },
     {
-      icon: <GiRank3 className="text-[#A05EC5]" />,
+      icon: <GiRank3 className="text-[#DF1DF7]" />,
       title: "Outrank Article",
       description: "Create SEO-optimized articles to outrank competitors.",
       link: `${process.env.NEXT_PUBLIC_APP}user/outrank`,
       route: "/ai-outrank-article",
-      color: "bg-[#2D0F5A] text-[#2D0F5A]",
     },
     {
-      icon: <TbSettingsAutomation className="text-[#AAEDD4]" />,
+      icon: <TbSettingsAutomation className="text-orange-500" />,
       title: "Blog Automation",
       description: "Automate blog creation and keep content fresh.",
       link: `${process.env.NEXT_PUBLIC_APP}user/wp-automation`,
       route: "/ai-blog-automation",
-      color: "bg-[#02472B] text-[#02472B]",
     },
     {
-      icon: <RiSeoLine className="text-[#F7B35A]" />,
+      icon: <RiSeoLine className="text-cyan-500" />,
       title: "AI SEO Checker",
       description: "Check readability, metadata, keywords, and rankings.",
       link: `/article-seo-checker`,
       route: "/article-seo-checker",
-      color: "bg-[#854606] text-[#854606]",
     },
     {
-      icon: <FaImage className="text-[#B956AC]" />,
+      icon: <FaImage className="text-red-500" />,
       title: "Image Generator",
       description: "Generate high-resolution images with AI.",
       link: `${process.env.NEXT_PUBLIC_APP}user/image-generator`,
       route: "/ai-image-generator",
-      color: "bg-[#460C46] text-[#460C46]",
     },
     {
-      icon: <FaRobot className="text-[#1390B2]" />,
+      icon: <FaRobot className="text-green-500" />,
       title: "Scholar Chat",
       description: "AI-powered conversations with multiple models.",
       link: `${process.env.NEXT_PUBLIC_APP}user/chat`,
       route: "/scholar-chat",
-      color: "bg-[#012F5F] text-[#012F5F]",
     },
     {
       icon: <FaSyncAlt className="text-pink-500" />,
@@ -217,7 +195,6 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
       description: "Build niche authority with structured content.",
       link: `${process.env.NEXT_PUBLIC_APP}user/topical-map`,
       route: "/ai-topical-authority-builder",
-      color: "bg-pink-500/20 text-pink-400",
     },
     {
       icon: <FaFreeCodeCamp className="text-purple-600" />,
@@ -225,7 +202,6 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
       description: "Explore complimentary SEO tools.",
       link: `${process.env.NEXT_PUBLIC_APP}free-tools/free-seo-tools`,
       route: "/free-tools/free-seo-tools",
-      color: "bg-purple-500/20 text-purple-400",
     },
   ];
 
@@ -274,22 +250,6 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
       route: "/ai-image-generator",
       color: "bg-[#460C46] text-[#460C46]",
     },
-    // {
-    //   icon: <FaRobot className="text-[#1390B2]" />,
-    //   title: "Scholar Chat",
-    //   description: "AI-powered conversations with multiple models.",
-    //   link: `${process.env.NEXT_PUBLIC_APP}user/chat`,
-    //   route: "/scholar-chat",
-    //       color: "bg-[#012F5F] text-[#012F5F]",
-    // },
-    // {
-    //   icon: <FaSyncAlt className="text-pink-500" />,
-    //   title: "Topical Authority",
-    //   description: "Build niche authority with structured content.",
-    //   link: `${process.env.NEXT_PUBLIC_APP}user/topical-map`,
-    //   route: "/ai-topical-authority-builder",
-    //       color: "bg-pink-500/20 text-pink-400",
-    // },
   ];
 
   // 🟢 REPLACEMENT LOGOUT FUNCTION
@@ -357,7 +317,7 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
     };
   }, [aboutRef, pricingRef]);
 
-  // only create guest on client
+  // ✅ only create guest on client
   useEffect(() => {
     if (typeof window !== "undefined" && typeof document !== "undefined") {
       const guest = createGuest("https://app.intelliwriter.io/");
@@ -396,18 +356,17 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
                 className="xl:w-[160px]"
               />
             </Link>
-            <div className="flex lg:gap-4 xl:gap-7 font-medium ml-3"
-            onMouseLeave={handleMouseLeave}
-            >
+            <div className="flex lg:gap-4 xl:gap-7 font-medium ml-3">
               {navlinks.map((item, index) => (
                 <div
                   key={`${item.id}-${index}`}
                   className="relative group"
- onMouseEnter={() => {
-        if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
-        setActiveMenu(item.id);
-        setShowDropdown(true);
-      }}
+                  onMouseEnter={() =>
+                    (item.id === "1" || item.id === "2") && handleOpen(item.id)
+                  }
+                  onMouseLeave={() =>
+                    (item.id === "1" || item.id === "2") && handleClose()
+                  }
                 >
                   {item.id === "1" || item.id === "2" ? (
                     // Dropdown Trigger
@@ -444,71 +403,63 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
                     </Link>
                   )}
 
-                  {/* Dropdown Content AI Tools */}
-                  {showDropdown && activeMenu === "1" && (
+                  {/* Dropdown Content */}
+                  {activeMegaMenu === "1" && showDropdown && (
                     <div
                       className="fixed left-0 right-0 z-[100]"
-                       style={{ top: NAV_TOP_OFFSET - 16 }}
- onMouseEnter={() => {
-        if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
-        setShowDropdown(true);
-      }}
-                            onMouseLeave={handleMouseLeave}
+                      style={{ top: NAV_TOP_OFFSET }}
+                      onMouseEnter={() => {
+                        if (closeTimeoutRef.current) {
+                          clearTimeout(closeTimeoutRef.current);
+                        }
+                      }}
+                      onMouseLeave={handleClose}
                     >
                       <div className="mx-auto w-full px-6 lg:px-10 xl:px-16">
-                        <div className="mx-auto max-w-[1240px] rounded-2xl bg-[#01061A] text-white shadow-[0_20px_60px_rgba(0,0,0,0.45)] overflow-hidden">
+                        <div className="mx-auto max-w-[1240px] rounded-2xl bg-[#0F061C] text-white shadow-[0_20px_60px_rgba(0,0,0,0.45)] overflow-hidden">
                           <div className="grid lg:grid-cols-[260px_minmax(0,1fr)_260px]">
                             {/* ================= LEFT RAIL ================= */}
-                            <aside className="border-r border-white/10 p-5">
-                              <div className="w-fit flex items-center border border-white/10 rounded-md gap-2 mb-4">
-                                <FaStar className="text-yellow-400 text-sm" />
-
-                                <h3 className="text-sm font-semibold uppercase text-purple-400">
-                                  Featured
-                                </h3>
-                              </div>
-
-                              <h2 className="text-2xl font-semibold gradient-text not-italic text-transparent bg-clip-text">
-                                AI Writing Studio
-                              </h2>
-
-                              <p className="mt-3 text-sm leading-relaxed text-white/70">
-                                Intelliwriter provides powerful AI tools to
-                                write, rewrite, humanize, create, and automate
-                                high-quality content
-                              </p>
-
-                              <Image
-                                src="/MegaMenu.webp"
-                                alt="AI Super SEO Agents"
-                                width={220}
-                                height={160}
-                                className="mt-10 rounded-xl object-cover w-full"
-                              />
-
-                              <Link href={""}>
-                                <button className="w-full mt-5 py-3 rounded-lg gradient-bg text-sm md:text-base font-semibold hover:scale-105 duration-500 flex items-center justify-center gap-2">
-                                  Explore AI Tools
-                                  <FaArrowRight className="text-xs" />
-                                </button>
-                              </Link>
+                            <aside className="border-r border-white/10 p-6">
+                              <ul className="space-y-2">
+                                <li>
+                                  <button
+                                    className={`w-full text-left px-4 py-3 rounded-xl text-sm md:text-base font-semibold transition
+                    ${
+                      activeMenu === "automation"
+                        ? "bg-white/10 text-white"
+                        : "text-white/70 hover:bg-white/5"
+                    }`}
+                                  >
+                                    AI Tools
+                                  </button>
+                                </li>
+                              </ul>
                             </aside>
 
                             {/* ================= MIDDLE ================= */}
-                            <section className="p-6 border-r border-white/10">
+                            <section className="p-6 xl:p-8 border-r border-white/10">
                               {/* ===== AUTOMATION ===== */}
-                              {activeMenu === "1" && (
                                 <>
+                                  <div className="mb-6">
+                                    <h2 className="text-xl font-semibold">
+                                      AI Writing & SEO Suite
+                                    </h2>
+                                    <p className="mt-2 text-sm text-white/70 max-w-xl">
+                                      End-to-end AI automation to research,
+                                      write, optimize, and scale content.
+                                    </p>
+                                  </div>
+
+                                  <hr className="border-white/10 mb-6" />
+
                                   <div className="grid grid-cols-2 gap-x-8 gap-y-4">
                                     {writingTools.map((tool, index) => (
                                       <Link
                                         key={tool.title || index}
                                         href={tokens ? tool.link : tool.route}
-                                        className="group flex items-start border border-white/10 gap-4 rounded-lg -mx-2 px-2 py-2 bg-[#040C21] hover:bg-white/5 transition"
+                                        className="group flex items-start gap-4 rounded-lg -mx-2 px-2 py-2 hover:bg-white/5 transition"
                                       >
-                                        <div
-                                          className={`text-xl border border-white/20 rounded-lg p-3 text-white group-hover:text-purple-400 ${tool.color}`}
-                                        >
+                                        <div className="text-xl">
                                           {tool.icon}
                                         </div>
 
@@ -516,79 +467,37 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
                                           <p className="text-sm md:text-base !text-white font-semibold group-hover:text-purple-400">
                                             {tool.title}
                                           </p>
-                                          <p className="text-xs md:text-sm text-white/70 leading-relaxed mt-2">
+                                          <p className="text-xs md:text-sm text-white/70 leading-relaxed">
                                             {tool.description}
                                           </p>
-                                        </div>
-                                        <div className="flex items-center justify-center h-full">
-                                          <AiFillCaretRight className="text-white/40 text-sm group-hover:text-white transition" />
                                         </div>
                                       </Link>
                                     ))}
                                   </div>
                                 </>
-                              )}
                             </section>
 
                             {/* ================= RIGHT ================= */}
-                            <aside className="p-5">
-                              <>
-                                <h4 className="text-sm font-semibold mb-3">
-                                  AI Resources
-                                </h4>
-                                <div className="space-y-3">
-                                  <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-2 hover:bg-white/10 transition">
-                                    <div className="flex gap-2">
-                                      <div className="rounded-lg text-white p-2">
-                                        <FaTachometerAlt />
-                                      </div>
-                                      <div className="flex flex-col flex-1">
-                                        <span className="text-sm font-medium">
-                                          Overview
-                                        </span>
-                                        <p className="text-xs text-white/80 mt-1">
-                                          See what Intelliwriter AI can do
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <AiFillCaretRight className="text-white/40 text-xs group-hover:text-white transition" />
+                            <aside className="p-6">
+                                <>
+                                  <h4 className="text-sm font-semibold mb-3">
+                                    See it in action
+                                  </h4>
+                                  <div className="rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 p-4 mb-4">
+                                    <p className="text-sm font-semibold">
+                                      Automate SEO content creation
+                                    </p>
+                                    <p className="text-xs text-white/90">
+                                      Publish optimized content 5× faster.
+                                    </p>
                                   </div>
-
-                                  <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-2 hover:bg-white/10 transition">
-                                    <div className="flex gap-3">
-                                      <div className="rounded-lg text-white p-2 ">
-                                        <FaCogs />
-                                      </div>
-                                      <div className="flex flex-col flex-1">
-                                        <span className="text-sm font-medium">
-                                          How it Works
-                                        </span>
-                                        <p className="text-xs text-white/80 mt-1">
-                                          Simple 3-step AI content workflow
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <AiFillCaretRight className="text-white/40 text-xs group-hover:text-white transition" />
-                                  </div>
-
-                                  <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-2 hover:bg-white/10 transition">
-                                    <div className="flex gap-3">
-                                      <div className="rounded-lg text-white p-2">
-                                        <FaBook />
-                                      </div>
-                                      <div className="flex flex-col flex-1">
-                                        <span className="text-sm font-medium">
-                                          Documentation
-                                        </span>
-                                        <p className="text-xs text-white/80 mt-1">
-                                          Guides, tutorials & best practices
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <AiFillCaretRight className="text-white/40 text-xs group-hover:text-white transition" />
-                                  </div>
-                                </div>
-                              </>
+                                  <Link
+                                    href="/auth/login"
+                                    className="text-sm font-semibold text-purple-400 hover:text-purple-300"
+                                  >
+                                    Get Started →
+                                  </Link>
+                                </>
                             </aside>
                           </div>
                         </div>
@@ -596,72 +505,50 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
                     </div>
                   )}
 
-                  {/* Dropdown Content SEO Tools */}
-                  {showDropdown && activeMenu === "2" && (
+                  {activeMegaMenu === "2" && showDropdown && (
                     <div
                       className="fixed left-0 right-0 z-[100]"
-                        style={{ top: NAV_TOP_OFFSET - 16 }}
- onMouseEnter={() => {
-        if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
-        setShowDropdown(true);
-      }}
-                            onMouseLeave={handleMouseLeave}
+                      style={{ top: NAV_TOP_OFFSET }}
+                      onMouseEnter={() => {
+                        if (closeTimeoutRef.current) {
+                          clearTimeout(closeTimeoutRef.current);
+                        }
+                      }}
+                      onMouseLeave={handleClose}
                     >
                       <div className="mx-auto w-full px-6 lg:px-10 xl:px-16">
-                        <div className="mx-auto max-w-[1240px] rounded-2xl bg-[#01061A] text-white shadow-[0_20px_60px_rgba(0,0,0,0.45)] overflow-hidden">
+                        <div className="mx-auto max-w-[1240px] rounded-2xl bg-[#0F061C] text-white shadow-[0_20px_60px_rgba(0,0,0,0.45)] overflow-hidden">
                           <div className="grid lg:grid-cols-[260px_minmax(0,1fr)_260px]">
                             {/* ================= LEFT RAIL ================= */}
-                            <aside className="border-r border-white/10 p-5">
-                              <div className="w-fit flex items-center border border-white/10 rounded-md gap-2 mb-4">
-                                <FaStar className="text-yellow-400 text-sm" />
-
-                                <h3 className="text-sm font-semibold uppercase text-purple-400">
-                                  Featured
-                                </h3>
-                              </div>
-
-                              <h2 className="text-2xl font-semibold gradient-text not-italic text-transparent bg-clip-text">
-                                SEO Tools Suite
-                              </h2>
-
-                              <p className="mt-3 text-sm leading-relaxed text-white/70">
-                                Powerful SEO tools to research, optimize,
-                                humanize, create, and improve rankings.
-                                Everything you need for content SEO, metadata,
-                                and ranking insights.
-                              </p>
-
-                              <Image
-                                src="/MegaMenu.webp"
-                                alt="AI Super SEO Agents"
-                                width={220}
-                                height={160}
-                                className="mt-10 rounded-xl object-cover w-full"
-                              />
-
-                              <Link href={""}>
-                                <button className="w-full mt-5 py-3 rounded-lg gradient-bg text-sm md:text-base font-semibold hover:scale-105 duration-500 flex items-center justify-center gap-2">
-                                  Explore SEO Tools
-                                  <FaArrowRight className="text-xs" />
-                                </button>
-                              </Link>
+                            <aside className="border-r border-white/10 p-6">
+                              <ul className="space-y-2">
+                                <li>
+                                   <button
+                                    className={`w-full text-left px-4 py-3 rounded-xl text-sm md:text-base font-semibold transition
+                    ${
+                      activeMenu === "automation"
+                        ? "bg-white/10 text-white"
+                        : "text-white/70 hover:bg-white/5"
+                    }`}
+                                  >
+                                    WordPress SEO Agents
+                                  </button>
+                                </li>
+                              </ul>
                             </aside>
 
                             {/* ================= MIDDLE ================= */}
-                            <section className="p-6 border-r border-white/10">
-                              {/* ===== AUTOMATION ===== */}
-                              {activeMenu === "2" && (
-                                <>
+                            <section className="p-6 xl:p-8 border-r border-white/10">
+                              {/* ===== WORDPRESS ===== */}
                                   <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+
                                     {seoTools.map((tool, index) => (
                                       <Link
                                         key={tool.title || index}
                                         href={tokens ? tool.link : tool.route}
-                                        className="group flex items-start border border-white/10 gap-4 rounded-lg -mx-2 px-2 py-2 bg-[#040C21] hover:bg-white/5 transition"
+                                        className="group flex items-start gap-4 rounded-lg -mx-2 px-2 py-2 hover:bg-white/5 transition"
                                       >
-                                        <div
-                                          className={`text-xl border border-white/20 rounded-lg p-3 text-white group-hover:text-purple-400 ${tool.color}`}
-                                        >
+                                        <div className="text-xl">
                                           {tool.icon}
                                         </div>
 
@@ -669,79 +556,37 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
                                           <p className="text-sm md:text-base !text-white font-semibold group-hover:text-purple-400">
                                             {tool.title}
                                           </p>
-                                          <p className="text-xs md:text-sm text-white/70 leading-relaxed mt-2">
+                                          <p className="text-xs md:text-sm text-white/70 leading-relaxed">
                                             {tool.description}
                                           </p>
                                         </div>
-                                        <div className="flex items-center justify-center h-full">
-                                          <AiFillCaretRight className="text-white/40 text-sm group-hover:text-white transition" />
-                                        </div>
                                       </Link>
                                     ))}
-                                  </div>
-                                </>
-                              )}
+                                </div>
                             </section>
 
                             {/* ================= RIGHT ================= */}
-                            <aside className="p-5">
-                              <>
-                                <h4 className="text-sm font-semibold mb-3">
-                                  AI Resources
-                                </h4>
-                                <div className="space-y-3">
-                                  <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-2 hover:bg-white/10 transition">
-                                    <div className="flex gap-3">
-                                      <div className="rounded-lg text-white p-2">
-                                        <FaTachometerAlt />
-                                      </div>
-                                      <div className="flex flex-col flex-1">
-                                        <span className="text-sm font-medium">
-                                          Overview
-                                        </span>
-                                        <p className="text-xs text-white/80 mt-1">
-                                          See what Intelliwriter AI can do
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <AiFillCaretRight className="text-white/40 text-xs group-hover:text-white transition" />
+                            <aside className="p-6">
+                                <>
+                                  <h4 className="text-sm font-semibold mb-3">
+                                    Super SEO Agent Plugin
+                                  </h4>
+                                  <div className="rounded-xl bg-gradient-to-br from-blue-600 to-cyan-600 p-4 mb-4">
+                                    <p className="text-sm font-semibold">
+                                      AI SEO inside WordPress
+                                    </p>
+                                    <p className="text-xs text-white/90">
+                                      Optimize posts without leaving your
+                                      dashboard.
+                                    </p>
                                   </div>
-
-                                  <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-2 hover:bg-white/10 transition">
-                                    <div className="flex gap-3">
-                                      <div className="rounded-lg text-white p-2 ">
-                                        <FaCogs />
-                                      </div>
-                                      <div className="flex flex-col flex-1">
-                                        <span className="text-sm font-medium">
-                                          How it Works
-                                        </span>
-                                        <p className="text-xs text-white/80 mt-1">
-                                          Simple 3-step AI content workflow
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <AiFillCaretRight className="text-white/40 text-xs group-hover:text-white transition" />
-                                  </div>
-
-                                  <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-2 hover:bg-white/10 transition">
-                                    <div className="flex gap-3">
-                                      <div className="rounded-lg text-white p-2">
-                                        <FaBook />
-                                      </div>
-                                      <div className="flex flex-col flex-1">
-                                        <span className="text-sm font-medium">
-                                          Documentation
-                                        </span>
-                                        <p className="text-xs text-white/80 mt-1">
-                                          Guides, tutorials & best practices
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <AiFillCaretRight className="text-white/40 text-xs group-hover:text-white transition" />
-                                  </div>
-                                </div>
-                              </>
+                                  <Link
+                                    href="/wordpress-guide"
+                                    className="text-sm font-semibold text-cyan-400 hover:text-cyan-300"
+                                  >
+                                    Install Plugin →
+                                  </Link>
+                                </>
                             </aside>
                           </div>
                         </div>
@@ -939,7 +784,7 @@ const Header: React.FC<HeaderProps> = ({ aboutRef, pricingRef }) => {
                 )}
 
                 {/* Dropdown Content */}
-                {activeMenu === "1" && showDropdown && (
+                {item.id === "1" && showDropdown && (
                   <div className="w-full text-white rounded-xl p-3 z-50 mt-4">
                     <div>
                       <div className="grid grid-cols-1 gap-7">
